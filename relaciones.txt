@@ -1,0 +1,18 @@
+titular 1 ------ movil 1 ------ abono 1 ------ chofer 1 ------ voucher 1 a muchos
+                                           l-- chofer 2 ------ voucher 1 a muchos
+                
+titular 2 ------ movil 2 ------ abono 2 ------ chofer 3 ------ voucher 1 a muchos               
+            l--- movil 3 ------ abono 3 ------ chofer 4 ------ voucher 1 a muchos
+            l--- movil 4 ------ abono 2 ------ chofer 5 ------ voucher 1 a muchos
+                
+titular 3 ------ movil 5 ------ abono 1 ------ chofer 6 ------ voucher 1 a muchos             
+
+
+
+titular ------ 1 a muchos moviles
+
+movil -------- 1 a muchos choferes
+
+choferes------ 1 a muchos voucher
+
+
