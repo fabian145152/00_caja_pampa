@@ -34,8 +34,6 @@
             window.location = "detalle_uni_completa.php?q=" + cod_uni_comp;
         }
 
-
-
         /* ahora viene la funcion update*/
         function updateProduct(cod_uni_comp) {
             window.location = "edit_uni_completa.php?q=" + cod_uni_comp;
@@ -60,23 +58,14 @@
                 <th>Id</th>
                 <th>Movil</th>
                 <th>Licencia</th>
-
                 <th>Ape Titu</th>
-
                 <th>cel titu</th>
-
                 <th>Chof dia</th>
-
                 <th>Cel dia</th>
-
                 <th>Chof noche</th>
-
                 <th>Cel noche</th>
-
                 <th>Modelo</th>
-
                 <th>año</th>
-
                 <th>Detalles</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>

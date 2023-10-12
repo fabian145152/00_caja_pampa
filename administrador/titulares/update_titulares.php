@@ -8,6 +8,7 @@ $con->set_charset("utf8mb4");
 /*print_r($_POST); */
 
 /*La linea anterior sirve solo para ver */
+echo $id = $_POST['id'];
 
 echo $abono = $_POST['abono'];
 echo "<br>";
@@ -23,23 +24,26 @@ echo $licencia = $_POST['licencia'];
 echo "<br>";
 echo $cel = $_POST['cel'];
 echo "<br>";
-echo $fecha_2 = $_POST['fecha_2'];
+echo $fecha_ini = $_POST['fecha_inicio'];
+echo "<br>";
+echo $fecha_fact = $_POST['fecha_fact'];
 
 
-$id = $_POST['id'];
 
 
 
 
 $sql = "UPDATE completa SET nombre_titu = '$nombre',
-                apellido_titu = '$apellido',
-                direccion_titu = '$direccion',      
-                dni_titu ='$dni',
-                licencia_titu = '$licencia',
-                cel_titu = '$cel',
-                fecha_facturacion = '$fecha_2',
-                abono = '$abono'
-                WHERE id =" . $id;
+                            apellido_titu = '$apellido',
+                            direccion_titu = '$direccion',      
+                            dni_titu ='$dni',
+                            licencia_titu = '$licencia',
+                            cel_titu = '$cel',
+                            fecha_inicio = '$fecha_ini',
+                            fecha_facturacion = '$fecha_fact',
+                            
+                            abono = '$abono'
+                WHERE id = " . $id;
 
 $con->query($sql);
 header('Location:list_titulares.php');

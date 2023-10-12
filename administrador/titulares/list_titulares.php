@@ -67,8 +67,8 @@
             <tr>
                 <th>ID</th>
                 <th>Importe</th>
-                <TH>movil</TH>
                 <th>Fecha Fact</th>
+                <TH>movil</TH>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Direccion</th>
@@ -97,7 +97,17 @@
             $con = openCon('../../config/db_admin.ini');
             $con->set_charset("utf8mb4");
 
-            $sql = "SELECT * FROM completa WHERE 1 ORDER BY movil";
+            $sql = "SELECT id,
+                           abono,
+                           date_format (fecha_facturacion, '%d-%m-%Y') as fecha_formateada ,
+                           movil,
+                           nombre_titu,
+                           apellido_titu,
+                           direccion_titu,
+                           dni_titu,
+                           licencia_titu,
+                           cel_titu
+             FROM completa WHERE 1 ORDER BY movil";
             $result = $con->query($sql);
 
 
@@ -110,7 +120,7 @@
 
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['abono'] ?></td>
-                    <td><?php echo $row['fecha_facturacion'] ?></td>
+                    <td><?php echo $row['fecha_formateada'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
                     <td><?php echo $row['nombre_titu'] ?></td>
                     <td><?php echo $row['apellido_titu'] ?></td>

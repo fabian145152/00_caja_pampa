@@ -18,10 +18,15 @@
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
-            grid-gap: 10px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
+            grid-gap: 1px;
         }
     </style>
+    <script>
+        function updateProduct(cod_zapatilla) {
+            window.location = "../caja/inicio.php?q=" + cod_zapatilla;
+        }
+    </script>
 </head>
 
 <body>
@@ -39,7 +44,37 @@
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-    $sql = "SELECT * FROM `completa` WHERE id= $id;";
+    $sql = "SELECT id, 
+                    movil,
+                    nombre_titu,
+                    apellido_titu,
+                    dni_titu,
+                    direccion_titu,
+                    cp_titu,
+                    cel_titu,
+                    licencia_titu,
+                    nombre_chof_1,
+                    apellido_chof_1,
+                    dni_chof_1,
+                    direccion_chof_1,
+                    cp_chof_1,
+                    dni_chof_1,
+                    cel_chof_1,
+                    nombre_chof_2,
+                    apellido_chof_2,
+                    dni_chof_2,
+                    direccion_chof_2,
+                    cp_chof_2,
+                    dni_chof_2,
+                    cel_chof_2,
+                    marca,
+                    modelo,
+                    dominio,
+                    año,             
+                    fecha_inicio,
+                    fecha_facturacion
+                    FROM `completa` WHERE id= $id;";
+
     $result = $con->query($sql);
     $row = $result->fetch_assoc();
 
@@ -47,17 +82,15 @@
     $result_abono = $con->query($sql_abono);
     $row_abono = $result_abono->fetch_assoc();
 
-
-
     ?>
     <h1 class="text-center" style="margin: 5px ; ">DETALLES DE LA UNIDAD <?php echo $row['movil'] ?></h1>
-    <form class="form-group" accept=-"charset utf8" action="../caja/inicio.php?id = <?php $row['id'] ?>" method="POST">
-        <div class="grid">
+    <form class="form-group" accept=-"charset utf8 action="../caja/inicio.php?=" <?php echo $row['movil'] ?> method="post">
+        <div class="grid" name="movil">
             <div>
-                <h3>Inicio de actividad:</h3>
-                <h3><?php echo $row['fecha_inicio'] ?></h3>
-                <h3>Inicio de facturacion:</h3>
-                <h3><?php echo $row['fecha_facturacion'] ?></h3>
+                <h3> &nbsp;&nbsp;Inicio de act.:</h3>
+                <h3> &nbsp;&nbsp;<?php echo $row['fecha_inicio'] ?> </h3>
+                <h3> &nbsp;&nbsp;Inicio de fact.:</h3>
+                <h3> &nbsp;&nbsp;<?php echo $row['fecha_facturacion'] ?></h3>
             </div>
             <div>
                 <ul>
@@ -80,7 +113,7 @@
                     <li>Apellido:<?php echo " " . $row['apellido_titu'] ?></li>
                     <li>Direccion:<?php echo " " . $row['direccion_titu'] ?></li>
                     <li>Cp:<?php echo " " . $row['cp_titu'] ?></li>
-                    <li>Celular: <?php echo " " . $row['cel_titu'] ?></li>>
+                    <li>Celular: <?php echo " " . $row['cel_titu'] ?></li>
                 </ul>
             </div>
             <div>
@@ -121,7 +154,13 @@
             </div>
         </div>
 
-       <button class="boton">ver</button>
+
+
+        <td><a class="btn btn-success" href="#" onclick="updateProduct(<?php echo $row['id'] ?>)">Actualizar producto</td>
+
+
+
+
 
 
 

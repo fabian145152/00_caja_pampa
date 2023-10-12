@@ -20,7 +20,17 @@ echo $id_upd;
 
 
 
-$sql = "SELECT * FROM completa WHERE id=" . $id_upd;
+$sql = "SELECT id, 
+               nombre_titu, 
+               apellido_titu, 
+               direccion_titu, 
+               dni_titu, 
+               licencia_titu, 
+               fecha_inicio,
+               fecha_facturacion,
+               /*date_format (fecha_inicio, '%d-%m-%Y') as f_inicio, 
+               date_format (fecha_facturacion, '%d-%m-%Y') as f_fact, */
+               cel_titu FROM completa WHERE id=" . $id_upd;
 $result = $con->query($sql);
 $row = $result->fetch_assoc();
 //}
@@ -50,7 +60,8 @@ $row = $result->fetch_assoc();
                 <form class="form-group" accept=-"charset utf8" action="update_titulares.php" method="post">
 
                     <div class="from-group">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+
+                        <input type="hidden" id="id" name="id" value="<?php echo $row['id']; ?>">
                     </div>
 
 
@@ -77,18 +88,24 @@ $row = $result->fetch_assoc();
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">FECHA DE INSCRIPCIOP</label>
-                        <input type="text" class="form-control" id="fecha_2" name="fecha_2" value="<?php echo $row['fecha_inicio']; ?>">
+                        <label class="control-label">FECHA DE INSCRIPCION</label>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $row['fecha_inicio']; ?>">
                     </div>
 
 
                     <div class="form-group">
                         <label class="control-label">FECHA FACTURACION</label>
-                        <input type="text" class="form-control" id="fecha_2" name="fecha_2" value="<?php echo $row['fecha_facturacion']; ?>">
+                        <input type="date" class="form-control" id="fecha_fact" name="fecha_fact" value="<?php echo $row['fecha_facturacion']; ?>">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label">Celular</label>
+                        <input type="text" class="form-control" id="cel" name="cel" value="<?php echo $row['cel_titu']; ?>">
                     </div>
 
                     <div class="form-group">
-                    <label class="control-label">SELECCIONAR ABONO</label>
+                        <label class="control-label">SELECCIONAR ABONO</label>
                         <select name="abono" id="abono" class="form-control" required>
                             <?php
                             include_once '../../includes/db.php';
@@ -104,13 +121,6 @@ $row = $result->fetch_assoc();
                             ?>
                         </select>
                     </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label">Celular</label>
-                        <input type="text" class="form-control" id="cel" name="cel" value="<?php echo $row['cel_titu']; ?>">
-                    </div>
-
 
                     <div class="text-center">
                         <br>

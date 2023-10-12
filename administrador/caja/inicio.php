@@ -37,7 +37,7 @@
     <br><br>
 
     <?php
-    echo $pesos = $_POST['pesos'];
+    //echo $pesos = $_POST['pesos'];
     echo $id = $_POST['movil'];
     ?>
     <h1>Caja Moviles</h1>
