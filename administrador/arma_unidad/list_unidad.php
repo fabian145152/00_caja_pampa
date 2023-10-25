@@ -91,45 +91,26 @@
                 <th><?php echo $row['id'] ?></th>
                 <th><?php echo $row['movil'] ?></th>
                 <TH><?PHP echo $row['licencia_titu'] ?></TH>
-
-                <!-- <th><?php //echo $row['nombre_titu'] 
-                            ?></th> -->
                 <th><?php echo $row['apellido_titu'] ?></th>
-
-
                 <th><?php echo $row['cel_titu'] ?></th>
-
-                <!-- <th><?php //echo $row['abono'] 
-                            ?></th> -->
-
-                <!-- <th><?php //echo $row['nombre_chof_1'] 
-                            ?></th> -->
                 <th><?php echo $row['apellido_chof_1'] ?></th>
-
-
                 <th><?php echo $row['cel_chof_1'] ?></th>
-
-                <!-- <th><?php //echo $row['nombre_chof_2'] 
-                            ?></th> -->
                 <th><?php echo $row['apellido_chof_2'] ?></th>
-
                 <th><?php echo $row['cel_chof_2'] ?></th>
-
-
                 <th><?php echo $row['modelo'] ?></th>
-
                 <th><?php echo $row['año'] ?></th>
 
                 <td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $row['id']; ?>)">Detalles</td>
                 <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>
                 <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $row['id']; ?>)">Eliminar</td>
+
             </tr>
 
         <?php
         }
         ?>
         </tr>
-
+    </table>
 
 </body>
 

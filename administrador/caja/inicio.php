@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/bootbox.min.js"></script>
     <style>
         .form {
             width: 100%;
@@ -38,20 +41,30 @@
 
     <?php
     //echo $pesos = $_POST['pesos'];
-    echo $id = $_POST['movil'];
+
     ?>
     <h1>Caja Moviles</h1>
     <br><br>
-    <div>
-        <form class="form" action="ver_datos.php" method="GET" name="movil">
-            <h1>Ingrese Movil</h1>
-            <br><br>
-            <input type="text" name="movil" class="gui-input" autofocus>
-            <br>
-            <h1>Presione enter</h1>
-        </form>
-    </div>
-    <a href="../../index.php">Salir</a>
+    <h1>Dia: <?php
+
+                date_default_timezone_set('America/Mexico_City');
+                $fechaActual = date('d-m-Y');
+                echo $fechaActual;
+                echo "<br>";
+                $semana = date('W');
+                echo "Semana: " . $semana;
+                ?>
+
+        <div>
+            <form class="form" action="ver_datos.php" method="GET" name="movil">
+                <h1>Ingrese Movil</h1>
+                <br><br>
+                <input type="text" name="movil" class="gui-input" autofocus>
+                <br>
+                <h1>Presione enter</h1>
+            </form>
+        </div>
+        <a href="../../index.php">Salir</a>
 </body>
 
 </html>

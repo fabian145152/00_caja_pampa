@@ -12,17 +12,16 @@
 
 	<script>
 		function deleteProduct(cod_voucher) {
-			/*  Si no le pongo nada entre los parentesis() me borra todo o sea que 
-			la funcion se ejecuta siempore igual. 
-			Tengo que cambiarle los parametros de entrada para que la ejecute como yo quiero. 
-			Si no tiene ningun paramtero generaliza, si lo tiene se ejecuta de forma particular*/
-			bootbox.confirm("Desea Eliminar?" + cod_voucher, function(result) {
-				/*  si la funcion no tiene nombre es una funcion anonima function() o function = nombre()  */
+			bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
 				if (result) {
-					window.location = "delete_voucher.php?q=" + cod_voucher;
+					window.location = "guardar_voucher.php?q=" + cod_voucher;
 				}
-				/*  La ?q es como si fuera el metodo $_GET */
+
 			});
+		}
+
+		function detalleProduct(cod_voucher) {
+			window.location = "detalle_voucher.php?q=" + cod_voucher;
 		}
 
 		/* ahora viene la funcion update*/
@@ -34,12 +33,9 @@
 
 <body>
 
-	<?php
-	include "database.php";
-	$datos = $con->query("select * from voucher_nuevos");
-	?>	
-	<h1 class="text-center" style="margin: 5px ; ">LISTADO DE VOUCHER</h1>
-	
+
+	<h1 class="text-center" style="margin: 5px ; ">CONTROL DE VOUCHER</h1>
+
 	<h2 class="text-center" style="margin: 5px ; ">Agregar filtro por fecha y por móvil.</h2>
 	<h2 class="text-center" style="margin: 5px ; ">una vez que este creado agregar numero de semana</h2>
 	<h2 class="text-center" style="margin: 5px ; ">Diferenciar si el viaje es en ft o de cuenta.</h2>
@@ -60,80 +56,76 @@
 	</div>
 
 
-	<?php if ($datos->num_rows > 0) : ?>
+	<?php
 
-		<p>Resultados <?php echo $datos->num_rows; ?></p>
-		<table class="table table-bordered table-sm table-hover">
-			<thead class="thead-dark">
+	include_once '../../includes/db.php';
 
-				<th>id</th>
-				<th>V No.</th>
-				<th>Inicio</th>
-				<th>Estado</th>
-				<th>Nom Pasajero</th>
-				<th>Cel pasajero</th>
-				<th>Movil</th>
-				<th>Nom Chofer</th>
-				<th>DNI pas</th>
-				<th>Marca</th>
-				<th>Patente</th>
-				<th>C Costo</th>
-				<th>CC</th>
-				<th>Traslado</th>
-				<th>Siniestro</th>
-				<th>Solicitado</th>
-				<th>Completado</th>
-				<th>Destino</th>
-				<th>Reloj</th>
-				<th>Peaje</th>
-				<th>Equipaje</th>
-				<th>Adicional</th>
-				<th>Plus</th>
-				<th>Total</th>
-				<th>Operador</th>
-				<th>Autorizante</th>
-				<th>Obs Pasajero</th>
-				<th>Obs Operador</th>
+	$con = openCon('../../config/db_admin.ini');
+	$con->set_charset("utf8mb4");
 
-			</thead>
-			<?php while ($d = $datos->fetch_object()) : ?>
-				<tr>
-					<td><?php echo $d->id; ?></td>
-					<td><?php echo $d->viaje_no; ?></td>
-					<td><?php echo $d->origen; ?></td>
-					<td><?php echo $d->estado;  ?></td>
-					<td><?php echo $d->nom_pasaj; ?>sd</td>
-					<td><?php echo $d->tel_pasaj; ?></td>
-					<td><?php echo $d->movil; ?></td>
-					<td><?php echo $d->chof; ?></td>
-					<td><?php echo $d->dni; ?></td>
-					<td><?php echo $d->marca; ?></td>
-					<td><?php echo $d->patente; ?></td>
-					<td><?php echo $d->c_costo; ?></td>
-					<td><?php echo $d->cc; ?></td>
-					<td><?php echo $d->traslado; ?></td>
-					<td><?php echo $d->siniestro; ?></td>
-					<td><?php echo $d->solicitado; ?></td>
-					<td><?php echo $d->completado; ?></td>
-					<td><?php echo $d->destino; ?></td>
-					<td><?php echo $d->reloj; ?></td>
-					<td><?php echo $d->peaje; ?></td>
-					<td><?php echo $d->equipaje; ?></td>
-					<td><?php echo $d->adicional; ?></td>
-					<td><?php echo $d->plus; ?></td>
-					<td><?php echo $d->total ?></td>
-					<td><?php echo $d->operador ?></td>
-					<td><?php echo $d->autorizante ?></td>
-					<td><?php echo $d->obs_chof ?></td>
-					<td><?php echo $d->obs_pas ?></td>
+	$sql = "SELECT * FROM voucher_nuevos WHERE 1 ORDER BY movil";
+	$datos = $con->query($sql);
 
-				</tr>
+	?>
+	<p>Resultados: <?php echo $datos->num_rows;
+					?></p>
 
-			<?php endwhile; ?>
-		</table>
-	<?php else : ?>
-		<h3>No hay Datos</h3>
-	<?php endif; ?>
+
+	<table class="table table-bordered table-sm table-hover">
+		<thead class="thead-dark">
+
+			<th>id</th>
+			<th>V No.</th>
+			<th>Nom Pasajero</th>
+			<th>Movil</th>
+			<th>CC</th>
+			<th>Reloj</th>
+			<th>Peaje</th>
+			<th>Equipaje</th>
+			<th>Adicional</th>
+			<th>Plus</th>
+			<th>Total</th>
+			<th>Operador</th>
+			<th>Detalles</th>
+			<th>Actualizar</th>
+			<th>Guardar</th>
+
+
+		</thead>
+
+		<?php
+
+
+
+		while ($d = $datos->fetch_assoc()) {
+
+		?>
+			<tr>
+				<td><?php echo $d['id']; ?></td>
+				<td><?php echo $d['viaje_no']; ?></td>
+				<td><?php echo $d['nom_pasaj']; ?></td>
+				<td><?php echo $d['movil']; ?></td>
+				<td><?php echo $d['cc']; ?></td>
+				<td><?php echo $d['reloj']; ?></td>
+				<td><?php echo $d['peaje']; ?></td>
+				<td><?php echo $d['equipaje']; ?></td>
+				<td><?php echo $d['adicional']; ?></td>
+				<td><?php echo $d['plus']; ?></td>
+				<td><?php echo $d['total'] ?></td>
+				<td><?php echo $d['operador'] ?></td>
+
+				<td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
+				<td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Actualizar</td>
+				<td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id']; ?>)">Guardar</td>
+			</tr>
+
+		<?php
+		}
+		?>
+	</table>
+
+
+
 
 </body>
 

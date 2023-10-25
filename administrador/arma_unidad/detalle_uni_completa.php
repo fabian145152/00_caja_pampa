@@ -22,11 +22,7 @@
             grid-gap: 1px;
         }
     </style>
-    <script>
-        function updateProduct(cod_zapatilla) {
-            window.location = "../caja/inicio.php?q=" + cod_zapatilla;
-        }
-    </script>
+
 </head>
 
 <body>
@@ -152,22 +148,12 @@
                     <li>Año:<?php echo " " . $row['año'] ?></li>
                 </ul>
             </div>
+
         </div>
 
 
 
-        <td><a class="btn btn-success" href="#" onclick="updateProduct(<?php echo $row['id'] ?>)">Actualizar producto</td>
-
-
-
-
-
-
-
-    </form>
-
-
-    <h1 class="text-center" style="margin: 5px ; "><a href="list_unidad.php"> SALIR</a></h1>
+        <h1 class="text-center" style="margin: 5px ; "><a href="list_unidad.php"> SALIR</a></h1>
 
 
 
