@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 
+<!--
+Esta pagina Borral la DDBB donde se importamn los voucher
+
+-->
+
+
 <body>
     <h1>HOLA</h1>
     <?php

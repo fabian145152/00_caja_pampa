@@ -9,24 +9,21 @@
 	<script src="../../js/jquery-3.4.1.min.js"></script>
 	<script src="../../js/bootstrap.min.js"></script>
 	<script src="../../js/bootbox.min.js"></script>
-
 	<script>
-		function deleteProduct(cod_voucher) {
+		function updateProduct(cod_voucher) {
 			bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
 				if (result) {
-					window.location = "guardar_voucher.php?q=" + cod_voucher;
+					window.location = "valida_voucher.php?q=" + cod_voucher;
 				}
-
 			});
 		}
 
 		function detalleProduct(cod_voucher) {
 			window.location = "detalle_voucher.php?q=" + cod_voucher;
 		}
-
 		/* ahora viene la funcion update*/
-		function updateProduct(cod_voucher) {
-			window.location = "edit_voucher.php?q=" + cod_voucher;
+		function deleteProduct(cod_voucher) {
+			window.location = "delete_voucher.php?q=" + cod_voucher;
 		}
 	</script>
 </head>
@@ -34,11 +31,19 @@
 <body>
 
 
-	<h1 class="text-center" style="margin: 5px ; ">CONTROL DE VOUCHER</h1>
+	<h1 class="text-center" style="margin: 5px ; ">VALIDACION DE VOUCHER</h1>
 
-	<h2 class="text-center" style="margin: 5px ; ">Agregar filtro por fecha y por móvil.</h2>
-	<h2 class="text-center" style="margin: 5px ; ">una vez que este creado agregar numero de semana</h2>
-	<h2 class="text-center" style="margin: 5px ; ">Diferenciar si el viaje es en ft o de cuenta.</h2>
+	<?php
+
+	date_default_timezone_set('America/Mexico_City');
+	$fechaActual = date('d-m-Y');
+	$fechaActual;
+	$semana = date('W');
+
+	?>
+	<h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?></h5>
+
+
 
 	<div class="row">
 
@@ -46,13 +51,22 @@
 
 			&nbsp; &nbsp;<input type="file" name="name" id="name" class="btn btn-success btn-sm" placeholder="Archivo (.xlsx)">
 			&nbsp; &nbsp;<button type="submit" class="btn btn-success btn-sm">Importar Datos</button>
-			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			<a href="exportar_tabla.php" class="btn btn-success btn-sm">Exportar</a>
-			&nbsp; &nbsp;&nbsp; &nbsp;
-			<a href="borrar_voucher.php" class="btn btn-success btn-sm">LIMPIAR DDBB</a>
-			&nbsp; &nbsp;&nbsp; &nbsp;
-			<a href="../../index.php" class="btn btn-success btn-sm">SALIR</a>
+			&nbsp;
 		</form>
+		<form method="post" id="busca" action="buscador_voucher.php" enctype="multipart/form-data" role="form">
+			<h5>Buscar x
+				<!-- <input type="date" id="fecha" name="fecha"> -->
+				<input type="text" style="width : 100px " id="movil" name="movil" placeholder="MOVIL">
+				<!-- <input type="text" style="width : 100px " id="viaje" name="viaje" placeholder="VIAJE"> -->
+				<button>Buscar</button>
+				<input type="reset" value="Reset buscador">
+			</h5>
+		</form>
+
+		&nbsp; &nbsp;&nbsp; &nbsp;
+		<a href="borrar_voucher.php" class="btn btn-success btn-sm">LIMPIAR DDBB</a>
+		&nbsp; &nbsp;&nbsp; &nbsp;
+		<a href="../../index.php" class="btn btn-success btn-sm">SALIR</a>
 	</div>
 
 
@@ -67,8 +81,7 @@
 	$datos = $con->query($sql);
 
 	?>
-	<p>Resultados: <?php echo $datos->num_rows;
-					?></p>
+	<h5 style="text-align: center;"><?php echo $datos->num_rows; ?> Voucher importados</h5>
 
 
 	<table class="table table-bordered table-sm table-hover">
@@ -76,6 +89,7 @@
 
 			<th>id</th>
 			<th>V No.</th>
+			<th>Competado</th>
 			<th>Nom Pasajero</th>
 			<th>Movil</th>
 			<th>CC</th>
@@ -85,10 +99,10 @@
 			<th>Adicional</th>
 			<th>Plus</th>
 			<th>Total</th>
-			<th>Operador</th>
+
 			<th>Detalles</th>
-			<th>Actualizar</th>
-			<th>Guardar</th>
+			<th>Validar</th>
+			<th>Borrar</th>
 
 
 		</thead>
@@ -103,6 +117,9 @@
 			<tr>
 				<td><?php echo $d['id']; ?></td>
 				<td><?php echo $d['viaje_no']; ?></td>
+				<td><?php $comp = $d['completado'];
+					echo $fecha_echo = substr($comp, 0, -8);
+					?></td>
 				<td><?php echo $d['nom_pasaj']; ?></td>
 				<td><?php echo $d['movil']; ?></td>
 				<td><?php echo $d['cc']; ?></td>
@@ -112,11 +129,11 @@
 				<td><?php echo $d['adicional']; ?></td>
 				<td><?php echo $d['plus']; ?></td>
 				<td><?php echo $d['total'] ?></td>
-				<td><?php echo $d['operador'] ?></td>
 
-				<td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
-				<td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Actualizar</td>
-				<td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id']; ?>)">Guardar</td>
+
+				<td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
+				<td><a class="btn btn-warning btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Validar</td>
+				<td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 			</tr>
 
 		<?php
