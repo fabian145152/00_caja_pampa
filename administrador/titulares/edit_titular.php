@@ -42,7 +42,7 @@ $row = $result->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Actualizar-products</title>
+    <title>ACTUALIZAR TITULAR</title>
     <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/form.css">
@@ -53,6 +53,8 @@ $row = $result->fetch_assoc();
 
     <div class="container">
         <h3 class="text-center">ACTUALIZAR DATOS DEL TITULAR</h3>
+
+
         <div class="row">
 
             <div class="col-md-12">
@@ -88,30 +90,46 @@ $row = $result->fetch_assoc();
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label">Celular</label>
+                        <input type="text" class="form-control" id="cel" name="cel" value="<?php echo $row['cel_titu']; ?>">
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label">FECHA DE INSCRIPCION</label>
                         <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $row['fecha_inicio']; ?>">
                     </div>
-
 
                     <div class="form-group">
                         <label class="control-label">FECHA FACTURACION</label>
                         <input type="date" class="form-control" id="fecha_fact" name="fecha_fact" value="<?php echo $row['fecha_facturacion']; ?>">
                     </div>
 
-
                     <div class="form-group">
-                        <label class="control-label">Celular</label>
-                        <input type="text" class="form-control" id="cel" name="cel" value="<?php echo $row['cel_titu']; ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">SELECCIONAR ABONO</label>
-                        <select name="abono" id="abono" class="form-control" required>
+                        <label class="control-label">SELECCIONAR ABONO SEMANAL</label>
+                        <select name="abono" id="abono" class="form-control" require>
                             <?php
                             include_once '../../includes/db.php';
                             $con = openCon('../../config/db_admin.ini');
                             $con->set_charset("utf8mb4");
                             $sql = "SELECT * FROM abonos WHERE 1";
+                            $result = $con->query($sql);
+                            while ($row = $result->fetch_assoc()) {
+                            ?>
+                                <option value="<?php echo $row['id'] ?>"><?php echo $row['abono'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">SELECCIONAR ABONO X VIAJE</label>
+                        <select name="abono_viaje" id="abono_viaje" class="form-control" require>
+                            <?php
+                            include_once '../../includes/db.php';
+                            $con = openCon('../../config/db_admin.ini');
+                            $con->set_charset("utf8mb4");
+                            $sql = "SELECT * FROM abonos WHERE 1 ORDER BY abono";
                             $result = $con->query($sql);
                             while ($row = $result->fetch_assoc()) {
                             ?>

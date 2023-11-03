@@ -30,6 +30,7 @@
 
     <?php
     include_once '../../includes/db.php';
+    include_once '../../includes/variables.php';
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
@@ -48,8 +49,9 @@
     $fechaActual;
     $semana = date('W');
 
+   
     ?>
-
+    <br><br>
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
 
         Movil:<?php echo $nu_movil ?>
@@ -69,16 +71,19 @@
 
     $fila = $muestra_todo->fetch_assoc();
 
+    $abono_semanal = $fila['abono'];     //importe semanal
+    $x_viaje = $fila['x_viaje'];  //importe x viaje
+    /*
     $ver_abono = "SELECT * FROM abonos WHERE 1";
     $muestra_abono = $con->query($ver_abono);
     $abono = $muestra_todo->fetch_assoc();
 
 
 
-    echo $abono['id'];
-    echo $abono['abono'];
-    echo $abono['importe'];
-
+    $abono['id'];
+    $abono['abono'];
+    $abono['importe'];
+*/
     ?>
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
 
@@ -88,7 +93,7 @@
                 <ul>
                     <?php
                     $abono = $fila['abono'];
-
+                    $x_viaje = $fila['x_viaje']
                     ?>
                     <li><strong>Datos Titular</strong></li>
                     <li>Nombre: <?php echo $fila['nombre_titu'] ?></li>
@@ -96,6 +101,7 @@
                     <li>Direccion: <?php echo $fila['direccion_titu'] ?></li>
                     <li>Telefono: <?php echo $fila['cel_titu'] ?></li>
                     <li>DNI: <?php echo $fila['dni_titu'] ?></li>
+
                 </ul>
             </div>
 
@@ -155,7 +161,7 @@
                 <th>EQUIPAJE</th>
                 <th>Peaje</th>
                 <th>Fecha</th>
-              
+
             </tr>
         </thead>
 
@@ -180,6 +186,7 @@
 
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
+
                     <td><?php echo $row['fecha'] ?></td>
                     <td><?php echo $semana ?></td>
                     <td><?php echo $row['viaje_no'] ?></td>
@@ -192,48 +199,27 @@
                 </tr>
             </tbody>
         <?php
-
             $movil = $row['movil'];
-
             $total_reloj += $row['reloj'];
             $total_adi += $row['adicional'];
-            //    $total_espera += $row['espera'];
             $total_peaje += $row['peaje'];
-            //    $total_ft += $row['pago_ft'];
         }
 
-
-        //calcula el importe total del viaje 
-        //sin peajes 
-        //y el descuento del 10
-
-        $total_de_viaje = $total_reloj + $total_adi + $total_espera;
+        // TODOS LOS CALCULOS PARA COBRAR
+        //----------------------------------------------------------------------------------------------------------------
+        // 10% para Gastos de cuenta
         $des_de_diez = $total_reloj * .90;
+
+        // 90% para el movil
         $diez = $total_reloj * .1;
 
         $afavor = $des_de_diez + $total_peaje;
 
-        //selecciono el valor del abono
+        $cant_viajes = $fila['total'];
+        $de_viajes = $fila['total'] * $x_viaje;
+        $total_para_el_movil = $afavor - $de_viajes - $abono_semanal;
 
-
-
-        
-        $tabla_abono = "SELECT * FROM `abonos` WHERE id=" . $abono;
-        $res_abono = $con->query($tabla_abono);
-        while ($vea = $res_abono->fetch_array()) {
-            $vea['importe'];
-            $vea['abono'];
-            "<br>";
-            $nombre_importe = $vea['abono'];
-            $importe_semana = $vea['importe'];
-        }
-
-
-        echo "aca hacer la lectura de el importe de cada viaje";
-
-
-
-
+        //---------------------------------------------------------------------------------------------------------------
         ?>
 
     </table>
@@ -241,20 +227,33 @@
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
         <div class="grid">
             <?php "MOVIL " . $nu_movil; ?>
-            <ul>
-                <li><?php echo $nombre_importe . " " . $importe_semana ?></li>
-                <li><?php echo 'Número de viajes: ' . $fila['total']; ?></li>
-                <li><?php echo "Semana: " . $semana ?></li>
-                <li><?php echo "Total reloj sumado: " . "$" . $total_reloj . "-" ?></li>
-                <li><?php echo "Total de adicionales: " . "$" . $total_adi . "-" ?></li>
-                <li><?php echo "total espera: " . "$" . $total_espera . "-" ?></li>
-                <li></li>
-                <li><?php echo "10% para gastos cuenta=" . "$" . $diez . "-" ?></li>
-                <li><?php echo "Total peajes: " . "$" . $total_peaje . "-" ?></li>
-                <li><?php echo "<strong>Total - 10% de des= " . "$" . $des_de_diez . "-" ?></strong></li>
-                <li><?php echo "<strong>A favor del movil: " . $afavor ?></strong></li>
 
-            </ul>
+            <div>
+
+                <ul>
+                    <li><?php echo "Semana: " . $semana ?></li>
+                    <li><?php echo "Abono semanal: " . "$" . $abono_semanal . " " ?></li> <!-- ABONO SEMANAL -->
+                    <li><?php echo 'Cantidad de viajes: ' . $cant_viajes; ?></li> <!-- CANTIDAD DE VIAJES -->
+                    <li><?php echo "Costo x viaje: " . "$" . $x_viaje . "-" ?></li> <!-- ABONO X VIAJE -->
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><?php echo "Total reloj sumado: " . "$" . $total_reloj . "-" ?></li> <!-- IPRTE DEL RELOJ -->
+                    <li><?php echo "total espera: " . "$" . $total_espera . "-" ?></li> <!-- ESPERA -->
+                    <li><?php echo "Total peajes: " . "$" . $total_peaje . "-" ?></li> <!-- PEAJES -->
+                    <li><?php echo "Paga por los viajes: " . "$" . $de_viajes . "-" ?></li> <!-- PAGA X VIAJE -->
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><?php echo "10% para gastos cuenta=" . "$" . $diez . "-" ?></li> <!-- 10% PARA BASE -->
+                    <li><?php echo "Total - 10% de des= " . "$" . $des_de_diez . "-" ?></li> <!-- PARA -->
+                    <li><?php echo "<strong>A favor del movil, pagando viajes, peajes y semana: " . "$" . $total_para_el_movil . "-" ?></strong></li>
+
+                </ul>
+            </div>
+
 
         </div>
     </table>

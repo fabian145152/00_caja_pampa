@@ -55,11 +55,11 @@
     <table class=" table table-bordered table-sm table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
+                <!-- <th>Id</th>  -->
                 <th>Movil</th>
-                <th>Licencia</th>
                 <th>Ape Titu</th>
                 <th>cel titu</th>
+                <th>Licencia</th>
                 <th>Chof dia</th>
                 <th>Cel dia</th>
                 <th>Chof noche</th>
@@ -88,11 +88,11 @@
         ?>
             <tr>
 
-                <th><?php echo $row['id'] ?></th>
+                <!-- <th><?php $row['id'] ?></th>  -->
                 <th><?php echo $row['movil'] ?></th>
-                <TH><?PHP echo $row['licencia_titu'] ?></TH>
                 <th><?php echo $row['apellido_titu'] ?></th>
                 <th><?php echo $row['cel_titu'] ?></th>
+                <TH><?PHP echo $row['licencia_titu'] ?></TH>
                 <th><?php echo $row['apellido_chof_1'] ?></th>
                 <th><?php echo $row['cel_chof_1'] ?></th>
                 <th><?php echo $row['apellido_chof_2'] ?></th>

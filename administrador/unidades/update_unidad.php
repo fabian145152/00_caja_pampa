@@ -9,6 +9,7 @@ $con->set_charset("utf8mb4");
 
 /*La linea anterior sirve solo para ver */
 
+$id = $_POST['id'];
 
 $marca = $_POST['marca'];
 $modelo = $_POST['modelo'];
@@ -17,7 +18,6 @@ $año = $_POST['año'];
 
 
 
-$id = $_POST['id'];
 
 $sql = "UPDATE completa SET     
                                 marca = '$marca', 

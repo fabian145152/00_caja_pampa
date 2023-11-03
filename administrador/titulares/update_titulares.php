@@ -12,6 +12,8 @@ echo $id = $_POST['id'];
 
 echo $abono = $_POST['abono'];
 echo "<br>";
+echo $abono_x_viaje = $_POST['abono_viaje'];
+echo "<br>";
 echo $nombre = $_POST['nombre'];
 echo "<br>";
 echo $apellido = $_POST['apellido'];
@@ -34,16 +36,16 @@ echo $fecha_fact = $_POST['fecha_fact'];
 
 
 $sql = "UPDATE completa SET nombre_titu = '$nombre',
-                            apellido_titu = '$apellido',
-                            direccion_titu = '$direccion',      
-                            dni_titu ='$dni',
-                            licencia_titu = '$licencia',
-                            cel_titu = '$cel',
-                            fecha_inicio = '$fecha_ini',
-                            fecha_facturacion = '$fecha_fact',
-                            
-                            abono = '$abono'
-                WHERE id = " . $id;
+apellido_titu = '$apellido',
+direccion_titu = '$direccion',
+dni_titu ='$dni',
+licencia_titu = '$licencia',
+cel_titu = '$cel',
+fecha_inicio = '$fecha_ini',
+fecha_facturacion = '$fecha_fact',
+x_viaje = '$abono_x_viaje',
+abono = '$abono'
+WHERE id = " . $id;
 
 $con->query($sql);
 header('Location:list_titulares.php');

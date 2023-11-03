@@ -68,54 +68,58 @@
                     dominio,
                     año,             
                     fecha_inicio,
-                    fecha_facturacion
+                    fecha_facturacion,
+                    abono,
+                    x_viaje
                     FROM `completa` WHERE id= $id;";
 
     $result = $con->query($sql);
     $row = $result->fetch_assoc();
 
-    $sql_abono = "SELECT * FROM `abonos` WHERE 1";
-    $result_abono = $con->query($sql_abono);
-    $row_abono = $result_abono->fetch_assoc();
+
 
     ?>
     <h1 class="text-center" style="margin: 5px ; ">DETALLES DE LA UNIDAD <?php echo $row['movil'] ?></h1>
     <form class="form-group" accept=-"charset utf8 action="../caja/inicio.php?=" <?php echo $row['movil'] ?> method="post">
         <div class="grid" name="movil">
             <div>
-                <h3> &nbsp;&nbsp;Inicio de act.:</h3>
-                <h3> &nbsp;&nbsp;<?php echo $row['fecha_inicio'] ?> </h3>
-                <h3> &nbsp;&nbsp;Inicio de fact.:</h3>
-                <h3> &nbsp;&nbsp;<?php echo $row['fecha_facturacion'] ?></h3>
-            </div>
-            <div>
                 <ul>
-                    <li>
-                        <h1>Descripcion</h1>
-                    </li>
-                    <li>Movil:<?php echo " " . $row['movil']  ?></li>
-                    <li>Licencia: <?php echo " " . $row['licencia_titu'] ?></li>
-                    <li>Abono: <?php echo " " . $row_abono['abono'] ?></li>
-                    <li><?php echo " " . $row_abono['importe'] ?></li>
 
+                    <li> &nbsp;&nbsp;Inicio de act.:</li>
+                    <li> &nbsp;&nbsp;<?php echo $row['fecha_inicio'] ?> </li>
+                    <li></li>
+                    <li> &nbsp;&nbsp;Inicio de fact.:</li>
+                    <li> &nbsp;&nbsp;<?php echo $row['fecha_facturacion'] ?></li>
                 </ul>
             </div>
             <div>
                 <ul>
                     <li>
-                        <h1>Titular</h1>
+                        <h3>Descripción</h3>
+                    </li>
+                    <li>Movil:<?php echo " " . $row['movil']  ?></li>
+                    <li>Licencia: <?php echo " " . $row['licencia_titu'] ?></li>
+                    <li>Semana: <?php echo  "$" . $row['abono'] . "-" ?></li>
+                    <li>X Viaje: <?php echo " " . $row['x_viaje'] ?></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <h3>Titular</h3>
                     </li>
                     <li>Nombre:<?php echo " " . $row['nombre_titu'] ?></li>
                     <li>Apellido:<?php echo " " . $row['apellido_titu'] ?></li>
                     <li>Direccion:<?php echo " " . $row['direccion_titu'] ?></li>
                     <li>Cp:<?php echo " " . $row['cp_titu'] ?></li>
                     <li>Celular: <?php echo " " . $row['cel_titu'] ?></li>
+                    <li>DNI: <?php echo $row['dni_titu'] ?></li>
                 </ul>
             </div>
             <div>
                 <ul>
                     <li>
-                        <h1>Chofer Dia:</h1>
+                        <h3>Chofer Dia:</h3>
                     </li>
                     <li>Nombre Chofer Dia: <?php echo " " . $row['nombre_chof_1'] ?></li>
                     <li>Apellido Chofer Dia: <?php echo " " . $row['apellido_chof_1'] ?></li>
@@ -127,7 +131,7 @@
             <div>
                 <ul>
                     <li>
-                        <h1>Chofer Noche</h1>
+                        <h3>Chofer Noche</h3>
                     </li>
                     <li>Nombre Chofer Dia: <?php echo " " . $row['nombre_chof_2'] ?></li>
                     <li>Apellido Chofer Dia: <?php echo " " . $row['apellido_chof_2'] ?></li>
@@ -140,7 +144,7 @@
             <div>
                 <ul>
                     <li>
-                        <h1>Vehiculo</h1>
+                        <h3>Vehiculo</h3>
                     </li>
                     <li>Marca: <?php echo " " . $row['marca'] ?></li>
                     <li>Modelo:<?php echo " " . $row['modelo'] ?></li>
