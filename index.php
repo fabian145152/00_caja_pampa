@@ -9,6 +9,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
+
 </head>
 
 <body>
@@ -17,14 +18,20 @@
             <div class="col-md-12">
                 <h3 class="text-center">MENU ADMINISTRADOR</h3>
 
-                <h4>agregar: </h4>
-                <h4>fecha ingreso </h4>
-                <h4>fecha de facturacion</h$>
 
 
             </div>
 
             <div class="btn-group-vertical">
+                <br>
+                <!-- <a href="Backup_DDBB/backup_caja.php" class="btn btn-primary">Backup DDBB</a>  -->
+
+                <a class="btn btn-primary btn-sm" href="Backup_DDBB/backup_caja.php">Backup DDBB</a>
+                <script>
+                    window.alert("Backup del dia Realizado");
+                </script>
+                <br>
+
                 <a href="administrador/crear_no_de_movil/list_no_movil.php" class="btn btn-primary">CREAR NUMEROS DE MOVIL</a>
                 <br>
 
@@ -41,10 +48,11 @@
                 <a href="administrador/arma_unidad/list_unidad.php" class="btn btn-primary">LISTAR UNIDADAES</a>
                 <br>
 
+                <a href="administrador/caja/inicio.php" class="btn btn-primary">CAJA</a>
 
+                <br>
 
                 <a href="administrador/abonos/list_abonos.php" class="btn btn-primary">ABONOS
-                    <P>Modulo para actualizar o crear importes a cobrar.</P>
                 </a>
                 <br>
 
@@ -53,18 +61,12 @@
                 </a>
                 <br>
 
+
                 <a href="administrador/voucher/inicio_voucher.php" class="btn btn-primary">VOUCHER
                     <p>todos los campos del reporte de la app MK</p>
                 </a>
                 <br>
 
-                <a href="administrador/caja/inicio.php" class="btn btn-primary">CAJA
-                    <p>armando la tabla en la DDBB</p>
-                </a>
-
-                <br>
-                <a href="" class="btn btn-primary">Empezar a hacer baclhup de la DDBB<p></p></a>
-                <br>
                 <a href="ayuda/ayuda.html" target=" _blank" class="btn btn-primary">AYUDA</a>
                 <br>
                 <a href="../00_pampa/index.php" class="btn btn-danger">SALIR</a>
@@ -86,6 +88,8 @@
             <li>permiso solo para cobrar FT</li>
         </OL>
     </div>
+    <script src="..js/jquery-3.4.1.min.js"> </script>
+    <script src="../js/bootstrap.min.js"> </script>
 </body>
 
 </html>

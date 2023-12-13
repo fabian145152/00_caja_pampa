@@ -49,7 +49,7 @@
     $fechaActual;
     $semana = date('W');
 
-   
+
     ?>
     <br><br>
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
@@ -73,17 +73,7 @@
 
     $abono_semanal = $fila['abono'];     //importe semanal
     $x_viaje = $fila['x_viaje'];  //importe x viaje
-    /*
-    $ver_abono = "SELECT * FROM abonos WHERE 1";
-    $muestra_abono = $con->query($ver_abono);
-    $abono = $muestra_todo->fetch_assoc();
 
-
-
-    $abono['id'];
-    $abono['abono'];
-    $abono['importe'];
-*/
     ?>
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
 
@@ -95,7 +85,9 @@
                     $abono = $fila['abono'];
                     $x_viaje = $fila['x_viaje']
                     ?>
-                    <li><strong>Datos Titular</strong></li>
+                    <li>
+                        <h3>Datos Titular</h3>
+                    </li>
                     <li>Nombre: <?php echo $fila['nombre_titu'] ?></li>
                     <li>Apellido: <?php echo $fila['apellido_titu'] ?></li>
                     <li>Direccion: <?php echo $fila['direccion_titu'] ?></li>
@@ -107,7 +99,9 @@
 
             <div>
                 <ul>
-                    <li><strong>Datos Chofer Dia</strong></li>
+                    <li>
+                        <h3>Datos Chofer Dia</h3>
+                    </li>
                     <li>Nombre: <?php echo $fila['nombre_chof_1'] ?></li>
                     <li>Apellido: <?php echo $fila['apellido_chof_1'] ?></li>
                     <li>Direccion: <?php echo $fila['direccion_chof_1'] ?></li>
@@ -119,8 +113,9 @@
 
             <div>
                 <ul>
-
-                    <li><strong>Datos Chofer Noche</strong></li>
+                    <li>
+                        <h3>Datos Chofer Noche</h3>
+                    </li>
                     <li>Nombre: <?php echo $fila['nombre_chof_2'] ?></li>
                     <li>Apellido: <?php echo $fila['apellido_chof_2'] ?></li>
                     <li>Direccion: <?php echo $fila['direccion_chof_2'] ?></li>
@@ -131,8 +126,9 @@
 
             <div>
                 <ul>
-
-                    <li><strong>Datos de la Unidad</strong></li>
+                    <li>
+                        <h3>Datos de la Unidad</h3>
+                    </li>
                     <li>Marca: <?php echo $fila['marca'] ?></li>
                     <li>Modelo: <?php echo $fila['modelo'] ?></li>
                     <li>Dominio: <?php echo $fila['dominio'] ?></li>
@@ -186,7 +182,6 @@
 
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
-
                     <td><?php echo $row['fecha'] ?></td>
                     <td><?php echo $semana ?></td>
                     <td><?php echo $row['viaje_no'] ?></td>
@@ -249,7 +244,16 @@
                 <ul>
                     <li><?php echo "10% para gastos cuenta=" . "$" . $diez . "-" ?></li> <!-- 10% PARA BASE -->
                     <li><?php echo "Total - 10% de des= " . "$" . $des_de_diez . "-" ?></li> <!-- PARA -->
-                    <li><?php echo "<strong>A favor del movil, pagando viajes, peajes y semana: " . "$" . $total_para_el_movil . "-" ?></strong></li>
+                    <li><?php
+                        if ($total_para_el_movil > 0) {
+                            echo "A FAVOR: " . $total_para_el_movil;
+                        } elseif ($total_para_el_movil == 0) {
+                            echo $total_para_el_movil;
+                        } else {
+
+                            echo "DEBE: " . $total_para_el_movil;
+                        }
+                        ?>
 
                 </ul>
             </div>
