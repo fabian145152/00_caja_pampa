@@ -150,17 +150,17 @@
                 <th>Movil</th>
                 <th>Fecha</th>
                 <th>Semana</th>
+                <th>Sem deuda</th>
                 <th>Viaje No</th>
-                <TH>c/c</TH>
+                <th>CC</th>
                 <th>Reloj</th>
                 <th>Adicional</th>
-                <th>EQUIPAJE</th>
                 <th>Peaje</th>
-                <th>Fecha</th>
+                <th>Plus</th>
 
             </tr>
         </thead>
-
+        <h3>la parte del calculo de la semana y semana adeudada esta bien, ver como lo importa a la base de datos</h3>
         <?php
 
 
@@ -176,6 +176,9 @@
             $semana = $row['fecha'];
             $semana = date('W');
 
+
+
+
         ?>
             <tbody>
                 <tr>
@@ -183,7 +186,27 @@
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
                     <td><?php echo $row['fecha'] ?></td>
-                    <td><?php echo $semana ?></td>
+
+                    <td><?php
+
+                        //********************************************
+                        //estas 3 lineas extraen la semana de la fecha
+                        //********************************************
+
+                        $dia = $row['fecha'];
+                        $rest = substr($dia, 0, -8);
+                        //$fecha_actual = new DateTime();
+
+                        //echo $dia;
+                        $num_sem = date('W', strtotime($dia));
+                        //echo $num_sem;
+
+
+
+                        ?></td>
+                    <td><?php
+                        echo 52 - $num_sem;
+                        ?></td>
                     <td><?php echo $row['viaje_no'] ?></td>
                     <td><?php echo $row['cc'] ?></td>
                     <td><?php echo $row['reloj'] ?></td>
@@ -221,10 +244,11 @@
 
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
         <div class="grid">
-            <?php "MOVIL " . $nu_movil; ?>
+            <?php
+            //echo "MOVIL " . $nu_movil; 
+            ?>
 
             <div>
-
                 <ul>
                     <li><?php echo "Semana: " . $semana ?></li>
                     <li><?php echo "Abono semanal: " . "$" . $abono_semanal . " " ?></li> <!-- ABONO SEMANAL -->
@@ -253,7 +277,26 @@
 
                             echo "DEBE: " . $total_para_el_movil;
                         }
+
                         ?>
+                        <form action="lee_deudor/deudor.php" method="post">
+                            <?php
+                            echo "Movil; " . $nu_movil;
+                            echo "<br>";
+                            echo "Suma Reloj + adicional: " . $suma_todo = $total_reloj + $total_espera;
+                            echo "<br>";
+                            echo "Total Peajes: " . $total_peaje;
+                            echo "<br>";
+                            echo "Para la Base: " . $diez;
+                            echo "<br>";
+                            ?>
+
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <button type="submit" class="btn btn-danger">GUARDAR</button>
+
+                        </form>
 
                 </ul>
             </div>

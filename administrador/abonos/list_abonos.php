@@ -65,24 +65,7 @@
 
         <tbody>
             <?php
-            include_once '../../includes/functions.php';
-
-            echo "Abono Porteño: " . $abono_porteño;
-            echo "<br>";
-            echo "Abono Pampa: " . $abono_pampa;
-            echo "<br>";
-            echo "Abono Pasea carteles" . $abono_pasea_carteles;
-            echo "<br>";
-            echo "Abono viaje_1: " . $abono_viaje_1;
-            echo "<br>";
-            echo "Abono viaje_2: " . $abono_viaje_2;
-            echo "<br>";
-            echo "Abono viaje 3: " . $abono_viaje_3;
-            echo "<br>";
-
-            ?>
-            <a href="../../includes/functions.php">Modifica?</a>
-            <?php
+            include_once '../../includes/database.php';
 
 
             include_once '../../includes/db.php';
@@ -90,7 +73,7 @@
             $con->set_charset("utf8mb4");
             ?>
             <?php
-            $sql = "SELECT id, abono, importe FROM abonos WHERE 1 ORDER BY abono";
+            $sql = "SELECT id, abono, importe FROM abonos WHERE 1 ORDER BY id";
             $result = $con->query($sql);
             while ($row = $result->fetch_assoc()) {
             ?>

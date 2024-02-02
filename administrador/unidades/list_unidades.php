@@ -75,7 +75,7 @@
             $con->set_charset("utf8mb4");
             ?>
             <?php
-            $sql = "SELECT * FROM completa WHERE 1";
+            $sql = "SELECT * FROM completa WHERE 1 ORDER BY movil";
             $result = $con->query($sql);
             while ($row = $result->fetch_assoc()) {
             ?>

@@ -50,16 +50,15 @@ $row = $result->fetch_assoc();
                         <label class="control-label">IMPORTE</label>
                         <input type="text" class="form-control" id="importe" name="importe" value="<?php echo $row['importe']; ?>">
                     </div>
-
-
-
-
-
                     <div class="text-center">
                         <br>
-                        <input type="submit" class="btn btn-success" value="GUARDAR DATOS">
+                        <input type="submit" class="btn btn-danger" value="GUARDAR DATOS">
                     </div>
-
+                </form>
+                <div class="text-center">
+                    <br>
+                    <a href="list_abonos.php" class="btn btn-succes">CANCELAR</a>
+                </div>
 
             </div>
 
