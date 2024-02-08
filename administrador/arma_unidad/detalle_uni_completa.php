@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DETALLES</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
     <script src="../../js/jquery-3.4.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootbox.min.js"></script>
@@ -82,6 +83,8 @@
     <h1 class="text-center" style="margin: 5px ; ">DETALLES DE LA UNIDAD <?php echo $row['movil'] ?></h1>
     <form class="form-group" accept=-"charset utf8 action="../caja/inicio.php?=" <?php echo $row['movil'] ?> method="post">
         <div class="grid" name="movil">
+
+
             <div>
                 <ul>
 
@@ -116,6 +119,7 @@
                     <li>DNI: <?php echo $row['dni_titu'] ?></li>
                 </ul>
             </div>
+
             <div>
                 <ul>
                     <li>

@@ -52,7 +52,12 @@
 
                 <br>
 
+                <a href="includes/modifica_variables.php" class="btn btn-primary">Importes y abonos
+                    <p>falta terminar</p>
+                </a>
+<br>
                 <a href="administrador/abonos/list_abonos.php" class="btn btn-primary">ABONOS
+                    <p>Va con el de arriba, todavia no esta terminado</p>
                 </a>
                 <br>
 
