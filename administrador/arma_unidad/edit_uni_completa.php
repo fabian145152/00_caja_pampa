@@ -213,41 +213,14 @@
 
                             <div class="form-group">
                                 <label class="control-label">ABONO SEMANAL</label>
-                                <select name="abono_semanal" id="abono_semanal" class="form-control" require>
-
-                                    <option value="<?php echo $abono_porteño_pampa ?>">Semana Porteño Pampa: <?php echo "$" . $abono_porteño_pampa . "-" ?></option>
-                                    <option value="<?php echo $abono_basico ?>">Abono Basico: <?php echo "$" . $abono_basico . "-" ?></option>
-                                    <option value="<?php echo $abono_pasea_carteles ?>">Abono Pasea Carteles: <?php echo "$" . $abono_pasea_carteles . "-" ?></option>
-                                    <option value="<?php echo $abono_tropas ?>">Abono Tropa: <?php echo "$" . $abono_tropas . "-" ?></option>
-                                    <option value="<?php echo $abono_super_especial ?>">Abono Super Especial: <?php echo "$" . $abono_super_especial . "-" ?></option>
-                                    <option value="<?php echo $abono ?>">Abono 0: <?php echo "$" . $abono . "-" ?></option>
-                                    <option value="<?php echo $abono_taller ?>">Abono Taller: <?php echo "$" . $abono_taller . "-" ?></option>
-                                    <option value="<?php echo $abono_con_bonificacion ?>">Abono con Bonificacion: <?php echo "$" . $abono_con_bonificacion . "-" ?></option>
-                                    <option value="<?php echo $abono_taller_especial ?>">Abono Taller Especial: <?php echo "$" . $abono_taller_especial . "-" ?></option>
-                                    <option value="<?php echo $abono_tropa_especial ?>">Abono Tropa Especial: <?php echo "$" . $abono_tropa_especial . "-" ?></option>
-                                    <option value="<?php echo $abono_no_te_vayas ?>">Abono no te Vayas: <?php echo "$" . $abono_no_te_vayas . "-" ?></option>
-                                    <option value="<?php echo $abono_especial ?>">Abono Especial: <?php echo "$" . $abono_especial . "-" ?></option>
-                                    <option value="<?php echo $abono_taller_pampa ?>">Abono Taller Pampa: <?php echo "$" . $abono_taller_pampa . "-" ?></option>
-                                    <option value="<?php echo $acuerdo_sin_aumento ?>">Acuerdo sin Aumento: <?php echo "$" . $acuerdo_sin_aumento . "-" ?></option>
-                                    <option value="<?php echo $abono_bonificacion_pampa ?>">Abono Bonificacion Pampa: <?php echo "$" . $abono_bonificacion_pampa . "-" ?></option>
-                                    <option value="<?php echo $abono_tropa_diaz ?>">Abono Tropa Diaz: <?php echo "$" . $abono_tropa_diaz . "-" ?></option>
-                                    <option value="<?php echo $abono_bonificado ?>">Abono Bonificado: <?php echo "$" . $abono_bonificado . "-" ?></option>
-                                    <option value="<?php echo $abono_porte ?>">Abono Porteño: <?php echo "$" . $abono_porte . "-" ?></option>
-
-                                </select>
+                                <input type="text" class="form-control" id="abono_semanal" name="abono_semanal" value="<?php echo $row['abono'] ?>">
                             </div>
 
-                            <?php
-                            if($abono_viaje_1)
-                            ?>
 
 
                             <div class="form-group">
                                 <label class="control-label">ABONO X VIAJE</label>
-                                <select name="abono_x_viaje" id="abono_x_viaje" class="form-control" require>
-                                    <option value="<?php echo $abono_viaje_1 ?> ">Abono 1 <?php echo "$" . $abono_viaje_1 . "-" ?></option>
-                                    <option value="<?php echo $abono_viaje_2 ?> ">Abono 2 <?php echo "$" . $abono_viaje_2 . "-" ?></option>
-                                </select>
+                                <input type="text" class="form-control" id="abono_x_viaje" name="abono_x_viaje" value="<?php echo $row['x_viaje'] ?>">
                             </div>
 
 

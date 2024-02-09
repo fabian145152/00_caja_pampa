@@ -57,7 +57,7 @@
                 </a>
 <br>
                 <a href="administrador/abonos/list_abonos.php" class="btn btn-primary">ABONOS
-                    <p>Va con el de arriba, todavia no esta terminado</p>
+                    <p>Muestra los abonos, todavia no esta terminado</p>
                 </a>
                 <br>
 

@@ -46,8 +46,9 @@
 
     date_default_timezone_set('America/Mexico_City');
     $fechaActual = date('d-m-Y');
-    $fechaActual;
     $semana = date('W');
+
+
 
 
     ?>
@@ -82,8 +83,9 @@
 
                 <ul>
                     <?php
-                    $abono = $fila['abono'];
-                    $x_viaje = $fila['x_viaje']
+                    echo "Abono Semanal: " . $abono = $fila['abono'];
+                    echo "<br>";
+                    echo "Paga x Viaje: " . $x_viaje = $fila['x_viaje'];
                     ?>
                     <li>
                         <h3>Datos Titular</h3>
@@ -93,10 +95,17 @@
                     <li>Direccion: <?php echo $fila['direccion_titu'] ?></li>
                     <li>Telefono: <?php echo $fila['cel_titu'] ?></li>
                     <li>DNI: <?php echo $fila['dni_titu'] ?></li>
-
+                    <LI>Ini Facturación: <?php echo $cuenta_semanas = $fila['fecha_facturacion'] ?></LI>
+                    <?php
+                    include "cuenta_semanas.php";
+                    ?>
+                    <LI>Semanas desd el inicio: <?php echo $semanas ?></LI>
                 </ul>
             </div>
+            <?php
 
+
+            ?>
             <div>
                 <ul>
                     <li>
@@ -160,7 +169,7 @@
 
             </tr>
         </thead>
-        <h3>la parte del calculo de la semana y semana adeudada esta bien, ver como lo importa a la base de datos</h3>
+
         <?php
 
 
@@ -170,6 +179,19 @@
         $sql = "SELECT COUNT(*) total FROM voucher_validado";
         $result = mysqli_query($con, $sql);
         $fila = mysqli_fetch_assoc($result);
+
+        $consulta = "SELECT * FROM voucher_validado WHERE movil = '$movil'";
+
+        $query = mysqli_query($con, $consulta);
+        $row = mysqli_fetch_assoc($query);
+
+        //Acá cuentas la cantidad de registros
+        $total_registros = mysqli_num_rows($query);
+
+        echo "Viajes Registrados: " . $total_registros;
+
+
+        //echo $fila;
 
 
         while ($row = $list_caja->fetch_assoc()) {
@@ -238,6 +260,9 @@
         $total_para_el_movil = $afavor - $de_viajes - $abono_semanal;
 
         //---------------------------------------------------------------------------------------------------------------
+
+
+
         ?>
 
     </table>
@@ -280,15 +305,21 @@
 
                         ?>
                         <form action="lee_deudor/deudor.php" method="post">
+                            <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
+                            <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php echo  $suma_todo = $total_reloj + $total_espera ?>">
+                            <input type="hidden" id="para_base" name="para_base" value="<?php echo $diez ?>">
+                            <input type="hidden" id="semanas" name="semanas" value="<?php echo $semanas ?>">
+                            <input type="hidden" id="abono" name="abono" value="<?php echo $abono ?>">
+                            <input type="hidden" id="x_viaje" name="x_viaje" value="<?php echo $x_viaje ?>">
+                            <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php echo $total_registros ?>">
+
+
+
                             <?php
-                            echo "Movil; " . $nu_movil;
-                            echo "<br>";
-                            echo "Suma Reloj + adicional: " . $suma_todo = $total_reloj + $total_espera;
-                            echo "<br>";
-                            echo "Total Peajes: " . $total_peaje;
-                            echo "<br>";
-                            echo "Para la Base: " . $diez;
-                            echo "<br>";
+
+
+
+
                             ?>
 
                             &nbsp;

@@ -64,10 +64,14 @@
     echo $abono = $_POST['abono_semanal'];
     echo "<br>";
     echo $x_viaje = $_POST['abono_x_viaje'];
+
+
     echo "<br>";
     echo $fecha_inicio = $_POST['fecha_inicio'];
     echo "<br>";
     echo $fecha_fact = $_POST['fecha_fact'];
+
+
 
     include_once '../../includes/db.php';
     $con = openCon('../../config/db_admin.ini');
@@ -102,10 +106,11 @@
                             año = '$año',
 
                             abono = '$abono',
-                            x_viaje = '$x_viaje',
-/*
+
+                            x_viaje = '$x_viaje', 
+
                             fecha_inicio = '$fecha_inicio',
-                            */
+                            
                             fecha_facturacion = '$fecha_fact'
 
                                     WHERE id =" . $id;
