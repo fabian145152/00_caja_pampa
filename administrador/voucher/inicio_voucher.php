@@ -36,7 +36,7 @@
 	<?php
 
 	date_default_timezone_set('America/Mexico_City');
-	$fechaActual = date('d-m-Y');
+	$fechaActual = date('Y-m-d');
 	$fechaActual;
 	$semana = date('W');
 
@@ -117,9 +117,7 @@
 			<tr>
 				<td><?php echo $d['id']; ?></td>
 				<td><?php echo $d['viaje_no']; ?></td>
-				<td><?php $comp = $d['completado'];
-					echo $fecha_echo = substr($comp, 0, -8);
-					?></td>
+				<td><?php echo $d['completado'];	?></td>
 				<td><?php echo $d['nom_pasaj']; ?></td>
 				<td><?php echo $d['movil']; ?></td>
 				<td><?php echo $d['cc']; ?></td>

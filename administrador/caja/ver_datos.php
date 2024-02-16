@@ -39,13 +39,13 @@
     $total_espera = 0;
     $total_peaje = 0;
     $total_ft = 0;
-
+    $total_equi = 0;
     $nu_movil = $_GET["movil"];
 
     $movil = "A" . $nu_movil;
 
     date_default_timezone_set('America/Mexico_City');
-    $fechaActual = date('d-m-Y');
+    $fechaActual = date('Y-m-d');
     $semana = date('W');
 
 
@@ -82,11 +82,7 @@
             <div>
 
                 <ul>
-                    <?php
-                    echo "Abono Semanal: " . $abono = $fila['abono'];
-                    echo "<br>";
-                    echo "Paga x Viaje: " . $x_viaje = $fila['x_viaje'];
-                    ?>
+
                     <li>
                         <h3>Datos Titular</h3>
                     </li>
@@ -95,11 +91,19 @@
                     <li>Direccion: <?php echo $fila['direccion_titu'] ?></li>
                     <li>Telefono: <?php echo $fila['cel_titu'] ?></li>
                     <li>DNI: <?php echo $fila['dni_titu'] ?></li>
-                    <LI>Ini Facturación: <?php echo $cuenta_semanas = $fila['fecha_facturacion'] ?></LI>
+                    <LI>Ini Facturación: <?php echo $cuenta_semanas = $fila['fecha_facturacion'] ?>
+                        <?php
+                        include "cuenta_semanas.php";
+                        ?>
+                    </LI>
+
                     <?php
-                    include "cuenta_semanas.php";
+                    /*
+                    echo "Abono Semanal: " . $abono = $fila['abono'];
+                    echo "<br>";
+                    echo "Paga x Viaje: " . $x_viaje = $fila['x_viaje'];
+                    */
                     ?>
-                    <LI>Semanas desd el inicio: <?php echo $semanas ?></LI>
                 </ul>
             </div>
             <?php
@@ -116,6 +120,7 @@
                     <li>Direccion: <?php echo $fila['direccion_chof_1'] ?></li>
                     <li>Telefono: <?php echo $fila['cel_chof_1'] ?></li>
                     <li>DNI: <?php echo $fila['dni_chof_1'] ?></li>
+
                 </ul>
 
             </div>
@@ -155,15 +160,16 @@
         <thead>
 
             <tr>
-                <th>Id</th>
-                <th>Movil</th>
-                <th>Fecha</th>
+                <th>Id ok</th>
+                <th>Movil ok</th>
+                <!-- <th>Fecha</th>  -->
                 <th>Semana</th>
-                <th>Sem deuda</th>
+                <th>Fecha Voucher</th>
                 <th>Viaje No</th>
                 <th>CC</th>
                 <th>Reloj</th>
                 <th>Adicional</th>
+                <th>Equipaje</th>
                 <th>Peaje</th>
                 <th>Plus</th>
 
@@ -207,28 +213,30 @@
 
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
-                    <td><?php echo $row['fecha'] ?></td>
+                    <!-- <td><?php $fecha = $row['fecha'] ?></td> -->
+                    <td>
+                        <?php
 
-                    <td><?php
+                        /*  ver esta parte, cambiar el formato de la fecha */
 
-                        //********************************************
-                        //estas 3 lineas extraen la semana de la fecha
-                        //********************************************
-
-                        $dia = $row['fecha'];
-                        $rest = substr($dia, 0, -8);
-                        //$fecha_actual = new DateTime();
-
-                        //echo $dia;
-                        $num_sem = date('W', strtotime($dia));
-                        //echo $num_sem;
+                        date_default_timezone_set('America/Mexico_City');
 
 
+                        //echo $fecha = '14-02-2024';    //Fecha de la cual obtendremos la semana
+                        $fechaSegundos = strtotime($fecha);    // parseamos la fecha a una marca de tiempo Unix 
 
+                        $semana = date('W', $fechaSegundos);    // Obtenemos el número de semana con el parametro W y la fecha en Unix
+                        echo  $semana;    // Imprimimos el número de semana
+
+                        //echo date("Y-m-d", strtotime($Fecha));
+                        ?>
+                    </td>
+                    <td><?php $fecha_como_va = str_replace("/", "-", $fecha);
+                        echo date("Y-m-d", strtotime($fecha_como_va));
                         ?></td>
-                    <td><?php
-                        echo 52 - $num_sem;
-                        ?></td>
+
+
+
                     <td><?php echo $row['viaje_no'] ?></td>
                     <td><?php echo $row['cc'] ?></td>
                     <td><?php echo $row['reloj'] ?></td>
@@ -240,8 +248,10 @@
             </tbody>
         <?php
             $movil = $row['movil'];
+
             $total_reloj += $row['reloj'];
             $total_adi += $row['adicional'];
+            $total_equi += $row['equipaje'];
             $total_peaje += $row['peaje'];
         }
 
@@ -284,50 +294,45 @@
             <div>
                 <ul>
                     <li><?php echo "Total reloj sumado: " . "$" . $total_reloj . "-" ?></li> <!-- IPRTE DEL RELOJ -->
-                    <li><?php echo "total espera: " . "$" . $total_espera . "-" ?></li> <!-- ESPERA -->
+                    <li><?php echo "total adicional: " . "$" . $total_adi . "-" ?></li> <!-- ESPERA -->
                     <li><?php echo "Total peajes: " . "$" . $total_peaje . "-" ?></li> <!-- PEAJES -->
+                    <li><?php echo "Total equipaje: " . "$" . $total_equi . "-" ?></li> <!-- PEAJES -->
                     <li><?php echo "Paga por los viajes: " . "$" . $de_viajes . "-" ?></li> <!-- PAGA X VIAJE -->
                 </ul>
             </div>
             <div>
                 <ul>
-                    <li><?php echo "10% para gastos cuenta=" . "$" . $diez . "-" ?></li> <!-- 10% PARA BASE -->
-                    <li><?php echo "Total - 10% de des= " . "$" . $des_de_diez . "-" ?></li> <!-- PARA -->
-                    <li><?php
-                        if ($total_para_el_movil > 0) {
-                            echo "A FAVOR: " . $total_para_el_movil;
-                        } elseif ($total_para_el_movil == 0) {
-                            echo $total_para_el_movil;
-                        } else {
+                    <li><?php echo "Importe traido por el movil: " . "$" . $total_traido = $total_reloj + $total_adi + $total_peaje + $total_equi + $de_viajes . "-" ?></li>
 
-                            echo "DEBE: " . $total_para_el_movil;
-                        }
+                    <li><?php echo "10% para gastos cuenta= " . "$" . $pesos = $total_traido * 0.1 . "-"; ?></li> <!-- 10% PARA BASE -->
+                    <li><?php echo "Total - 90% para el movil= " . "$" . $des_de_diez = $total_traido * 0.9 . "-" ?></li> <!-- PARA -->
+
+
+                    <form action="lee_deudor/deudor.php" method="post">
+                        <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
+                        <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php echo  $suma_todo = $total_reloj + $total_espera ?>">
+                        <input type="hidden" id="para_base" name="para_base" value="<?php echo $diez ?>">
+
+                        <input type="hidden" id="abono" name="abono" value="<?php echo $abono ?>">
+                        <input type="hidden" id="x_viaje" name="x_viaje" value="<?php echo $x_viaje ?>">
+                        <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php echo $total_registros ?>">
+
+                        Pago: <input type="text" id="ft" name="ft"></li>
+
+
+                        <?php
+
+
+
 
                         ?>
-                        <form action="lee_deudor/deudor.php" method="post">
-                            <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
-                            <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php echo  $suma_todo = $total_reloj + $total_espera ?>">
-                            <input type="hidden" id="para_base" name="para_base" value="<?php echo $diez ?>">
-                            <input type="hidden" id="semanas" name="semanas" value="<?php echo $semanas ?>">
-                            <input type="hidden" id="abono" name="abono" value="<?php echo $abono ?>">
-                            <input type="hidden" id="x_viaje" name="x_viaje" value="<?php echo $x_viaje ?>">
-                            <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php echo $total_registros ?>">
 
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <button type="submit" class="btn btn-danger">GUARDAR</button>
 
-
-                            <?php
-
-
-
-
-                            ?>
-
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <button type="submit" class="btn btn-danger">GUARDAR</button>
-
-                        </form>
+                    </form>
 
                 </ul>
             </div>

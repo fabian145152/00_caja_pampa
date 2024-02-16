@@ -42,8 +42,28 @@
     echo "<br>";
     echo $movil;
     echo "<br>";
-    echo $completado;
+    //echo $completado;
     echo "<br>";
+    $a_completado = str_replace("/", "-", $completado);
+    echo "<br>";
+    echo $a_completado;
+    echo "<br>";
+    echo "<br>";
+
+    $valores = explode("-", $a_completado);
+    echo $valores[0];
+    echo "<br>";
+    echo $valores[1];
+    echo "<br>";
+    echo $valores[2];
+    echo "<br>";
+echo $fecha_armada = $valores[2] . "-" . $valores[1] . "-" . $valores[0];
+
+
+
+    
+
+
     echo $viaje_no;
     echo "<br>";
     echo $cc;
@@ -58,10 +78,9 @@
     echo "<br>";
     echo $plus;
     echo "<br>";
-
     $valida = "INSERT INTO voucher_validado VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmt = $con->prepare($valida);
-    $stmt->bind_param("issiiiiiii", $id, $movil, $completado, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
+    $stmt->bind_param("issiiiiiii", $id, $movil, $fecha_armada, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
 
 
     if ($stmt->execute()) {
@@ -73,8 +92,8 @@
             $borra_vou_validado = "DELETE FROM voucher_nuevos WHERE id=" . $id;
             $borrado = $con->query($borra_vou_validado);
             ?>
-            //            alert("Voucher Validado")
-            window.location = "inicio_voucher.php";
+
+             window.location = "inicio_voucher.php";
         </script>
     <?php
 

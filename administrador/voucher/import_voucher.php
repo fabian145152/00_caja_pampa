@@ -47,7 +47,7 @@ if (isset($_FILES["name"])) {
                 $x_obs_oper = $sheet->getCell("AA" . $row)->getValue();
                 $x_obs_chof = $sheet->getCell("AB" . $row)->getValue();
 
-                
+              
 
                 $sql = "insert into voucher_nuevos (
                                             viaje_no, 
