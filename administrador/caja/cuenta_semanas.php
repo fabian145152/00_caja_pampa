@@ -9,26 +9,13 @@
 
 <body>
     <?php
-
+    $datetime1 = new DateTime('2016-10-11');
+    $datetime2 = new DateTime('2017-12-01');
+    $interval = $datetime1->diff($datetime2);
     echo "<br>";
+    echo floor(($interval->format('%a') / 7)) . ' semanas con '
+        . ($interval->format('%a') % 7) . ' días';
 
-    $fecha_Actual = mktime(); //La fecha actual en formato timestamp
-
-
-    $dividefecha = explode("-", $cuenta_semanas);
-
-    $fecha_previa = mktime(0, 0, $dividefecha[2], $dividefecha[1], $dividefecha[0]);
-
-    $segundos = $fecha_previa - $fecha_Actual; // Obtenemos los segundos entre esas dos fechas
-    
-    $segundos = abs($segundos); //en caso de errores
-
-    $semanas = floor($segundos / 604800); //Obtenemos las semanas entre esas fechas.
-
-    //echo "hay " . $semanas . " Semanas";
-
-    // ***************************************************************************
-    // ********************************************
     ?>
 
 </body>

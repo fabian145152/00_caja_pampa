@@ -39,6 +39,7 @@
     $total_espera = 0;
     $total_peaje = 0;
     $total_ft = 0;
+    $total_plus = 0;
     $total_equi = 0;
     $nu_movil = $_GET["movil"];
 
@@ -91,19 +92,11 @@
                     <li>Direccion: <?php echo $fila['direccion_titu'] ?></li>
                     <li>Telefono: <?php echo $fila['cel_titu'] ?></li>
                     <li>DNI: <?php echo $fila['dni_titu'] ?></li>
-                    <LI>Ini Facturación: <?php echo $cuenta_semanas = $fila['fecha_facturacion'] ?>
-                        <?php
-                        include "cuenta_semanas.php";
-                        ?>
-                    </LI>
+                    <li>INICIO FACT: <?php echo $cuenta_semanas = $fila['fecha_facturacion'] ?></li>
 
-                    <?php
-                    /*
-                    echo "Abono Semanal: " . $abono = $fila['abono'];
-                    echo "<br>";
-                    echo "Paga x Viaje: " . $x_viaje = $fila['x_viaje'];
-                    */
-                    ?>
+
+
+
                 </ul>
             </div>
             <?php
@@ -162,7 +155,7 @@
             <tr>
                 <th>Id ok</th>
                 <th>Movil ok</th>
-                <!-- <th>Fecha</th>  -->
+
                 <th>Semana</th>
                 <th>Fecha Voucher</th>
                 <th>Viaje No</th>
@@ -194,7 +187,7 @@
         //Acá cuentas la cantidad de registros
         $total_registros = mysqli_num_rows($query);
 
-        echo "Viajes Registrados: " . $total_registros;
+
 
 
         //echo $fila;
@@ -238,7 +231,7 @@
 
 
                     <td><?php echo $row['viaje_no'] ?></td>
-                    <td><?php echo $row['cc'] ?></td>
+                    <td><?php echo $cuenta = $row['cc'] ?></td>
                     <td><?php echo $row['reloj'] ?></td>
                     <td><?php echo $row['adicional'] ?></td>
                     <td><?php echo $row['equipaje'] ?></td>
@@ -247,86 +240,109 @@
                 </tr>
             </tbody>
         <?php
-            $movil = $row['movil'];
+            if ($row['cc'] > 1) {
 
-            $total_reloj += $row['reloj'];
-            $total_adi += $row['adicional'];
-            $total_equi += $row['equipaje'];
-            $total_peaje += $row['peaje'];
+                $movil = $row['movil'];
+
+                $total_reloj += $row['reloj'];
+                $total_adi += $row['adicional'];
+                $total_equi += $row['equipaje'];
+                $total_peaje += $row['peaje'];
+                $total_plus += $row['plus'];
+            }
         }
-
-        // TODOS LOS CALCULOS PARA COBRAR
-        //----------------------------------------------------------------------------------------------------------------
-        // 10% para Gastos de cuenta
-        $des_de_diez = $total_reloj * .90;
-
-        // 90% para el movil
-        $diez = $total_reloj * .1;
-
-        $afavor = $des_de_diez + $total_peaje;
-
-        $cant_viajes = $fila['total'];
-        $de_viajes = $fila['total'] * $x_viaje;
-        $total_para_el_movil = $afavor - $de_viajes - $abono_semanal;
-
-        //---------------------------------------------------------------------------------------------------------------
-
-
-
+        /*
+        echo "<br>";
+        echo "Semana No: " . $semana;
+        echo "<br>";
+        echo "Viajes Registrados: " . $total_registros;
+        echo "<br>";
+        echo "Paga por viaje: " . $abono_viaje_1;
+        echo "<br>";
+        echo "Total de viajes: " . $total_de_viajes = $total_registros * $abono_viaje_1;
+        echo "<br>";
+        echo "Total reloj: " . $total_reloj;
+        echo "<br>";
+        echo "Total Adicional: " . $total_adi;
+        echo "<br>";
+        echo "Total Equipaje: " . $total_equi;
+        echo "<br>";
+        echo "Total Peaje: " . $total_peaje;
+        echo "<br>";
+        echo "Total Plus" . $total_plus;
+*/
         ?>
-
     </table>
-
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
         <div class="grid">
-            <?php
-            //echo "MOVIL " . $nu_movil; 
-            ?>
-
             <div>
                 <ul>
                     <li><?php echo "Semana: " . $semana ?></li>
-                    <li><?php echo "Abono semanal: " . "$" . $abono_semanal . " " ?></li> <!-- ABONO SEMANAL -->
-                    <li><?php echo 'Cantidad de viajes: ' . $cant_viajes; ?></li> <!-- CANTIDAD DE VIAJES -->
-                    <li><?php echo "Costo x viaje: " . "$" . $x_viaje . "-" ?></li> <!-- ABONO X VIAJE -->
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li><?php echo "Total reloj sumado: " . "$" . $total_reloj . "-" ?></li> <!-- IPRTE DEL RELOJ -->
-                    <li><?php echo "total adicional: " . "$" . $total_adi . "-" ?></li> <!-- ESPERA -->
-                    <li><?php echo "Total peajes: " . "$" . $total_peaje . "-" ?></li> <!-- PEAJES -->
-                    <li><?php echo "Total equipaje: " . "$" . $total_equi . "-" ?></li> <!-- PEAJES -->
-                    <li><?php echo "Paga por los viajes: " . "$" . $de_viajes . "-" ?></li> <!-- PAGA X VIAJE -->
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li><?php echo "Importe traido por el movil: " . "$" . $total_traido = $total_reloj + $total_adi + $total_peaje + $total_equi + $de_viajes . "-" ?></li>
+                    <li><?php $total_de_vaucher =
+                            $total_reloj +
+                            $total_adi +
+                            $total_peaje +
+                            $total_equi +
+                            $total_plus;
+                        echo "Total de voucher: " . "$" . $total_de_vaucher . "-"; ?></li>
+                    <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
+                    <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
+                    <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
+                    <li><?php echo "Total de viajes: " . $total_de_viajes = $total_registros * $abono_viaje_1; ?></li>
+                    <li><?php
+                        $largo = strlen($movil);
 
-                    <li><?php echo "10% para gastos cuenta= " . "$" . $pesos = $total_traido * 0.1 . "-"; ?></li> <!-- 10% PARA BASE -->
-                    <li><?php echo "Total - 90% para el movil= " . "$" . $des_de_diez = $total_traido * 0.9 . "-" ?></li> <!-- PARA -->
+                        if ($largo === 3) {
+                            $movil = substr($movil, -3);
+                            $numero_de_movil = "0" . $movil;
+                        } elseif ($largo === 4) {
+                            $numero_de_movil = $movil;
+                            $movil = substr($movil, -4);
+                        }
+                        echo $numero_de_movil . " ";
+                        if ($movil >= 0 && $movil <= 999) {
+                            echo  "Porteño";
+                        } elseif ($movil >= 1000 && $movil <= 1999) {
+                            echo "Buenos Aires ";
+                        } elseif ($movil >= 2000 && $movil <= 2999) {
+                            echo "Pampa";
+                        } elseif ($movil >= 3000 && $movil <= 3000) {
+                            echo "Baet";
+                        } elseif ($movil > 3001) {
+                            echo "Cualquiera...";
+                        }
+                        ?>
+                    </li>
+
+                </ul>
+            </div>
+            <div>
+                <!--
+                <ul>
 
 
                     <form action="lee_deudor/deudor.php" method="post">
-                        <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
-                        <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php echo  $suma_todo = $total_reloj + $total_espera ?>">
-                        <input type="hidden" id="para_base" name="para_base" value="<?php echo $diez ?>">
 
-                        <input type="hidden" id="abono" name="abono" value="<?php echo $abono ?>">
-                        <input type="hidden" id="x_viaje" name="x_viaje" value="<?php echo $x_viaje ?>">
-                        <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php echo $total_registros ?>">
+                        <input type="hidden" id="movil" name="movil" value="<?php //echo $nu_movil 
+                                                                            ?>">
 
-                        Pago: <input type="text" id="ft" name="ft"></li>
+                        <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php //echo  $total_de_vaucher 
+                                                                                        ?>">
 
+                        <input type="hidden" id="abono" name="abono" value="<?php //echo $abono_semanal 
+                                                                            ?>">
 
+                        <input type="hidden" id="x_viaje" name="x_viaje" value="<?php //echo $x_viaje 
+                                                                                ?>">
+                        <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php //echo $total_registros 
+                                                                                        ?>">
+
+                        <input type="hidden" id="fecha_pago" name="fecha_pago" value="<?php //echo $fecha; 
+                                                                                        ?>">
+                        <p>Pago Ft:</p>
+                        <input type="text" id="ft" name="ft">
                         <?php
-
-
-
-
                         ?>
-
                         &nbsp;
                         &nbsp;
                         &nbsp;
@@ -335,6 +351,7 @@
                     </form>
 
                 </ul>
+    -->
             </div>
 
 
