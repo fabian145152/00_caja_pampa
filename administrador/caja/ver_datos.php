@@ -251,26 +251,7 @@
                 $total_plus += $row['plus'];
             }
         }
-        /*
-        echo "<br>";
-        echo "Semana No: " . $semana;
-        echo "<br>";
-        echo "Viajes Registrados: " . $total_registros;
-        echo "<br>";
-        echo "Paga por viaje: " . $abono_viaje_1;
-        echo "<br>";
-        echo "Total de viajes: " . $total_de_viajes = $total_registros * $abono_viaje_1;
-        echo "<br>";
-        echo "Total reloj: " . $total_reloj;
-        echo "<br>";
-        echo "Total Adicional: " . $total_adi;
-        echo "<br>";
-        echo "Total Equipaje: " . $total_equi;
-        echo "<br>";
-        echo "Total Peaje: " . $total_peaje;
-        echo "<br>";
-        echo "Total Plus" . $total_plus;
-*/
+
         ?>
     </table>
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
@@ -288,7 +269,7 @@
                     <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
                     <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
                     <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
-                    <li><?php echo "Total de viajes: " . $total_de_viajes = $total_registros * $abono_viaje_1; ?></li>
+                    <li><?php echo "Total de viajes: " . $total_registros ?></li>
                     <li><?php
                         $largo = strlen($movil);
 
@@ -317,31 +298,25 @@
                 </ul>
             </div>
             <div>
-                <!--
+
                 <ul>
 
 
                     <form action="lee_deudor/deudor.php" method="post">
 
-                        <input type="hidden" id="movil" name="movil" value="<?php //echo $nu_movil 
-                                                                            ?>">
+                        <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
+                        <input type="hidden" id="total_de_voucher" name="total_de_voucher" value="<?php echo  $total_de_vaucher ?>">
+                        <input type="hidden" id="abono" name="abono" value="<?php echo $abono_semanal ?>">
+                        <input type="hidden" id="total_registros" name="total_registros" value="<?php echo $total_registros ?>">
+                        <input type="hidden" id="total_de_viajes" name="total_de_viajes" value="<?php echo $abono_viaje_1 ?>">
+                        <input type="hidden" id="semana" name="semana" value="<?php echo $semana; ?>">
 
-                        <input type="hidden" id="suma_reloj" name="suma_reloj" value="<?php //echo  $total_de_vaucher 
-                                                                                        ?>">
-
-                        <input type="hidden" id="abono" name="abono" value="<?php //echo $abono_semanal 
-                                                                            ?>">
-
-                        <input type="hidden" id="x_viaje" name="x_viaje" value="<?php //echo $x_viaje 
-                                                                                ?>">
-                        <input type="hidden" id="cant_viaje" name="cant_viaje" value="<?php //echo $total_registros 
-                                                                                        ?>">
-
-                        <input type="hidden" id="fecha_pago" name="fecha_pago" value="<?php //echo $fecha; 
-                                                                                        ?>">
                         <p>Pago Ft:</p>
+
                         <input type="text" id="ft" name="ft">
                         <?php
+                        echo "<br>";
+                        echo "<br>";
                         ?>
                         &nbsp;
                         &nbsp;
@@ -351,7 +326,7 @@
                     </form>
 
                 </ul>
-    -->
+
             </div>
 
 
