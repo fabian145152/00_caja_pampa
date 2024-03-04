@@ -7,3 +7,4 @@ hago una modificacion
  
  
  git pull 	     ;Traigo todo desde github a mi vsc
+ git reset --hard; vuelve al commit anterior

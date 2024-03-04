@@ -269,8 +269,16 @@
                     <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
                     <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
                     <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
-                    <li><?php echo "Total de viajes: " . $total_registros ?></li>
+                    <li><?php echo "Total de viajes: " . $paga_de_viajes = $total_registros * $abono_viaje_1 ?></li>
                     <li><?php
+                        echo "<br>";
+                        echo "quedan para movil: " . $para_mov = $total_de_vaucher * .9;
+                        echo "<br>";
+                        echo "saldo a pagar del movil - abono semanal - total de viajes:" . $quedan_al_movil = $para_mov - $abono_semanal - $paga_de_viajes;
+                        echo "<br>";
+                        echo "Quedan para base: " . $para_base = $total_de_vaucher * .1 . "  Si es negativo el movil tiene que sepositar este monto";
+                        echo "<br>";
+                        echo "<br>";
                         $largo = strlen($movil);
 
                         if ($largo === 3) {
@@ -302,13 +310,13 @@
                 <ul>
 
 
-                    <form action="lee_deudor/deudor.php" method="post">
+                    <form action="deudor.php" method="post">
 
                         <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
-                        <input type="hidden" id="total_de_voucher" name="total_de_voucher" value="<?php echo  $total_de_vaucher ?>">
-                        <input type="hidden" id="abono" name="abono" value="<?php echo $abono_semanal ?>">
+                        <input type="hidden" id="quedan_para_el_movil" name="quedan_para_el_movil" value="<?php echo $para_mov ?>">
+                        <input type="hidden" id="quedan_al_movil" name="quedan_al_movil" value="<?php echo $quedan_al_movil ?>">
                         <input type="hidden" id="total_registros" name="total_registros" value="<?php echo $total_registros ?>">
-                        <input type="hidden" id="total_de_viajes" name="total_de_viajes" value="<?php echo $abono_viaje_1 ?>">
+                        <input type="hidden" id="para_base" name="para_base" value="<?php echo  $para_base ?>">
                         <input type="hidden" id="semana" name="semana" value="<?php echo $semana; ?>">
 
                         <p>Pago Ft:</p>
