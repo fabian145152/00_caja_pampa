@@ -259,6 +259,7 @@
             <div>
                 <ul>
                     <li><?php echo "Semana: " . $semana ?></li>
+                    <li><?php echo "Fecha ultimo deposito: " . $fecha ?></li>
                     <li><?php $total_de_vaucher =
                             $total_reloj +
                             $total_adi +
@@ -292,7 +293,7 @@
                                             font-size: 23px;
                                         }
                                     </style>
-                                    <p id="deposito"><strong>Depositarle: <?php echo $quedan_al_movil . '</p> </strong>';
+                                    <p id="deposito"><strong>DEPOSITARLE: <?php echo $quedan_al_movil . '</p> </strong>';
                                                                         }
                                                                         echo "<br>";
                                                                         echo "Quedan para base: " . $para_base = $total_de_vaucher * .1 . "  Si es negativo el movil tiene que sepositar este monto";
@@ -332,6 +333,8 @@
                     <form action="deudor.php" method="post">
 
                         <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
+                        <input type="hidden" id="fecha" name="fecha" value="<?php echo $fecha ?>">
+                        <input type="hidden" id="abono_semanal" name="abono_semanal" value="<?php echo $abono_semanal ?>">
                         <input type="hidden" id="pago_en_voucher" name="pago_en_voucher" value="<?php echo $total_de_vaucher ?>">
                         <input type="hidden" id="quedan_para_el_movil" name="quedan_para_el_movil" value="<?php echo $para_mov ?>">
                         <input type="hidden" id="quedan_al_movil" name="quedan_al_movil" value="<?php echo $quedan_al_movil ?>">
@@ -356,7 +359,12 @@
                 </ul>
 
             </div>
-
+            <div>
+                <ul>
+                    <li>Si entra x Mercado pago</li>
+                    <li>Generar un ingreso en FT y extraerlo</li>
+                </ul>
+            </div>
 
         </div>
     </table>

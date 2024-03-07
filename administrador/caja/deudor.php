@@ -18,31 +18,48 @@
 
 <body>
 
-    <h1>Aca guarda los datos en la tabla caja</h1>
+    <h3>Aca guarda los datos en la tabla caja</h3>
+    
 
     <?php
-    include_once '../../includes/variables.php';
     include_once '../../includes/db.php';
+    include_once '../../includes/variables.php';
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-    $hoy = date("Y-m-d");
+    //$fecha = date("Y-m-d");
+    $fecha = $_POST['fecha'];
     $movil = $_POST['movil'];
     $semana = $_POST['semana'];
+    $abono_semanal = $_POST['abono_semanal'];
     $para_mov = $_POST['quedan_para_el_movil'];
     $para_base = $_POST['para_base'];
     $deuda_mov = 0;
     $ft = $_POST['ft'];
     $pago_en_voucher = $_POST['pago_en_voucher'];
-    $saldo_del_movil = 0;
+    $saldo_del_movil = 10;
     $quedan_al_movil = $_POST['quedan_al_movil'];
 
 
-    echo "Fecha ultiomo deposito: " . $hoy;
+    echo "Fecha ultimo deposito: " . $fecha;
+    echo "<br>";
+    echo "Fecha de hoy: " . $fecha_de_hoy = date("Y-m-d");
     echo "<br>";
     echo "Movil: " . $movil;
     echo "<br>";
-    echo "Semana: " . $semana;
+    echo "Semana de deposito: " . $semana;
+    echo "<br>";
+    echo "Semana Actual: " . $semana_actual = date('W');
+    echo "<br>";
+    echo "debe: " . $cant_semanas = $semana_actual - $semana . " Semanas";
+    echo "<br>";
+    echo "Abono semanal: " . $abono_semanal;
+    echo "<br>";
+    echo "Debe de samanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
     echo "<br>";
     echo "Quedan para el movil: " . $para_mov;
     echo "<br>";
@@ -57,52 +74,69 @@
     echo "Resto: " . $deuda_mov = $quedan_al_movil + $ft;
     echo "<br>";
 
-    $sql = "INSERT INTO caja (fecha, 
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "belgrado";
+    $dbname = "acaja";
+
+    // Crear una conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verificar la conexión
+
+    if (!$conn) {
+        die("Conexión fallida: " . mysqli_connect_error());
+    }
+
+    //exit();
+    /*
+
+    $sql = "INSERT INTO caja (
+                              fecha_dep,
+                              fecha_actual, 
                               movil, 
-                              semana, 
+                              semana,
+                              semana_actual, 
                               queda_al_movil, 
                               queda_a_base, 
                               deuda_movil, 
                               pago_en_efect, 
                               pago_en_voucher, 
-                              saldo_del_movil)
-            VALUES (?,?,?,?,?,?,?,?,?)";
-
-    $stmt = $con->prepare($sql);
-
-    $stmt->bind_param("siiiiiiii", 
-        $hoy, 
-        $movil,
-        $semana,
-        $para_mov,
-        $para_base,
-        $deuda_movil,
-        $ft,
-        $pago_en_voucher,
-        $saldo_del_movil
-    );
+                              saldo_del_movil
+                              ) 
+                              VALUES ('$fecha',
+                                      '$fecha_de_hoy',
+                                      '$movil', 
+                                      '$semana', 
+                                      '$semana_actual',
+                                      '$quedan_al_movil', 
+                                      '$para_base', 
+                                      '$deuda_mov', 
+                                      '$ft', 
+                                      '$pago_en_voucher', 
+                                      '$saldo_del_movil')";
 
 
-    if ($stmt->execute()) {
-    ?>
-        <script>
-            alert("Registro Guardado")
-        </script>
-    <?php
-    } elseif (!$stmt->execute()) {
-        echo "Error";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Datos insertados correctamente.";
+    } else {
+        echo "Error al insertar datos: " . mysqli_error($conn);
     }
-    exit();
+
+*/
 
     ?>
-
     <div>
         <table border="2">
             <tr>
                 <th>id</th>
-                <th>Fecha ultimo deposito</th>
+                <th>Fecha ultimo dep</th>
+                <th>Fecha actual</th>
                 <th>Movil</th>
-                <th>Semana</th>
+                <th>Semana dep</th>
+                <th>Semana Actual</th>
                 <th>Queda para el movil</th>
                 <th>Queda para la base</th>
                 <th>deuda movil</th>
@@ -112,10 +146,13 @@
             </tr>
 
             <?php
+
             $sql_2 = "SELECT id, 
-                    fecha, 
+                    fecha_dep, 
+                    fecha_actual,
                     movil, 
                     semana, 
+                    semana_actual,
                     queda_al_movil, 
                     queda_a_base, 
                     deuda_movil, 
@@ -130,9 +167,11 @@
             ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['fecha'] ?></td>
+                    <td><?php echo $row['fecha_dep'] ?></td>
+                    <td><?php echo $row['fecha_actual'] ?></td>
                     <td><?php echo $row['movil'] ?></td>
                     <td><?php echo $row['semana'] ?></td>
+                    <td><?php echo $row['semana_actual'] ?></td>
                     <td><?php echo $row['queda_al_movil'] ?></td>
                     <td><?php echo $row['queda_a_base']; ?></td>
                     <td><?php echo $row['deuda_movil']; ?></td>
@@ -142,6 +181,7 @@
                 </tr>
             <?php
             }
+
             ?>
         </table>
 </body>
