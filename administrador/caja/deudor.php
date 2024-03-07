@@ -13,13 +13,25 @@
         table {
             border: 1;
         }
+
+        #columnas {
+            column-count: 5;
+            column-gap: 20px;
+            column-rule: 4px dotted gray;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
+            grid-gap: 10px;
+        }
     </style>
 </head>
 
 <body>
 
     <h3>Aca guarda los datos en la tabla caja</h3>
-    
+
 
     <?php
     include_once '../../includes/db.php';
@@ -28,7 +40,7 @@
     $con->set_charset("utf8mb4");
 
     //$fecha = date("Y-m-d");
-    $fecha = $_POST['fecha'];
+    $fecha = $_POST['fecha_actual'];
     $movil = $_POST['movil'];
     $semana = $_POST['semana'];
     $abono_semanal = $_POST['abono_semanal'];
@@ -49,13 +61,15 @@
     echo "<br>";
     echo "Semana de deposito: " . $semana;
     echo "<br>";
-    echo "Semana Actual: " . $semana_actual = date('W');
+    echo "Semana Actual: " . $semana_ac = date('W');
+    $semana_actual = $semana_ac - 1;
     echo "<br>";
     echo "debe: " . $cant_semanas = $semana_actual - $semana . " Semanas";
     echo "<br>";
     echo "Abono semanal: " . $abono_semanal;
     echo "<br>";
-    echo "Debe de samanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
+    echo "Debe cant de semanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
+
     echo "<br>";
     echo "<br>";
     echo "<br>";
@@ -90,14 +104,15 @@
     }
 
     //exit();
-    /*
+
 
     $sql = "INSERT INTO caja (
                               fecha_dep,
                               fecha_actual, 
                               movil, 
                               semana,
-                              semana_actual, 
+                              semana_actual,
+                              debe_de_semanas, 
                               queda_al_movil, 
                               queda_a_base, 
                               deuda_movil, 
@@ -110,6 +125,7 @@
                                       '$movil', 
                                       '$semana', 
                                       '$semana_actual',
+                                      '$debe_semanas',
                                       '$quedan_al_movil', 
                                       '$para_base', 
                                       '$deuda_mov', 
@@ -125,7 +141,7 @@
         echo "Error al insertar datos: " . mysqli_error($conn);
     }
 
-*/
+
 
     ?>
     <div>
@@ -137,12 +153,13 @@
                 <th>Movil</th>
                 <th>Semana dep</th>
                 <th>Semana Actual</th>
+                <th>Debe de semanas</th>
                 <th>Queda para el movil</th>
-                <th>Queda para la base</th>
-                <th>deuda movil</th>
+                <th>10% p/base</th>
+                <th>Dep al movil</th>
                 <th>pago en FT</th>
                 <th>Pago en Voucher</th>
-                <th>Saldo del movil</th>
+                <th>Saldo mov FT</th>
             </tr>
 
             <?php
@@ -153,6 +170,7 @@
                     movil, 
                     semana, 
                     semana_actual,
+                    debe_de_semanas,
                     queda_al_movil, 
                     queda_a_base, 
                     deuda_movil, 
@@ -172,11 +190,12 @@
                     <td><?php echo $row['movil'] ?></td>
                     <td><?php echo $row['semana'] ?></td>
                     <td><?php echo $row['semana_actual'] ?></td>
+                    <td><?php echo $row['debe_de_semanas'] ?></td>
                     <td><?php echo $row['queda_al_movil'] ?></td>
                     <td><?php echo $row['queda_a_base']; ?></td>
                     <td><?php echo $row['deuda_movil']; ?></td>
                     <td><?php echo $row['pago_en_efect']; ?></td>
-                    <td><?php echo $row['pago_en_voucher']; ?></td>
+                    <td><?php echo $pago_en_papel = $row['pago_en_voucher']; ?></td>
                     <td><?php echo $row['saldo_del_movil']; ?></td>
                 </tr>
             <?php
@@ -184,6 +203,45 @@
 
             ?>
         </table>
+
+        <?php
+        $leer_para_des = "SELECT * FROM caja WHERE $movil";
+        $es_igual = $con->query($leer_para_des);
+        while ($prim = $es_igual->fetch_assoc()) {
+        ?>
+            <div>
+                <tr>
+                    <td><?php echo $prim['movil'] ?></td>
+                    <td><?php echo $debe_de_s = $prim['debe_de_semanas'] ?></td>
+                    <td><?php echo $queda_sin_semanas = $prim['queda_al_movil'] ?></td>
+                    <td>
+                        <?php echo $semana_menos_voucher = $queda_sin_semanas - $debe_de_s;
+                        $actualiza_saldo = "";
+                        ?>
+                    </td>
+                </tr>
+            </div>
+        <?php
+        }
+
+        ?>
+        <div class="grid">
+            <div>
+                <ul>
+                    <li>Saldo en voucher: <?php
+                                            // echo "$" . $pago_en_papel;
+                                            ?></li>
+                    <li>Saldo en Efectivo: </li>
+                    <li>Debe de semanas: <?php //echo $debe_semanas 
+                                            ?> </li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
 </body>
 
 </html>

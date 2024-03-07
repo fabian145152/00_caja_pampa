@@ -57,11 +57,7 @@
     echo "<br>";
     echo $valores[2];
     echo "<br>";
-echo $fecha_armada = $valores[2] . "-" . $valores[1] . "-" . $valores[0];
-
-
-
-    
+    echo $fecha_armada = $valores[2] . "-" . $valores[1] . "-" . $valores[0];
 
 
     echo $viaje_no;

@@ -333,7 +333,7 @@
                     <form action="deudor.php" method="post">
 
                         <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
-                        <input type="hidden" id="fecha" name="fecha" value="<?php echo $fecha ?>">
+                        <input type="hidden" id="fecha" name="fecha_actual" value="<?php echo $fecha ?>">
                         <input type="hidden" id="abono_semanal" name="abono_semanal" value="<?php echo $abono_semanal ?>">
                         <input type="hidden" id="pago_en_voucher" name="pago_en_voucher" value="<?php echo $total_de_vaucher ?>">
                         <input type="hidden" id="quedan_para_el_movil" name="quedan_para_el_movil" value="<?php echo $para_mov ?>">
@@ -362,7 +362,7 @@
             <div>
                 <ul>
                     <li>Si entra x Mercado pago</li>
-                    <li>Generar un ingreso en FT y extraerlo</li>
+                    <li>Generar un pago en FT y extraerlo</li>
                 </ul>
             </div>
 
