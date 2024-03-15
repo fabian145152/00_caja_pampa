@@ -56,7 +56,32 @@
     <br><br>
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
 
-        Movil:<?php echo $nu_movil ?>
+        <?php echo "Movil: " . $nu_movil;
+        /*
+        $largo = strlen($movil);
+
+        if ($largo === 3) {
+            $movil = substr($movil, -3);
+            $numero_de_movil = "0" . $movil;
+        } elseif ($largo === 4) {
+            $numero_de_movil = $movil;
+            $movil = substr($movil, -4);
+        }
+        echo "Movil: " . $numero_de_movil . " ";
+        if ($movil >= 0 && $movil <= 999) {
+            echo  "Radiotaxi Porteño";
+        } elseif ($movil >= 1000 && $movil <= 1999) {
+            echo "Radiotaxi Buenos Aires ";
+        } elseif ($movil >= 2000 && $movil <= 2999) {
+            echo "Radiotaxi Pampa";
+        } elseif ($movil >= 3000 && $movil <= 3000) {
+            echo "Baet";
+        } elseif ($movil > 3001) {
+            echo "Cualquiera...";
+        }
+        */
+        ?>
+
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -158,6 +183,7 @@
 
                 <th>Semana</th>
                 <th>Fecha Voucher</th>
+
                 <th>Viaje No</th>
                 <th>CC</th>
                 <th>Reloj</th>
@@ -209,7 +235,6 @@
                     <!-- <td><?php $fecha = $row['fecha'] ?></td> -->
                     <td>
                         <?php
-
                         /*  ver esta parte, cambiar el formato de la fecha */
 
                         date_default_timezone_set('America/Mexico_City');
@@ -251,6 +276,7 @@
                 $total_plus += $row['plus'];
             }
         }
+
         ?>
 
     </table>
@@ -260,6 +286,7 @@
                 <ul>
                     <li><?php echo "Semana: " . $semana ?></li>
                     <li><?php echo "Fecha ultimo deposito: " . $fecha ?></li>
+                    <li><?php echo "Semana actual: " . $semana_actual = date('W'); ?></li>
                     <li><?php $total_de_vaucher =
                             $total_reloj +
                             $total_adi +
@@ -270,12 +297,11 @@
                     <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
                     <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
                     <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
-                    <li><?php echo "Total de viajes: " . $paga_de_viajes = $total_registros * $abono_viaje_1 ?></li>
-                    <li><?php
-
-                        $para_mov = $total_de_vaucher * .9;
-
-                        $quedan_al_movil = $para_mov - $abono_semanal - $paga_de_viajes;
+                    <li><?php echo "Total de viajes: " . $paga_de_viajes = $total_registros * $abono_viaje_1;
+                        $cant_semanas_adeudadas = $semana_actual - $semana  ?></li>
+                    <li><?php echo "Paga de semanas adeudadas: " . $paga_semanas_adeudados = $abono_semanal * $cant_semanas_adeudadas   ?></li>
+                    <li><?php echo "vaucher - cant viajes - semanas: " . $para_mov_descuentos = $total_de_vaucher - $paga_de_viajes - $paga_semanas_adeudados; ?></li>
+                    <li><?php $quedan_al_movil = $para_mov_descuentos * .9;
 
                         if ($quedan_al_movil < 1) {
                         ?> <style>
@@ -293,36 +319,12 @@
                                             font-size: 23px;
                                         }
                                     </style>
-                                    <p id="deposito"><strong>DEPOSITARLE: <?php echo $quedan_al_movil . '</p> </strong>';
+                                    <p id="deposito"><strong>DEPOSITARLE: <?php echo $quedan_al_movil . '</strong></p> ';
                                                                         }
-                                                                        echo "<br>";
-                                                                        echo "Quedan para base: " . $para_base = $total_de_vaucher * .1 . "  Si es negativo el movil tiene que sepositar este monto";
-                                                                        echo "<br>";
-                                                                        echo "<br>";
-                                                                        $largo = strlen($movil);
-
-                                                                        if ($largo === 3) {
-                                                                            $movil = substr($movil, -3);
-                                                                            $numero_de_movil = "0" . $movil;
-                                                                        } elseif ($largo === 4) {
-                                                                            $numero_de_movil = $movil;
-                                                                            $movil = substr($movil, -4);
-                                                                        }
-                                                                        echo $numero_de_movil . " ";
-                                                                        if ($movil >= 0 && $movil <= 999) {
-                                                                            echo  "Porteño";
-                                                                        } elseif ($movil >= 1000 && $movil <= 1999) {
-                                                                            echo "Buenos Aires ";
-                                                                        } elseif ($movil >= 2000 && $movil <= 2999) {
-                                                                            echo "Pampa";
-                                                                        } elseif ($movil >= 3000 && $movil <= 3000) {
-                                                                            echo "Baet";
-                                                                        } elseif ($movil > 3001) {
-                                                                            echo "Cualquiera...";
-                                                                        }
+                                                                        echo "<strong>ROJO</strong> depositarle al movil";
+                                                                        echo "<p><strong>AMARILLO</strong> tiene que pagar</>";
                                                                             ?>
                     </li>
-
                 </ul>
             </div>
             <div>
@@ -333,14 +335,18 @@
                     <form action="deudor.php" method="post">
 
                         <input type="hidden" id="movil" name="movil" value="<?php echo $nu_movil ?>">
-                        <input type="hidden" id="fecha" name="fecha_actual" value="<?php echo $fecha ?>">
+                        <input type="hidden" id="fecha_voucher" name="fecha_voucher" value="<?php echo $fecha ?>">
                         <input type="hidden" id="abono_semanal" name="abono_semanal" value="<?php echo $abono_semanal ?>">
+                        <input type="hidden" id="paga_de_viajes" name="paga_de_viajes" value="<?php echo $paga_de_viajes ?>">
                         <input type="hidden" id="pago_en_voucher" name="pago_en_voucher" value="<?php echo $total_de_vaucher ?>">
                         <input type="hidden" id="quedan_para_el_movil" name="quedan_para_el_movil" value="<?php echo $para_mov ?>">
                         <input type="hidden" id="quedan_al_movil" name="quedan_al_movil" value="<?php echo $quedan_al_movil ?>">
                         <input type="hidden" id="total_registros" name="total_registros" value="<?php echo $total_registros ?>">
                         <input type="hidden" id="para_base" name="para_base" value="<?php echo  $para_base ?>">
                         <input type="hidden" id="semana" name="semana" value="<?php echo $semana; ?>">
+                        <input type="hidden" id="extraccion" name="extraccion">
+                        <input type="hidden" id="deposito" name="deposito">
+                        <input type="hidden" id="dep_al_movil" name="dep_al_movil">
 
                         <p>Pago Ft:</p>
 
@@ -353,6 +359,16 @@
                         &nbsp;
                         &nbsp;
                         <button type="submit" class="btn btn-danger">GUARDAR</button>
+                        <p>Paga ML</p>
+                        <input type="text" id="MP" name="MP">
+                        <?php
+                        echo "<br>";
+                        echo "<br>";
+                        ?>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <button type="submit" class="btn btn-danger">GUARDAT</button>
 
                     </form>
 

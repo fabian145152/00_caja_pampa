@@ -54,7 +54,7 @@
 
 
     ?>
-    <a href="variables.php">Volver</a>
+    <a href="../index.php">Volver</a>
 </body>
 
 </html>

@@ -29,64 +29,61 @@
 </head>
 
 <body>
-
-
-
-
     <?php
     include_once '../../includes/db.php';
     include_once '../../includes/variables.php';
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-    //$fecha = date("Y-m-d");
-    $fecha = $_POST['fecha_actual'];
     $movil = $_POST['movil'];
-    $semana = $_POST['semana'];
+    $fecha_voucher = $_POST['fecha_voucher'];
     $abono_semanal = $_POST['abono_semanal'];
+    $paga_de_viajes = $_POST['paga_de_viajes'];
+    $pago_en_voucher = $_POST['pago_en_voucher'];
     $para_mov = $_POST['quedan_para_el_movil'];
-    $para_base = $_POST['para_base'];
+    $total_registros =
+        $para_base = $_POST['para_base'];
+    $semana = $_POST['semana'];
     $deuda_mov = 0;
     $ft = $_POST['ft'];
-    $pago_en_voucher = $_POST['pago_en_voucher'];
     $saldo_del_movil = 10;
     $quedan_al_movil = $_POST['quedan_al_movil'];
+    $MP = $_POST['MP'];
+    $extraccion = $_POST['extraccion'];
+    $deposito = $_POST['deposito'];
+    $Dep_al_movil = $_POST['dep_al_movil'];
 
 
-    echo "Fecha ultimo deposito: " . $fecha;
+    echo "Fecha ultimo deposito: " . $fecha_voucher;
     echo "<br>";
     echo "Fecha de hoy: " . $fecha_de_hoy = date("Y-m-d");
     echo "<br>";
     echo "Movil: " . $movil;
     echo "<br>";
-    echo "Semana de deposito: " . $semana;
+    echo "Ultima semana que deposito: " . $semana;
     echo "<br>";
     echo "Semana Actual: " . $semana_ac = date('W');
-    $semana_actual = $semana_ac - 1;
+    $semana_actual = $semana_ac;
     echo "<br>";
-    echo "debe: " . $cant_semanas = $semana_actual - $semana . " Semanas";
+    echo "debe: " . $cant_semanas = $semana_actual - $semana  . " Semanas";
     echo "<br>";
-    echo "Abono semanal: " . $abono_semanal;
+    echo "Paga de viajes: " . $paga_de_viajes;
+    echo "<br>";
+    echo "Pago en Voucher: " . $pago_en_voucher;
+    echo "<br>";
+    echo "10% para base = " . $diez = $pago_en_voucher * .1;
+    echo "<br>";
+    echo "90% para el movil = " . $noventa = $pago_en_voucher * .9;
+    echo "<br>";
+    echo "Deposito en efectivo: " . $ft;
+    echo "<br>";
+    echo "Deposito MP: " . $MP;
     echo "<br>";
     echo "Debe cant de semanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
+    echo "<br>";
+    echo "<br>";
 
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Quedan para el movil: " . $para_mov;
-    echo "<br>";
-    echo "Quedan para la base: "  . $para_base;
-    echo "<br>";
-    echo "Quedan al movil: " . $quedan_al_movil;
-    echo "<br>";
-    echo "Efectivo: " . $ft;
-    echo "<br>";
-    echo "Pago en voucher: " . $pago_en_voucher;
-    echo "<br>";
-    echo "Resto: " . $deuda_mov = $quedan_al_movil + $ft;
-    echo "<br>";
+
 
 
     $servername = "localhost";
@@ -104,34 +101,42 @@
     }
 
     //exit();
-    /*
+
 
     $sql = "INSERT INTO caja (
-                              fecha_dep,
+                              fecha_ult_dep,
                               fecha_actual, 
                               movil, 
-                              semana,
+                              semana_ult_dep,
                               semana_actual,
-                              debe_de_semanas, 
-                              queda_al_movil, 
-                              queda_a_base, 
-                              deuda_movil, 
-                              pago_en_efect, 
-                              pago_en_voucher, 
-                              saldo_del_movil
+                              debe_cant_sem, 
+                              paga_de_viajes, 
+                              trajo_en_voucher, 
+                              diez, 
+                              noventa, 
+                              dep_en_ft, 
+                              dep_en_mp,
+                              extraccion,
+                              deposito,
+                              dep_al_movil,
+                              quedo_ft_en_caja,
+                              queda_voucher_en_caja
                               ) 
-                              VALUES ('$fecha',
+                              VALUES ('$fecha_voucher',
                                       '$fecha_de_hoy',
                                       '$movil', 
                                       '$semana', 
-                                      '$semana_actual',
-                                      '$debe_semanas',
-                                      '$quedan_al_movil', 
-                                      '$para_base', 
-                                      '$deuda_mov', 
-                                      '$ft', 
+                                      '$semana_ac',
+                                      '$cant_semanas',
+                                      '$paga_de_viajes', 
                                       '$pago_en_voucher', 
-                                      '$saldo_del_movil')";
+                                      '$diez', 
+                                      '$noventa', 
+                                      '$ft', 
+                                      '$MP',
+                                      '$extraccion'.
+                                      '$deposito',
+                                      '$Dep_al_movil')";
 
 
 
@@ -141,25 +146,29 @@
         echo "Error al insertar datos: " . mysqli_error($conn);
     }
 
-*/
+
 
     ?>
     <div>
         <table border="2">
             <tr>
-                <th>id</th>
+
                 <th>Fecha ultimo dep</th>
                 <th>Fecha actual</th>
                 <th>Movil</th>
                 <th>Semana dep</th>
                 <th>Semana Actual</th>
-                <th>Debe de semanas</th>
-                <th>Queda para el movil</th>
-                <th>10% p/base</th>
-                <th>Dep al movil</th>
-                <th>pago en FT</th>
+                <th>Debe cant de semanas</th>
+                <th>paga de viajes</th>
                 <th>Pago en Voucher</th>
-                <th>Saldo mov FT</th>
+                <th>10% p/base</th>
+                <th>90% p/movil</th>
+                <th>dep en FT</th>
+                <th>dep MP</th>
+                <th>Extracción</th>
+                <th>depo al movil</th>
+                <th>queda FT en caja</th>
+                <th>queda couch en caja</th>
             </tr>
 
             <?php
@@ -171,7 +180,7 @@
                     semana, 
                     semana_actual,
                     debe_de_semanas,
-                    queda_al_movil, 
+                    debe_imp_semanas, 
                     queda_a_base, 
                     deuda_movil, 
                     pago_en_efect, 
@@ -184,14 +193,14 @@
 
             ?>
                 <tr>
-                    <td><?php echo $nu_id = $row['id']; ?></td>
-                    <td><?php echo $nu_fecha_dep = $row['fecha_dep'] ?></td>
+                    <?php $nu_id = $row['id']; ?>
+                    <td><?php echo $nu_fecha_dep = $row['fecha_ult_dep'] ?></td>
                     <td><?php echo $nu_fecha_actual = $row['fecha_actual'] ?></td>
                     <td><?php echo $nu_movil = $row['movil'] ?></td>
-                    <td><?php echo $nu_semana = $row['semana'] ?></td>
-                    <td><?php echo $nu_semana_actual = $row['semana_actual'] ?></td>
+                    <td><?php echo $nu_semana = $row['semana_ult_dep'] ?></td>
+                    <td><?php echo $nu_semana_actual = $row['semana_ac'] ?></td>
                     <td><?php echo $nu_debe_de_semanas = $row['debe_de_semanas'] ?></td>
-                    <td><?php echo $nu_queda_al_movil = $row['queda_al_movil'] ?></td>
+                    <td><?php echo $nu_debe_imp_semanas = $row['debe_imp_semanas'] ?></td>
                     <td><?php echo $nu_queda_a_base = $row['queda_a_base']; ?></td>
                     <td><?php echo $nu_deuda_movil = $row['deuda_movil']; ?></td>
                     <td><?php echo $nu_pago_en_efect = $row['pago_en_efect']; ?></td>
@@ -205,40 +214,28 @@
         </table>
 
         <?php
-        echo $nu_id;
-        echo "<br>";
-        echo $nu_fecha_dep;
-        echo "<br>";
-        echo $nu_fecha_actual;
-        echo "<br>";
-        echo $nu_movil;                     //movil
-        echo "<br>";
-        echo $nu_semana;                    //semana del voucher
-        echo "<br>";
-        echo $nu_semana_actual;             //semana actual
-        echo "<br>";
-        echo $nu_debe_de_semanas;           //deuda acumulada de semanas
-        echo "<br>";
-        echo $nu_queda_al_movil;            //plata que le queda en FT al movil
-        echo "<br>";
-        echo $nu_queda_a_base;              //porcentaje que le queda a la base
-        echo "<br>";
-        echo $nu_deuda_movil;               //lo que se le debe depositar al movil  
-        echo "<br>";
-        echo $nu_pago_en_efect;             //plata que trajo en el caso de que la hubiera
-        echo "<br>";
-        echo $nu_pago_en_papel;             //suma de todo lo que pago con voucher
-        echo "<br>";
-        echo $nu_saldo_del_movil;           //plata que le resta al movil
-        echo "<br>";
+        $nu_id;
+        $nu_fecha_dep;
+        $nu_fecha_actual;
+        $nu_movil;                     //movil
+        $nu_semana;                    //semana del voucher
+        $nu_semana_actual;             //semana actual
+        $nu_debe_de_semanas;           //deuda acumulada de semanas
+        $nu_queda_al_movil;            //plata que le queda en FT al movil
+        $nu_queda_a_base;              //porcentaje que le queda a la base
+        $nu_deuda_movil;               //lo que se le debe depositar al movil  
+        $nu_pago_en_efect;             //plata que trajo en el caso de que la hubiera
+        $nu_pago_en_papel;             //suma de todo lo que pago con voucher
+        $nu_saldo_del_movil;           //plata que le resta al movil
+
         if ($nu_deuda_movil > $nu_debe_de_semanas) {
             echo "Puede pagar semanas adeudadas";
             echo "<br>";
-            echo $semanas_que_puede_pagar = $nu_semana_actual - $nu_semana;
+            echo "Semanas adeudadas: " . $semanas_que_puede_pagar = $nu_semana_actual - $nu_semana;
             echo "<br>";
             echo "Se le descuentan: " . $semana_que_puede = $semanas_que_puede_pagar * $abono_semanal . " de semanas adeudadas";
             echo "<br>";
-            echo "Le Quedan:" . $le_quedan = $nu_deuda_movil - $semana_que_puede;
+            echo "Le Quedan:" . $le_quedan = $nu_pago_en_papel - $semana_que_puede;
         } else {
             echo "No le alcanza:";
         }
