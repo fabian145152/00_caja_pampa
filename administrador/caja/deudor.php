@@ -30,6 +30,7 @@
 
 <body>
     <?php
+
     include_once '../../includes/db.php';
     include_once '../../includes/variables.php';
     $con = openCon('../../config/db_admin.ini');
@@ -109,13 +110,14 @@
                               movil, 
                               semana_ult_dep,
                               semana_actual,
-                              debe_cant_sem, 
+                              debe_cant_de_semanas, 
                               paga_de_viajes, 
                               trajo_en_voucher, 
-                              diez, 
+                              deuda_movil, 
+                              diez,
                               noventa, 
                               dep_en_ft, 
-                              dep_en_mp,
+                              dep_MP,
                               extraccion,
                               deposito,
                               dep_al_movil,
@@ -156,36 +158,44 @@
                 <th>Fecha ultimo dep</th>
                 <th>Fecha actual</th>
                 <th>Movil</th>
-                <th>Semana dep</th>
+                <th>Semana ultimo dep</th>
                 <th>Semana Actual</th>
                 <th>Debe cant de semanas</th>
                 <th>paga de viajes</th>
-                <th>Pago en Voucher</th>
-                <th>10% p/base</th>
-                <th>90% p/movil</th>
+                <th>Trajo en Voucher</th>
+                <th>deuda movil</th>
+                <th>10%</th>
+                <th>90%</th>
                 <th>dep en FT</th>
                 <th>dep MP</th>
                 <th>Extracción</th>
-                <th>depo al movil</th>
+                <th>Deposito</th>
+                <th>dep al movil</th>
                 <th>queda FT en caja</th>
-                <th>queda couch en caja</th>
+                <th>queda vouch en caja</th>
             </tr>
 
             <?php
 
-            $sql_2 = "SELECT id, 
-                    fecha_dep, 
-                    fecha_actual,
-                    movil, 
-                    semana, 
-                    semana_actual,
-                    debe_de_semanas,
-                    debe_imp_semanas, 
-                    queda_a_base, 
-                    deuda_movil, 
-                    pago_en_efect, 
-                    pago_en_voucher, 
-                    saldo_del_movil 
+            $sql_2 = "SELECT id,
+                             fecha_ult_dep,
+                             fecha_actual,
+                             movil,
+                             semana_ult_dep,
+                             semana_actual,
+                             debe_cant_de_semanas,
+                             paga_de_viajes,
+                             trajo_en_voucher,
+                             deuda_movil,
+                             diez,
+                             noventa,
+                             dep_en_ft,
+                             dep_MP,
+                             extraccion,
+                             deposito,
+                             dep_al_movil,
+                             queda_ft_en_caja,
+                             queda_voucher_en_caja
             FROM caja WHERE movil = '$movil'";
 
             $result = $con->query($sql_2);
@@ -197,52 +207,84 @@
                     <td><?php echo $nu_fecha_dep = $row['fecha_ult_dep'] ?></td>
                     <td><?php echo $nu_fecha_actual = $row['fecha_actual'] ?></td>
                     <td><?php echo $nu_movil = $row['movil'] ?></td>
-                    <td><?php echo $nu_semana = $row['semana_ult_dep'] ?></td>
-                    <td><?php echo $nu_semana_actual = $row['semana_ac'] ?></td>
-                    <td><?php echo $nu_debe_de_semanas = $row['debe_de_semanas'] ?></td>
-                    <td><?php echo $nu_debe_imp_semanas = $row['debe_imp_semanas'] ?></td>
-                    <td><?php echo $nu_queda_a_base = $row['queda_a_base']; ?></td>
+                    <td><?php echo $nu_semana_ult_dep = $row['semana_ult_dep'] ?></td>
+                    <td><?php echo $nu_semana_actual = $row['semana_actual'] ?></td>
+                    <td><?php echo $nu_debe_cant_de_semanas = $row['debe_cant_de_semanas'] ?></td>
+                    <td><?php echo $nu_paga_de_viajes = $row['paga_de_viajes'] ?></td>
+                    <td><?php echo $nu_trajo_en_voucher = $row['trajo_en_voucher']; ?></td>
                     <td><?php echo $nu_deuda_movil = $row['deuda_movil']; ?></td>
-                    <td><?php echo $nu_pago_en_efect = $row['pago_en_efect']; ?></td>
-                    <td><?php echo $nu_pago_en_papel = $row['pago_en_voucher']; ?></td>
-                    <td><?php echo $nu_saldo_del_movil = $row['saldo_del_movil']; ?></td>
+                    <td><?php echo $nu_diez = $row['diez']; ?></td>
+                    <td><?php echo $nu_noventa = $row['noventa']; ?></td>
+                    <td><?php echo $nu_dep_en_ft = $row['dep_en_ft']; ?></td>
+                    <td><?php echo $nu_dep_MP = $row['dep_MP'] ?></td>
+                    <td><?php echo $nu_extraccion = $row['extraccion'] ?></td>
+                    <td><?php echo $nu_deposito = $row['deposito'] ?></td>
+                    <td><?php echo $nu_depositarle_al_movil = $row['dep_al_movil'] ?></td>
+                    <td><?php echo $nu_queda_ft_en_caja = $row['queda_ft_en_caja'] ?></td>
+                    <td><?php echo $nu_queda_voucher_en_caja = $row['queda_voucher_en_caja'] ?></td>
                 </tr>
             <?php
             }
-
             ?>
         </table>
+        <div class="grid">
+            <div>
+                <ul>
+                    <li>ID: <?php echo $nu_id; ?></li>
+                    <li>Fecha ultimo deposito: <?php echo $nu_fecha_dep; ?></li>
+                    <li>Fecha Actual: <?php echo $nu_fecha_actual; ?></li>
+                    <li>Movil: <?php echo $nu_movil; ?></li>
+                    <li>N de semana del ultimo deposito: <?php echo $nu_semana_ult_dep; ?></li>
+                    <li>N de Semana Actual: <?php echo $nu_semana_actual; ?></li>
+                    <li>Imp semanas debe: <?php echo $nu_debe_cant_de_semanas; ?></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li></li>
+                    <li>Paga en viajes: <?php echo $nu_paga_de_viajes; ?></li>
+                    <li>Depositó en Voucher: <?php echo $nu_trajo_en_voucher; ?></li>
+                    <li>Se le debe depositar al movil: <?php echo $nu_deuda_movil; ?></li>
+                    <li>Diez % para base: <?php echo $nu_diez ?></li>
+                    <li>noventa % para el movil: <?php echo $nu_noventa ?></li>
+                    <li>Plata que deposito en efectivo: <?php echo $nu_dep_en_ft; ?></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li></li>
+                    <li>Deposito en Mp: <?php echo $nu_dep_MP ?></li>
+                    <li>Extraccion: <?php echo $nu_extraccion ?></li>
+                    <li>Aporte a caja: <?php echo $nu_deposito ?></li>
+                    <li>Depositarle al movil en su cuenta: <?php echo $nu_depositarle_al_movil ?></li>
+                    <li>Plata que hay en caja: <?php echo $nu_queda_ft_en_caja ?></li>
+                    <li>Plata en Voucher de caja: <?php echo $nu_queda_voucher_en_caja ?></li>
+                </ul>
+            </div>
+            <?php
+
+
+
+            /*
+                    if ($nu_deuda_movil > $nu_debe_de_semanas) {
+                    echo "Puede pagar semanas adeudadas";
+                    echo "<br>";
+                    echo "Semanas adeudadas: " . $semanas_que_puede_pagar = $nu_semana_actual - $nu_semana;
+                    echo "<br>";
+                    echo "Se le descuentan: " . $semana_que_puede = $semanas_que_puede_pagar * $abono_semanal . " de semanas adeudadas";
+                    echo "<br>";
+                    echo "Le Quedan:" . $le_quedan = $nu_pago_en_papel - $semana_que_puede;
+                    } else {
+                    echo "No le alcanza:";
+                    }
+                    */
+            ?>
+
+        </div>
 
         <?php
-        $nu_id;
-        $nu_fecha_dep;
-        $nu_fecha_actual;
-        $nu_movil;                     //movil
-        $nu_semana;                    //semana del voucher
-        $nu_semana_actual;             //semana actual
-        $nu_debe_de_semanas;           //deuda acumulada de semanas
-        $nu_queda_al_movil;            //plata que le queda en FT al movil
-        $nu_queda_a_base;              //porcentaje que le queda a la base
-        $nu_deuda_movil;               //lo que se le debe depositar al movil  
-        $nu_pago_en_efect;             //plata que trajo en el caso de que la hubiera
-        $nu_pago_en_papel;             //suma de todo lo que pago con voucher
-        $nu_saldo_del_movil;           //plata que le resta al movil
 
-        if ($nu_deuda_movil > $nu_debe_de_semanas) {
-            echo "Puede pagar semanas adeudadas";
-            echo "<br>";
-            echo "Semanas adeudadas: " . $semanas_que_puede_pagar = $nu_semana_actual - $nu_semana;
-            echo "<br>";
-            echo "Se le descuentan: " . $semana_que_puede = $semanas_que_puede_pagar * $abono_semanal . " de semanas adeudadas";
-            echo "<br>";
-            echo "Le Quedan:" . $le_quedan = $nu_pago_en_papel - $semana_que_puede;
-        } else {
-            echo "No le alcanza:";
-        }
-        ?>
-    </div>
-    <?php
-/*
+        /*
     $leer_para_des = "SELECT * FROM caja WHERE $movil";
     $es_igual = $con->query($leer_para_des);
     while ($prim = $es_igual->fetch_assoc()) {
@@ -263,36 +305,19 @@
         </div>
     <?php
     }
-
-
-
+    
+    
     $sql_3 = "UPDATE caja SET deuda_movil = '$semana_menos_voucher' +1 WHERE movil = '$movil'";
-
+    
     if (mysqli_query($conn, $sql_3)) {
         echo "Registro actualizado correctamente";
     } else {
         echo "Error al actualizar el registro: " . mysqli_error($conn);
     }
+    
+    */
+        ?>
 
-    ?>
-    <div class="grid">
-        <div>
-            <ul>
-                <li>Saldo en voucher: <?php
-                                        // echo "$" . $pago_en_papel;
-                                        ?></li>
-                <li>Saldo en Efectivo: </li>
-                <li>Debe de semanas: <?php //echo $debe_semanas 
-                                        ?> </li>
-            </ul>
-        </div>
-        <div>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
 </body>
 
 </html>
