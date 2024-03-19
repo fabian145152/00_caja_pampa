@@ -22,6 +22,7 @@
             grid-gap: 10px;
         }
     </style>
+
 </head>
 
 <body>
@@ -41,7 +42,7 @@
     $total_ft = 0;
     $total_plus = 0;
     $total_equi = 0;
-    $nu_movil = $_GET["movil"];
+    $nu_movil = $_POST["movil"];
 
     $movil = "A" . $nu_movil;
 
@@ -167,7 +168,21 @@
                     <li>Año: <?php echo $fila['año'] ?></li>
                 </ul>
             </div>
+            <div>
+                <ul>
 
+                    <form action="borra_obs.php" id="movil" name="movil" method="post">
+                        <?php
+                        if ($fila <> 0) {
+                            echo "<strong>" . $fila['obs'] . "</strong>";
+                        } else {
+                            echo "No hay mensajes";
+                        }
+                        ?>
+                        <li><button type="submit" name="movil" id="movil" value="<?php echo $fila['movil'] ?>">BORRAR</button></li>
+                    </form>
+                </ul>
+            </div>
 
             </thead>
 

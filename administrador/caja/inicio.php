@@ -56,7 +56,7 @@
                 ?>
 
         <div>
-            <form class="form" action="ver_datos.php" method="GET" name="movil">
+            <form class="form" action="ver_datos.php" method="POST" name="movil">
                 <h1>Ingrese Movil</h1>
                 <br><br>
                 <input type="text" name="movil" class="gui-input" autofocus>

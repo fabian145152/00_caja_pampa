@@ -33,8 +33,8 @@
 
     include_once '../../includes/db.php';
     include_once '../../includes/variables.php';
-    $con = openCon('../../config/db_admin.ini');
-    $con->set_charset("utf8mb4");
+    $conn = openCon('../../config/db_admin.ini');
+    $conn->set_charset("utf8mb4");
 
     $movil = $_POST['movil'];
     $fecha_voucher = $_POST['fecha_voucher'];
@@ -42,8 +42,7 @@
     $paga_de_viajes = $_POST['paga_de_viajes'];
     $pago_en_voucher = $_POST['pago_en_voucher'];
     $para_mov = $_POST['quedan_para_el_movil'];
-    $total_registros =
-        $para_base = $_POST['para_base'];
+    $total_registros = $para_base = $_POST['para_base'];
     $semana = $_POST['semana'];
     $deuda_mov = 0;
     $ft = $_POST['ft'];
@@ -53,6 +52,8 @@
     $extraccion = $_POST['extraccion'];
     $deposito = $_POST['deposito'];
     $Dep_al_movil = $_POST['dep_al_movil'];
+
+    $deuda_movil = 0;
 
 
     echo "Fecha ultimo deposito: " . $fecha_voucher;
@@ -84,68 +85,65 @@
     echo "<br>";
     echo "<br>";
 
+    // Borrando esta variable y dejando la linea de abajo anda el insert
+    $sql = 1;
 
+    /*
+    $sql = "INSERT INTO caja (fecha_ult_dep,
+                            fecha_actual,
+                            movil,
+                            semana_ult_dep,
+                            semana_actual,
+                            debe_cant_de_semanas,
+                            paga_de_viajes,
+                            trajo_en_voucher,
+                            deuda_movil,
+                            diez,
+                            noventa,
+                            dep_en_ft,
+                            dep_MP,
+                            extraccion,
+                            deposito,
+                            dep_al_movil                          
+                              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param(
+        "ssiiiidddddddddd",
+        $fecha_voucher,
+        $fecha_de_hoy,
+        $movil,
+        $semana,
+        $semana_ac,
+        $cant_semanas,
+        $paga_de_viajes,
+        $pago_en_voucher,
+        $deuda_movil,
+        $diez,
+        $noventa,
+        $ft,
+        $MP,
+        $extraccion,
+        $deposito,
+        $Dep_al_movil
+    );
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "belgrado";
-    $dbname = "acaja";
-
-    // Crear una conexión
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Verificar la conexión
-
-    if (!$conn) {
-        die("Conexión fallida: " . mysqli_connect_error());
+    if ($stmt->execute()) {
+        echo "Se ejecuto comando exitosamente.";
+        echo "<br>";
+    } else {
+        echo "Error de ejecucion de comando.";
     }
 
-    //exit();
 
-
-    $sql = "INSERT INTO caja (
-                              fecha_ult_dep,
-                              fecha_actual, 
-                              movil, 
-                              semana_ult_dep,
-                              semana_actual,
-                              debe_cant_de_semanas, 
-                              paga_de_viajes, 
-                              trajo_en_voucher, 
-                              deuda_movil, 
-                              diez,
-                              noventa, 
-                              dep_en_ft, 
-                              dep_MP,
-                              extraccion,
-                              deposito,
-                              dep_al_movil,
-                              quedo_ft_en_caja,
-                              queda_voucher_en_caja
-                              ) 
-                              VALUES ('$fecha_voucher',
-                                      '$fecha_de_hoy',
-                                      '$movil', 
-                                      '$semana', 
-                                      '$semana_ac',
-                                      '$cant_semanas',
-                                      '$paga_de_viajes', 
-                                      '$pago_en_voucher', 
-                                      '$diez', 
-                                      '$noventa', 
-                                      '$ft', 
-                                      '$MP',
-                                      '$extraccion'.
-                                      '$deposito',
-                                      '$Dep_al_movil')";
-
+*/
 
 
     if (mysqli_query($conn, $sql)) {
         echo "Datos insertados correctamente.";
     } else {
         echo "Error al insertar datos: " . mysqli_error($conn);
+        echo "<br>";
     }
 
 
@@ -198,7 +196,7 @@
                              queda_voucher_en_caja
             FROM caja WHERE movil = '$movil'";
 
-            $result = $con->query($sql_2);
+            $result = $conn->query($sql_2);
             while ($row = $result->fetch_assoc()) {
 
             ?>
@@ -237,11 +235,12 @@
                     <li>N de semana del ultimo deposito: <?php echo $nu_semana_ult_dep; ?></li>
                     <li>N de Semana Actual: <?php echo $nu_semana_actual; ?></li>
                     <li>Imp semanas debe: <?php echo $nu_debe_cant_de_semanas; ?></li>
+                    <li>Debe de semanas: <?php echo $nu_debe_semanas = $abono_semanal * $nu_debe_cant_de_semanas ?></li>
                 </ul>
             </div>
             <div>
                 <ul>
-                    <li></li>
+
                     <li>Paga en viajes: <?php echo $nu_paga_de_viajes; ?></li>
                     <li>Depositó en Voucher: <?php echo $nu_trajo_en_voucher; ?></li>
                     <li>Se le debe depositar al movil: <?php echo $nu_deuda_movil; ?></li>
@@ -252,7 +251,7 @@
             </div>
             <div>
                 <ul>
-                    <li></li>
+
                     <li>Deposito en Mp: <?php echo $nu_dep_MP ?></li>
                     <li>Extraccion: <?php echo $nu_extraccion ?></li>
                     <li>Aporte a caja: <?php echo $nu_deposito ?></li>
@@ -261,62 +260,32 @@
                     <li>Plata en Voucher de caja: <?php echo $nu_queda_voucher_en_caja ?></li>
                 </ul>
             </div>
-            <?php
-
-
-
-            /*
-                    if ($nu_deuda_movil > $nu_debe_de_semanas) {
-                    echo "Puede pagar semanas adeudadas";
-                    echo "<br>";
-                    echo "Semanas adeudadas: " . $semanas_que_puede_pagar = $nu_semana_actual - $nu_semana;
-                    echo "<br>";
-                    echo "Se le descuentan: " . $semana_que_puede = $semanas_que_puede_pagar * $abono_semanal . " de semanas adeudadas";
-                    echo "<br>";
-                    echo "Le Quedan:" . $le_quedan = $nu_pago_en_papel - $semana_que_puede;
-                    } else {
-                    echo "No le alcanza:";
-                    }
-                    */
-            ?>
-
+            <div>
+                <ul>
+                    <li>restar semanas y viajes del 90%: depositarselo en la cuenta del movil
+                        <?php
+                        echo "<strong>" . "$" . $descuentos_al_movil = $nu_noventa - $nu_debe_semanas - $nu_paga_de_viajes . "-" . "</strong>";
+                        ?>
+                    </li>
+                    <li>queda en vouver de caja:
+                        <?php
+                        echo  "<br>";
+                        echo "<strong>" . "$" . $voucher_de_caja =  $nu_trajo_en_voucher - $descuentos_al_movil . "-"  . "</strong>";
+                        ?></li>
+                    <li>restar cantidad de semanas segun lo que alcanze para pagar:
+                        <?php
+                        if ($descuentos_al_movil < 1) {
+                            $nu_debe_cant_de_semanas = 0;
+                            echo "No debe ninguna semana";
+                        } else {
+                            echo "No alcanza para pagar las semanas: ";
+                        }
+                        ?>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <?php
-
-        /*
-    $leer_para_des = "SELECT * FROM caja WHERE $movil";
-    $es_igual = $con->query($leer_para_des);
-    while ($prim = $es_igual->fetch_assoc()) {
-    ?>
-        <div>
-            <tr>
-                <td><?php echo "Movil: " . $prim['movil'] ?></td>
-                <br>
-                <td><?php echo "Debe de semanas: " . $debe_de_s = $prim['debe_de_semanas'] ?></td>
-                <br>
-                <td><?php echo "Quedan al movil" . $queda_sin_semanas = $prim['queda_al_movil'] ?></td>
-                <td>
-                    <?php echo "Semana menos voucher: " . $semana_menos_voucher = $queda_sin_semanas - $debe_de_s;
-                    $actualiza_saldo = "";
-                    ?>
-                </td>
-            </tr>
-        </div>
-    <?php
-    }
-    
-    
-    $sql_3 = "UPDATE caja SET deuda_movil = '$semana_menos_voucher' +1 WHERE movil = '$movil'";
-    
-    if (mysqli_query($conn, $sql_3)) {
-        echo "Registro actualizado correctamente";
-    } else {
-        echo "Error al actualizar el registro: " . mysqli_error($conn);
-    }
-    
-    */
-        ?>
+    </div>
 
 </body>
 
