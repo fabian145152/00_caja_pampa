@@ -56,39 +56,28 @@
     $deuda_movil = 0;
 
 
-    echo "Fecha ultimo deposito: " . $fecha_voucher;
-    echo "<br>";
-    echo "Fecha de hoy: " . $fecha_de_hoy = date("Y-m-d");
-    echo "<br>";
-    echo "Movil: " . $movil;
-    echo "<br>";
-    echo "Ultima semana que deposito: " . $semana;
-    echo "<br>";
-    echo "Semana Actual: " . $semana_ac = date('W');
+    $fecha_voucher;
+
+    $fecha_de_hoy = date("Y-m-d");
+
+    $movil;
+    $semana;
+    $semana_ac = date('W');
     $semana_actual = $semana_ac;
-    echo "<br>";
-    echo "debe: " . $cant_semanas = $semana_actual - $semana  . " Semanas";
-    echo "<br>";
-    echo "Paga de viajes: " . $paga_de_viajes;
-    echo "<br>";
-    echo "Pago en Voucher: " . $pago_en_voucher;
-    echo "<br>";
-    echo "10% para base = " . $diez = $pago_en_voucher * .1;
-    echo "<br>";
-    echo "90% para el movil = " . $noventa = $pago_en_voucher * .9;
-    echo "<br>";
-    echo "Deposito en efectivo: " . $ft;
-    echo "<br>";
-    echo "Deposito MP: " . $MP;
-    echo "<br>";
-    echo "Debe cant de semanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
-    echo "<br>";
-    echo "<br>";
+    $cant_semanas = $semana_actual - $semana;
+    $paga_de_viajes;
+    $pago_en_voucher;
+    $diez = $pago_en_voucher * .1;
+    $noventa = $pago_en_voucher * .9;
+    $ft;
+    $MP;
+    $debe_semanas = $cant_semanas * $abono_semanal;
+
 
     // Borrando esta variable y dejando la linea de abajo anda el insert
-    $sql = 1;
+    //$sql = 1;
 
-    /*
+
     $sql = "INSERT INTO caja (fecha_ult_dep,
                             fecha_actual,
                             movil,
@@ -136,7 +125,7 @@
     }
 
 
-*/
+
 
 
     if (mysqli_query($conn, $sql)) {
@@ -151,27 +140,7 @@
     ?>
     <div>
         <table border="2">
-            <tr>
 
-                <th>Fecha ultimo dep</th>
-                <th>Fecha actual</th>
-                <th>Movil</th>
-                <th>Semana ultimo dep</th>
-                <th>Semana Actual</th>
-                <th>Debe cant de semanas</th>
-                <th>paga de viajes</th>
-                <th>Trajo en Voucher</th>
-                <th>deuda movil</th>
-                <th>10%</th>
-                <th>90%</th>
-                <th>dep en FT</th>
-                <th>dep MP</th>
-                <th>Extracción</th>
-                <th>Deposito</th>
-                <th>dep al movil</th>
-                <th>queda FT en caja</th>
-                <th>queda vouch en caja</th>
-            </tr>
 
             <?php
 
@@ -201,29 +170,27 @@
 
             ?>
                 <tr>
-                    <?php $nu_id = $row['id']; ?>
-                    <td><?php echo $nu_fecha_dep = $row['fecha_ult_dep'] ?></td>
-                    <td><?php echo $nu_fecha_actual = $row['fecha_actual'] ?></td>
-                    <td><?php echo $nu_movil = $row['movil'] ?></td>
-                    <td><?php echo $nu_semana_ult_dep = $row['semana_ult_dep'] ?></td>
-                    <td><?php echo $nu_semana_actual = $row['semana_actual'] ?></td>
-                    <td><?php echo $nu_debe_cant_de_semanas = $row['debe_cant_de_semanas'] ?></td>
-                    <td><?php echo $nu_paga_de_viajes = $row['paga_de_viajes'] ?></td>
-                    <td><?php echo $nu_trajo_en_voucher = $row['trajo_en_voucher']; ?></td>
-                    <td><?php echo $nu_deuda_movil = $row['deuda_movil']; ?></td>
-                    <td><?php echo $nu_diez = $row['diez']; ?></td>
-                    <td><?php echo $nu_noventa = $row['noventa']; ?></td>
-                    <td><?php echo $nu_dep_en_ft = $row['dep_en_ft']; ?></td>
-                    <td><?php echo $nu_dep_MP = $row['dep_MP'] ?></td>
-                    <td><?php echo $nu_extraccion = $row['extraccion'] ?></td>
-                    <td><?php echo $nu_deposito = $row['deposito'] ?></td>
-                    <td><?php echo $nu_depositarle_al_movil = $row['dep_al_movil'] ?></td>
-                    <td><?php echo $nu_queda_ft_en_caja = $row['queda_ft_en_caja'] ?></td>
-                    <td><?php echo $nu_queda_voucher_en_caja = $row['queda_voucher_en_caja'] ?></td>
-                </tr>
-            <?php
+                <?php $nu_id = $row['id'];
+                $nu_fecha_dep = $row['fecha_ult_dep'];
+                $nu_fecha_actual = $row['fecha_actual'];
+                $nu_movil = $row['movil'];
+                $nu_semana_ult_dep = $row['semana_ult_dep'];
+                $nu_semana_actual = $row['semana_actual'];
+                $nu_debe_cant_de_semanas = $row['debe_cant_de_semanas'];
+                $nu_paga_de_viajes = $row['paga_de_viajes'];
+                $nu_trajo_en_voucher = $row['trajo_en_voucher'];
+                $nu_deuda_movil = $row['deuda_movil'];
+                $nu_diez = $row['diez'];
+                $nu_noventa = $row['noventa'];
+                $nu_dep_en_ft = $row['dep_en_ft'];
+                $nu_dep_MP = $row['dep_MP'];
+                $nu_extraccion = $row['extraccion'];
+                $nu_deposito = $row['deposito'];
+                $nu_depositarle_al_movil = $row['dep_al_movil'];
+                $nu_queda_ft_en_caja = $row['queda_ft_en_caja'];
+                $nu_queda_voucher_en_caja = $row['queda_voucher_en_caja'];
             }
-            ?>
+                ?>
         </table>
         <div class="grid">
             <div>
@@ -270,7 +237,7 @@
                     <li>queda en vouver de caja:
                         <?php
                         echo  "<br>";
-                        echo "<strong>" . "$" . $voucher_de_caja =  $nu_trajo_en_voucher - $descuentos_al_movil . "-"  . "</strong>";
+                        echo "<strong>" . "$" . $voucher_de_caja =  $nu_trajo_en_voucher - $descuentos_al_movil . "</strong>";
                         ?></li>
                     <li>restar cantidad de semanas segun lo que alcanze para pagar:
                         <?php
@@ -280,12 +247,95 @@
                         } else {
                             echo "No alcanza para pagar las semanas: ";
                         }
+
+
+                        echo $voucher_de_caja;
+                        $actualiza_reg =  "UPDATE caja SET 	queda_voucher_en_caja = '$voucher_de_caja', 
+                                                            dep_al_movil = '$descuentos_al_movil'  
+                                                            WHERE movil =" . $movil;
+                        $conn->query($actualiza_reg);
+
                         ?>
+
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+    <table border="2">
+        <tr>
+            <th>Fecha ultimo dep</th>
+            <th>Fecha actual</th>
+            <th>Movil</th>
+            <th>Semana ultimo dep</th>
+            <th>Semana Actual</th>
+            <th>Debe cant de semanas</th>
+            <th>paga de viajes</th>
+            <th>Trajo en Voucher</th>
+            <th>deuda movil</th>
+            <th>10%</th>
+            <th>90%</th>
+            <th>dep en FT</th>
+            <th>dep MP</th>
+            <th>Extracción</th>
+            <th>Deposito</th>
+            <th>dep al movil</th>
+            <th>queda FT en caja</th>
+            <th>queda vouch en caja</th>
+        </tr>
+
+        <?php
+
+        $sql_2 = "SELECT id,
+                             fecha_ult_dep,
+                             fecha_actual,
+                             movil,
+                             semana_ult_dep,
+                             semana_actual,
+                             debe_cant_de_semanas,
+                             paga_de_viajes,
+                             trajo_en_voucher,
+                             deuda_movil,
+                             diez,
+                             noventa,
+                             dep_en_ft,
+                             dep_MP,
+                             extraccion,
+                             deposito,
+                             dep_al_movil,
+                             queda_ft_en_caja,
+                             queda_voucher_en_caja
+            FROM caja WHERE movil = '$movil'";
+
+        $result = $conn->query($sql_2);
+        while ($row = $result->fetch_assoc()) {
+
+        ?>
+            <tr>
+                <?php $nu_id = $row['id']; ?>
+                <td><?php echo $nu_fecha_dep = $row['fecha_ult_dep'] ?></td>
+                <td><?php echo $nu_fecha_actual = $row['fecha_actual'] ?></td>
+                <td><?php echo $nu_movil = $row['movil'] ?></td>
+                <td><?php echo $nu_semana_ult_dep = $row['semana_ult_dep'] ?></td>
+                <td><?php echo $nu_semana_actual = $row['semana_actual'] ?></td>
+                <td><?php echo $nu_debe_cant_de_semanas = $row['debe_cant_de_semanas'] ?></td>
+                <td><?php echo $nu_paga_de_viajes = $row['paga_de_viajes'] ?></td>
+                <td><?php echo $nu_trajo_en_voucher = $row['trajo_en_voucher']; ?></td>
+                <td><?php echo $nu_deuda_movil = $row['deuda_movil']; ?></td>
+                <td><?php echo $nu_diez = $row['diez']; ?></td>
+                <td><?php echo $nu_noventa = $row['noventa']; ?></td>
+                <td><?php echo $nu_dep_en_ft = $row['dep_en_ft']; ?></td>
+                <td><?php echo $nu_dep_MP = $row['dep_MP'] ?></td>
+                <td><?php echo $nu_extraccion = $row['extraccion'] ?></td>
+                <td><?php echo $nu_deposito = $row['deposito'] ?></td>
+                <td><?php echo $nu_depositarle_al_movil = $row['dep_al_movil'] ?></td>
+                <td><?php echo $nu_queda_ft_en_caja = $row['queda_ft_en_caja'] ?></td>
+                <td><?php echo $nu_queda_voucher_en_caja = $row['queda_voucher_en_caja'] ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
 
 </body>
 

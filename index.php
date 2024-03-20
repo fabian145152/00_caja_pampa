@@ -48,7 +48,7 @@
                 <a href="administrador/arma_unidad/list_unidad.php" class="btn btn-primary">LISTAR UNIDADAES</a>
                 <br>
 
-                <a href="administrador/caja/inicio.php" class="btn btn-primary">CAJA</a>
+                <a href="administrador/caja/index.php" class="btn btn-primary">CAJA</a>
 
                 <br>
 

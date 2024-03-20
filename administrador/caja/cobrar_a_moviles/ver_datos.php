@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAJA</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <script src="../../js/jquery-3.4.1.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/bootbox.min.js"></script>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <script src="../../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/bootbox.min.js"></script>
     <style>
         #columnas {
             column-count: 5;
@@ -22,6 +22,27 @@
             grid-gap: 10px;
         }
     </style>
+    <script>
+        function deleteProduct(cod_unidad) {
+            /*  Si no le pongo nada entre los parentesis() me borra todo o sea que 
+            la funcion se ejecuta siempore igual. 
+            Tengo que cambiarle los parametros de entrada para que la ejecute como yo quiero. 
+            Si no tiene ningun paramtero generaliza, si lo tiene se ejecuta de forma particular*/
+            bootbox.confirm("Desea Eliminar?" + cod_unidad, function(result) {
+                /*  si la funcion no tiene nombre es una funcion anonima function() o function = nombre()  */
+                if (result) {
+                    window.location = "delete_unidad.php?q=" + cod_unidad;
+                }
+                /*  La ?q es como si fuera el metodo $_GET */
+            });
+        }
+
+        /* ahora viene la funcion update*/
+        function updateProduct(cod_unidad) {
+            window.location = "editar_obs.php?q=" + cod_unidad;
+        }
+    </script>
+
 
 </head>
 
@@ -30,9 +51,9 @@
     <!-- <p>Usar la tabla caja_cont</p> -->
 
     <?php
-    include_once '../../includes/db.php';
-    include_once '../../includes/variables.php';
-    $con = openCon('../../config/db_admin.ini');
+    include_once '../../../includes/db.php';
+    include_once '../../../includes/variables.php';
+    $con = openCon('../../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
     $total_reloj = 0;
@@ -58,29 +79,7 @@
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
 
         <?php echo "Movil: " . $nu_movil;
-        /*
-        $largo = strlen($movil);
 
-        if ($largo === 3) {
-            $movil = substr($movil, -3);
-            $numero_de_movil = "0" . $movil;
-        } elseif ($largo === 4) {
-            $numero_de_movil = $movil;
-            $movil = substr($movil, -4);
-        }
-        echo "Movil: " . $numero_de_movil . " ";
-        if ($movil >= 0 && $movil <= 999) {
-            echo  "Radiotaxi Porteño";
-        } elseif ($movil >= 1000 && $movil <= 1999) {
-            echo "Radiotaxi Buenos Aires ";
-        } elseif ($movil >= 2000 && $movil <= 2999) {
-            echo "Radiotaxi Pampa";
-        } elseif ($movil >= 3000 && $movil <= 3000) {
-            echo "Baet";
-        } elseif ($movil > 3001) {
-            echo "Cualquiera...";
-        }
-        */
         ?>
 
 
@@ -89,7 +88,7 @@
         <a href="inicio.php" class="btn btn-success">Volver</a>
         <nbsp></nbsp>
         <nbsp></nbsp>
-        <a href="../../index.php" class="btn btn-success">Salir</a>
+        <a href="../../../index.php" class="btn btn-success">Salir</a>
     </h5>
 
     <?php
@@ -156,7 +155,6 @@
                     <li>DNI: <?php echo $fila['dni_chof_2'] ?></li>
                 </ul>
             </div>
-
             <div>
                 <ul>
                     <li>
@@ -170,21 +168,27 @@
             </div>
             <div>
                 <ul>
+                    <?php
+                    $msg = $fila['obs'];
 
-                    <form action="borra_obs.php" id="movil" name="movil" method="post">
-                        <?php
-                        if ($fila <> 0) {
-                            echo "<strong>" . $fila['obs'] . "</strong>";
-                        } else {
-                            echo "No hay mensajes";
-                        }
-                        ?>
-                        <li><button type="submit" name="movil" id="movil" value="<?php echo $fila['movil'] ?>">BORRAR</button></li>
-                    </form>
+                    if (empty($msg)) {
+                        echo "<li>Movil: " . $movil . "</li>";
+                        echo "<li><strong>No dejo recordatorios</strong></li>";
+                    ?>
+                        <li><a href="#" onclick="updateProduct(<?php echo $fila['id']; ?>)">Grabar recordatorio nuevo</a></li>
+                    <?php
+                    } else {
+                    ?>
+                        <li><strong><?php echo $fila['obs']; ?></strong></li>
+                        <li><a href="#" onclick="updateProduct(<?php echo $fila['id']; ?>)">Actualizar</a></li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
 
             </thead>
+
 
 
             </p>
