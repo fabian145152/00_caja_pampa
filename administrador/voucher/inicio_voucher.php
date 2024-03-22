@@ -10,7 +10,7 @@
 	<script src="../../js/bootstrap.min.js"></script>
 	<script src="../../js/bootbox.min.js"></script>
 	<script>
-		function updateProduct(cod_voucher) {
+		function validateProduct(cod_voucher) {
 			bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
 				if (result) {
 					window.location = "valida_voucher.php?q=" + cod_voucher;
@@ -18,12 +18,13 @@
 			});
 		}
 
-		function detalleProduct(cod_voucher) {
+		function updateProduct(cod_voucher) {
 			window.location = "detalle_voucher.php?q=" + cod_voucher;
 		}
-		/* ahora viene la funcion update*/
+
 		function deleteProduct(cod_voucher) {
 			window.location = "delete_voucher.php?q=" + cod_voucher;
+
 		}
 	</script>
 </head>
@@ -129,8 +130,8 @@
 				<td><?php echo $d['total'] ?></td>
 
 
-				<td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
-				<td><a class="btn btn-warning btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Validar</td>
+				<td><a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Detalles</td>
+				<td><a class="btn btn-warning btn-sm" href="#" onclick="validateProduct(<?php echo $d['id']; ?>)">Validar</td>
 				<td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 			</tr>
 

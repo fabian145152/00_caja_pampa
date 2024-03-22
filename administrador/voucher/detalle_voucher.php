@@ -5,6 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+        <script src="../../js/jquery-3.4.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/bootbox.min.js"></script>
         <style>
             #contenedor {
                 display: flex;
@@ -35,82 +40,62 @@
         ?>
 
         <h2 class="text-center" style="margin: 5px ; ">DETALLES DEL VOUCHER No: <?php echo $row['viaje_no'] ?></h2>
-        <form class="form-group" accept=-"charset utf8 action="../caja/inicio.php?=" <?php echo $row['movil'] ?> method="post">
+        <form class="form-group" accept=-"charset utf8 action="save_voucher.php" <?php echo $row['movil'] ?> method="post">
             <div class="grid" name="movil">
 
                 <div id="contenedor">
                     <ul>
-                        <li>Movil</li>
-                        <li>ID </li>
-                        <li>id_Voucher</li>
-                        <li>Viaje Numero</li>
-                        <li>Origen</li>
-                        <li>Estado</li>
-                        <li>Nombre del Pasajero</li>
-                        <li>Telefono del pasajero</li>
-                        <li>Chofer</li>
-                        <li>DNI</li>
-                        <li>Marca</li>
-                        <li>Dominio</li>
-                        <li>Centro de costo</li>
-                        <li>Cuenta Corriente</li>
-                        <li>Cuenta </li>
-                        <li>Cuenta</li>
-                        <li>Traslado</li>
-                        <li>Siniestro</li>
-                        <li>Fecha solicitado</li>
-                        <li>Fecha Completado</li>
-                        <li>Direccion de destino</li>
-                        <li>Reloj</li>
-                        <li>Peaje</li>
-                        <li>Equipaje</li>
-                        <li>Adicional</li>
-                        <li>Plus</li>
-                        <li>Operador</li>
-                        <li>Autorizante</li>
-                        <li>Observaciones Chofer</li>
-                        <li>Observaciones Pasajero</li>
-                        <li>Fecha de creacion</li>
+                        <li><input placeholder="ID"></li>
+                        <li><input placeholder="MOVIL"></li>
+                        <li><input placeholder="VIAJE NO"></li>
+                        <li><input placeholder="ESTADO"></li>
+                        <li><input placeholder="CC"></li>
+                        <li><input placeholder="PASAJERO"></li>
+                        <li><input placeholder="C. COSTO"></li>
+                        <li><input placeholder="TRASLADO"></li>
+                        <li><input placeholder="SINIESTRO"></li>
+                        <li><input placeholder="COMPLETADO"></li>
+                        <li><input placeholder="DESTINO"></li>
+                        <li><input placeholder="RELOJ"></li>
+                        <li><input placeholder="PEAJE"></li>
+                        <li><input placeholder="EQUIPAJE"></li>
+                        <li><input placeholder="ADICIONAL"></li>
+                        <li><input placeholder="PLUS"></li>
+                        <li><input placeholder="TOTAL"></li>
+                        <li><input placeholder="OPERADOR"></li>
+                        <BR></BR>
+                    </ul>
+
+                    <ul>
+                        <li><input type="text" id="id" name="id" value="<?php echo $row['id'] ?>" readonly></li>
+                        <li><input type="text" id="movil" name="movil" value="<?php echo $row['movil'] ?>" readonly></li>
+                        <li><input type="text" id="viaje_no" name="viaje_no" value="<?php echo $row['viaje_no'] ?>" readonly></li>
+                        <li><input type="text" id="estado" name="estado" value="<?php echo $row['estado'] ?>" readonly></li>
+                        <li><input type="text" id="cc" name="cc" value="<?php echo $row['cc'] ?>" readonly></li>
+                        <li><input type="text" id="nom_pasaj" name="nom_pasaj" value="<?php echo $row['nom_pasaj'] ?>" readonly></li>
+                        <li><input type="text" id="c_costo" name="c_costo" value="<?php echo $row['c_costo'] ?>" readonly></li>
+                        <li><input type="text" id="traslado" name="traslado" value="<?php echo $row['traslado'] ?>" readonly></li>
+                        <li><input type="text" id="siniestro" name="siniestro" value="<?php echo $row['siniestro'] ?>" readonly></li>
+                        <li><input type="text" id="completado" name="completado" value="<?php echo $row['completado'] ?>" readonly></li>
+                        <li><input type="text" id="destino" name="destino" value="<?php echo $row['destino'] ?>" readonly></li>
+                        <li><input type="text" id="reloj" name="reloj" value="<?php echo $row['reloj'] ?>"></li>
+                        <li><input type="text" id="reaje" name="peaje" value="<?php echo $row['peaje'] ?>"></li>
+                        <li><input type="text" id="equipaje" name="equipaje" value="<?php echo $row['equipaje'] ?>"></li>
+                        <li><input type="text" id="adicional" name="adicional" value="<?php echo $row['adicional'] ?>"></li>
+                        <li><input type="text" id="plus" name="plus" value="<?php echo $row['plus'] ?>"></li>
+                        <li><input type="text" id="total" name="total" value="<?php echo $row['total'] ?>" readonly></li>
+                        <li><input type="text" id="operador" name="operador" value="<?php echo $row['operador'] ?>"></li>
+                        <BR></BR>
+                        <input type="submit" VALUE="GUARDAR">
+                        <BR></BR>
+                        <a href="inicio_voucher.php" class="boton">Volver</a>
 
                     </ul>
-                    <ul>
-                        <li><?php echo $row['movil'] ?></li>
-                        <li><?php echo $row['id'] ?></li>
-                        <li><?php echo $row['id_vou'] ?></li>
-                        <li><?php echo $row['viaje_no'] ?></li>
-                        <li><?php echo $row['origen'] ?></li>
-                        <li><?php echo $row['estado'] ?></li>
-                        <li><?php echo $row['nom_pasaj'] ?></li>
-                        <li><?php echo $row['tel_pasaj'] ?></li>
-                        <li><?php echo $row['chof'] ?></li>
-                        <li><?php echo $row['dni'] ?></li>
-                        <li><?php echo $row['marca'] ?></li>
-                        <li><?php echo $row['patente'] ?></li>
-                        <li><?php echo $row['c_costo'] ?></li>
-                        <li><?php echo $row['cc'] ?></li>
-                        <li><?php echo $row['c_corr'] ?></li>
-                        <li><?php echo $row['c_cont'] ?></li>
-                        <li><?php echo $row['traslado'] ?></li>
-                        <li><?php echo $row['siniestro'] ?></li>
-                        <li><?php echo $row['solicitado'] ?></li>
-                        <li><?php echo $row['completado'] ?></li>
-                        <li><?php echo $row['destino'] ?></li>
-                        <li><?php echo $row['reloj'] ?></li>
-                        <li><?php echo $row['peaje'] ?></li>
-                        <li><?php echo $row['equipaje'] ?></li>
-                        <li><?php echo $row['adicional'] ?></li>
-                        <li><?php echo $row['plus'] ?></li>
-                        <li><?php echo $row['operador'] ?></li>
-                        <li><?php echo $row['autorizante'] ?></li>
-                        <li><?php echo $row['obs_chof'] ?></li>
-                        <li><?php echo $row['obs_pas'] ?></li>
-                        <li><?php echo $row['created_at'] ?></li>
-                    </ul>
+
                 </div>
 
             </div>
         </form>
-        <a href="inicio_voucher.php" class="boton">Volver</a>
     </body>
 
     </html>
