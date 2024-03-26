@@ -20,7 +20,7 @@
         }
 
         function detalleProduct(cod_voucher) {
-            window.location = "detalle_voucher.php?q=" + cod_voucher;
+            window.location = "detalle_voucher.php?id=" + cod_voucher;
         }
 
         /* ahora viene la funcion update*/
@@ -53,10 +53,12 @@
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
+
+
     //if ($movil <> '0') {
 
-    $sql = "SELECT * FROM voucher_nuevos WHERE movil = '$movil' ORDER BY movil";
-    $datos = $con->query($sql);
+    $sql = "SELECT * FROM voucher_nuevos WHERE movil = '$movil' ";
+    $regis = $con->query($sql);
     //}
     /*
     if ($viaje <> '0') {
@@ -64,6 +66,8 @@
         $datos = $con->query($sql);
     }
 */
+    $registros = $regis->num_rows;
+
     ?>
 
     <table class="table table-bordered table-sm table-hover">
@@ -81,6 +85,9 @@
             <th>Adicional</th>
             <th>Plus</th>
             <th>Total</th>
+            <th>Detalles</th>
+            <th>Validar</th>
+            <th>Borrar</th>
             <!--
             <th>Detalles</th>
 
@@ -93,7 +100,7 @@
 
 
 
-        while ($d = $datos->fetch_assoc()) {
+        while ($d = $regis->fetch_assoc()) {
 
         ?>
             <tr>
@@ -111,23 +118,57 @@
                 <td><?php echo $d['adicional']; ?></td>
                 <td><?php echo $d['plus']; ?></td>
                 <td><?php echo $d['total'] ?></td>
+                <td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
+                <td><a class="btn btn-warning btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Validar</td>
+                <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 
-                <!--
-                <td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php //echo $d['id']; 
-                                                                                        ?>)">Detalles</td>
 
-                <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php //echo $d['id']; 
-                                                                                        ?>)">Validar</td>
-            -->
+
+                <?php
+
+                for ($i = $registros; $i >= 0; $i--) {
+                    echo "Regisrtros: " . $i;
+                    $id = $d['id'];
+                    $movil = $d['movil'];
+                    $fecha = $d['completado'];
+                    $viaje_no = $d['viaje_no'];
+                    $cc = $d['cc'];
+                    $reloj = $d['reloj'];
+                    $peaje = $d['peaje'];
+                    $equipaje = $d['equipaje'];
+                    $adicional = $d['adicional'];
+                    $plus = $d['plus'];
+
+                    //exit();
+                    $guarda = "INSERT INTO voucher_temporales 
+                                        VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    $stmt = $con->prepare($guarda);
+                    $stmt->bind_param("issddddddd", $id, $movil, $fecha, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
+                    $stmt->execute();
+                ?>
+                <?php
+                }
+                ?>
+
             </tr>
-
-        <?php
-        }
-        ?>
     </table>
+<?php
 
 
 
+
+            $borra_nuevos = "DELETE FROM voucher_nuevos WHERE  movil = '$movil' ";
+            $result = $con->query($borra_nuevos);
+
+
+            if ($i = 0) {
+                header("buscador_voucher.php");
+            }
+        }
+
+
+
+?>
 
 
 </body>

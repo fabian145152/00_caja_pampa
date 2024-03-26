@@ -9,6 +9,7 @@
 	<script src="../../js/jquery-3.4.1.min.js"></script>
 	<script src="../../js/bootstrap.min.js"></script>
 	<script src="../../js/bootbox.min.js"></script>
+
 	<script>
 		function updateProduct(cod_voucher) {
 			bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
@@ -26,6 +27,7 @@
 			window.location = "delete_voucher.php?q=" + cod_voucher;
 		}
 	</script>
+
 </head>
 
 <body>
@@ -99,9 +101,6 @@
 			<th>Adicional</th>
 			<th>Plus</th>
 			<th>Total</th>
-
-			<th>Detalles</th>
-			<th>Validar</th>
 			<th>Borrar</th>
 
 
@@ -128,9 +127,6 @@
 				<td><?php echo $d['plus']; ?></td>
 				<td><?php echo $d['total'] ?></td>
 
-
-				<td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
-				<td><a class="btn btn-warning btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Validar</td>
 				<td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 			</tr>
 
