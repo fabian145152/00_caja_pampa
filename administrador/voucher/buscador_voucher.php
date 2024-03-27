@@ -18,7 +18,7 @@
             });
         }
 
-        <
+
         function detalleProduct(cod_voucher) {
             window.location = "detalle_voucher.php?id=" + cod_voucher;
 
@@ -31,6 +31,7 @@
                 window.location = "delete_voucher.php?q=" + cod_voucher;
 
             }
+        }
     </script>
 </head>
 
@@ -54,11 +55,7 @@
     $movil = "A" . $mov;
     //echo "<br>";
     //echo $movil;
-    ?>
 
-
-
-    <?php
 
     include_once '../../includes/db.php';
 
@@ -82,8 +79,7 @@
 
     ?>
 
-    <!-- <table class="table table-bordered table-sm table-hover" accept="charset utf8" action="save_voucher.php" <?php //echo $d['id'] 
-                                                                                                                    ?> method="post"> -->
+
     <table class="table table table-bordered table-sm table-hover" action="save_voucher.php?=<?php echo $d['id'] ?>" method="post">
 
         <thead class="thead-dark">
@@ -100,21 +96,11 @@
             <th>Adicional</th>
             <th>Plus</th>
             <th>Total</th>
-
             <th>Detalles</th>
             <th>Validar</th>
             <th>Borrar</th>
 
-            <th>Detalles</th>
 
-            <th>Guardar</th>
-
-            <th></th>
-            <th></th>
-            <th></th>
-
-
-            <br>
         </thead>
 
         <?php
@@ -127,9 +113,7 @@
             <tr>
                 <td><?php echo $d['id']; ?></td>
                 <td><?php echo $d['viaje_no']; ?></td>
-                <td><?php $comp = $d['completado'];
-                    echo $fecha_echo = substr($comp, 0, -8);
-                    ?></td>
+                <td><?php echo $d['completado']; ?></td>
                 <td><?php echo $d['nom_pasaj']; ?></td>
                 <td><?php echo $d['movil']; ?></td>
                 <td><?php echo $d['cc']; ?></td>
@@ -144,11 +128,10 @@
                 <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 
 
-
                 <?php
 
                 for ($i = $registros; $i >= 0; $i--) {
-                    echo "Regisrtros: " . $i;
+                    $i;
                     $id = $d['id'];
                     $movil = $d['movil'];
                     $fecha = $d['completado'];
@@ -171,11 +154,7 @@
                 }
                 ?>
             </tr>
-    </table>
-<?php
-
-
-
+        <?php
 
             $borra_nuevos = "DELETE FROM voucher_nuevos WHERE  movil = '$movil' ";
             $result = $con->query($borra_nuevos);
@@ -187,9 +166,9 @@
         }
 
 
+        ?>
 
-?>
-
+    </table>
 
 </body>
 
