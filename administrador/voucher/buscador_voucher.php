@@ -10,34 +10,46 @@
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootbox.min.js"></script>
     <script>
-        function deleteProduct(cod_voucher) {
+        function validateProduct(cod_voucher) {
             bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
                 if (result) {
-                    window.location = "buscador_voucher.php?q=" + cod_voucher;
+                    window.location = "valida_voucher.php?q=" + cod_voucher;
                 }
-
             });
         }
 
+<<<<<<< HEAD
         function detalleProduct(cod_voucher) {
             window.location = "detalle_voucher.php?id=" + cod_voucher;
+=======
+        function updateProduct(cod_voucher) {
+            window.location = "det_desde_busc.php?q=" + cod_voucher;
+>>>>>>> f3d8aebd37685a916380e577ed61cf9ec0fa328e
         }
 
-        /* ahora viene la funcion update*/
-        function updateProduct(cod_voucher) {
-            window.location = "edit_voucher.php?q=" + cod_voucher;
+        function deleteProduct(cod_voucher) {
+            window.location = "delete_voucher.php?q=" + cod_voucher;
+
         }
     </script>
 </head>
 
 <body>
-    <h1>buscador</h1>
+    <style>
+        .titule {
+            text-align: center;
+        }
+    </style>
+    <h2 class="titule">VOUCHER DE LA UNIDAD <?php echo $mov = $_POST['movil']; ?> </h2>
     <a href="inicio_voucher.php">Volver</a>
     <?php
 
     //echo $fecha = $_POST['fecha'];
-    echo $mov = $_POST['movil'];
+    
+    $mov = $_POST['movil'];
     //echo $viaje = $_POST['viaje'];
+
+    
 
     $movil = "A" . $mov;
     //echo "<br>";
@@ -70,7 +82,10 @@
 
     ?>
 
-    <table class="table table-bordered table-sm table-hover">
+    <!-- <table class="table table-bordered table-sm table-hover" accept="charset utf8" action="save_voucher.php" <?php //echo $d['id'] 
+                                                                                                                    ?> method="post"> -->
+    <table class="table table table-bordered table-sm table-hover" action="save_voucher.php?=<?php echo $d['id'] ?>" method="post">
+
         <thead class="thead-dark">
 
             <th>id</th>
@@ -85,6 +100,7 @@
             <th>Adicional</th>
             <th>Plus</th>
             <th>Total</th>
+<<<<<<< HEAD
             <th>Detalles</th>
             <th>Validar</th>
             <th>Borrar</th>
@@ -93,7 +109,13 @@
 
             <th>Guardar</th>
     -->
+=======
+            <th></th>
+            <th></th>
+            <th></th>
+>>>>>>> f3d8aebd37685a916380e577ed61cf9ec0fa328e
 
+            <br>
         </thead>
 
         <?php
@@ -150,6 +172,9 @@
                 }
                 ?>
 
+                <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Actualizar</td>
+                <td><a class="btn btn-warning btn-sm" href="#" onclick="validateProduct(<?php echo $d['id']; ?>)">Validar</a></td>
+                <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id']; ?>)">Eliminar</td>
             </tr>
     </table>
 <?php
