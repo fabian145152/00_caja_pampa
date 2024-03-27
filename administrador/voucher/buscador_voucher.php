@@ -18,19 +18,19 @@
             });
         }
 
-<<<<<<< HEAD
+        <
         function detalleProduct(cod_voucher) {
             window.location = "detalle_voucher.php?id=" + cod_voucher;
-=======
-        function updateProduct(cod_voucher) {
-            window.location = "det_desde_busc.php?q=" + cod_voucher;
->>>>>>> f3d8aebd37685a916380e577ed61cf9ec0fa328e
-        }
 
-        function deleteProduct(cod_voucher) {
-            window.location = "delete_voucher.php?q=" + cod_voucher;
+            function updateProduct(cod_voucher) {
+                window.location = "det_desde_busc.php?q=" + cod_voucher;
 
-        }
+            }
+
+            function deleteProduct(cod_voucher) {
+                window.location = "delete_voucher.php?q=" + cod_voucher;
+
+            }
     </script>
 </head>
 
@@ -45,11 +45,11 @@
     <?php
 
     //echo $fecha = $_POST['fecha'];
-    
+
     $mov = $_POST['movil'];
     //echo $viaje = $_POST['viaje'];
 
-    
+
 
     $movil = "A" . $mov;
     //echo "<br>";
@@ -100,20 +100,19 @@
             <th>Adicional</th>
             <th>Plus</th>
             <th>Total</th>
-<<<<<<< HEAD
+
             <th>Detalles</th>
             <th>Validar</th>
             <th>Borrar</th>
-            <!--
+
             <th>Detalles</th>
 
             <th>Guardar</th>
-    -->
-=======
+
             <th></th>
             <th></th>
             <th></th>
->>>>>>> f3d8aebd37685a916380e577ed61cf9ec0fa328e
+
 
             <br>
         </thead>
@@ -171,10 +170,6 @@
                 <?php
                 }
                 ?>
-
-                <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Actualizar</td>
-                <td><a class="btn btn-warning btn-sm" href="#" onclick="validateProduct(<?php echo $d['id']; ?>)">Validar</a></td>
-                <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id']; ?>)">Eliminar</td>
             </tr>
     </table>
 <?php
