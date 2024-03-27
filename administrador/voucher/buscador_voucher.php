@@ -18,19 +18,18 @@
             });
         }
 
-
         function detalleProduct(cod_voucher) {
-            window.location = "detalle_voucher.php?id=" + cod_voucher;
+            window.location = "edit_voucher.php?id=" + cod_voucher;
 
-            function updateProduct(cod_voucher) {
-                window.location = "det_desde_busc.php?q=" + cod_voucher;
+        }
 
-            }
+        function validarProduct(cod_voucher) {
+            window.location = "det_desde_busc.php?q=" + cod_voucher;
+        }
 
-            function deleteProduct(cod_voucher) {
-                window.location = "delete_voucher.php?q=" + cod_voucher;
+        function deleteProduct(cod_voucher) {
+            window.location = "delete_voucher.php?q=" + cod_voucher;
 
-            }
         }
     </script>
 </head>
@@ -45,40 +44,20 @@
     <a href="inicio_voucher.php">Volver</a>
     <?php
 
-    //echo $fecha = $_POST['fecha'];
-
     $mov = $_POST['movil'];
-    //echo $viaje = $_POST['viaje'];
-
-
 
     $movil = "A" . $mov;
-    //echo "<br>";
-    //echo $movil;
-
 
     include_once '../../includes/db.php';
 
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-
-
-    //if ($movil <> '0') {
-
     $sql = "SELECT * FROM voucher_nuevos WHERE movil = '$movil' ";
     $regis = $con->query($sql);
-    //}
-    /*
-    if ($viaje <> '0') {
-        $sql = "SELECT * FROM voucher_nuevos WHERE viaje_no = '$viaje' ";
-        $datos = $con->query($sql);
-    }
-*/
     $registros = $regis->num_rows;
 
     ?>
-
 
     <table class="table table table-bordered table-sm table-hover" action="save_voucher.php?=<?php echo $d['id'] ?>" method="post">
 
@@ -124,7 +103,7 @@
                 <td><?php echo $d['plus']; ?></td>
                 <td><?php echo $d['total'] ?></td>
                 <td><a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $d['id']; ?>)">Detalles</td>
-                <td><a class="btn btn-warning btn-sm" href="#" onclick="updateProduct(<?php echo $d['id']; ?>)">Validar</td>
+                <td><a class="btn btn-warning btn-sm" href="#" onclick="validarProduct(<?php echo $d['id']; ?>)">Validar</td>
                 <td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 
 
@@ -143,7 +122,7 @@
                     $adicional = $d['adicional'];
                     $plus = $d['plus'];
 
-                    //exit();
+
                     $guarda = "INSERT INTO voucher_temporales 
                                         VALUES (?,?,?,?,?,?,?,?,?,?)";
                     $stmt = $con->prepare($guarda);
@@ -155,20 +134,20 @@
                 ?>
             </tr>
         <?php
-
             $borra_nuevos = "DELETE FROM voucher_nuevos WHERE  movil = '$movil' ";
             $result = $con->query($borra_nuevos);
-
-
             if ($i = 0) {
                 header("buscador_voucher.php");
             }
         }
-
-
         ?>
-
     </table>
+    <?php
+
+
+    ?>
+
+
 
 </body>
 
