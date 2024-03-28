@@ -92,7 +92,7 @@
             <tr>
                 <td><?php echo $d['id']; ?></td>
                 <td><?php echo $d['viaje_no']; ?></td>
-                <td><?php echo $d['completado']; ?></td>
+                <td><?php echo $fecha = $d['completado']; ?></td>
                 <td><?php echo $d['nom_pasaj']; ?></td>
                 <td><?php echo $d['movil']; ?></td>
                 <td><?php echo $d['cc']; ?></td>
@@ -134,11 +134,13 @@
                 ?>
             </tr>
         <?php
+        /*
             $borra_nuevos = "DELETE FROM voucher_nuevos WHERE  movil = '$movil' ";
             $result = $con->query($borra_nuevos);
             if ($i = 0) {
                 header("buscador_voucher.php");
             }
+            */
         }
         ?>
     </table>

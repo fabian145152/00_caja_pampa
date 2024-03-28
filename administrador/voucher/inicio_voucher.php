@@ -11,18 +11,6 @@
 	<script src="../../js/bootbox.min.js"></script>
 
 	<script>
-		function updateProduct(cod_voucher) {
-			bootbox.confirm("Desea Guardar?" + cod_voucher, function(result) {
-				if (result) {
-					window.location = "valida_voucher.php?q=" + cod_voucher;
-				}
-			});
-		}
-
-		function detalleProduct(cod_voucher) {
-			window.location = "detalle_voucher.php?q=" + cod_voucher;
-		}
-		/* ahora viene la funcion update*/
 		function deleteProduct(cod_voucher) {
 			window.location = "delete_voucher.php?q=" + cod_voucher;
 		}
@@ -33,7 +21,7 @@
 <body>
 
 
-	<h1 class="text-center" style="margin: 5px ; ">VALIDACION DE VOUCHER</h1>
+	<h1 class="text-center" style="margin: 5px ; ">CARGA DE VOUCHER</h1>
 
 	<?php
 
@@ -116,7 +104,7 @@
 			<tr>
 				<td><?php echo $d['id']; ?></td>
 				<td><?php echo $d['viaje_no']; ?></td>
-				<td><?php echo $d['completado'];	?></td>
+				<td><?php echo $d['completado']; ?></td>
 				<td><?php echo $d['nom_pasaj']; ?></td>
 				<td><?php echo $d['movil']; ?></td>
 				<td><?php echo $d['cc']; ?></td>

@@ -32,29 +32,38 @@
     <div class="container-sm">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center">ACTUALIZAR VOUCHER No: <?php echo $row['viaje_no'] ?></h3>
+                <h3 class="text-center">ACTUALIZAR VIAJE No: <?php echo $row['viaje_no'] ?> MOVIL: <?php echo $row['movil'] ?> </h3>
             </div>
             <div class="col-md-12">
-                <form class="form-group" accept=-"charset utf8" action="update_product.php" method="post">
+                <form class="form-group" accept=-"charset utf8" action="valida_voucher.php?=q" method="post">
                     <div class="from-group">
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                         <!-- ojo la linea anterior es para mandar el id directamente al la pagina update y no verlo en otro lado -->
                         <div class="form-group">
-                            <label class="control-label">Movil</label>
-                            <input type="text" class="form-control" id="movil" name="movil" value="<?php echo $row['movil']; ?>">
+                            <input type="hidden" class="form-control" id="movil" name="movil" value="<?php echo $row['movil']; ?>" readonly>
                         </div>
                         <div class="form-group">
+                            <input type="hidden" class="form-control" id="viaje_no" name="viaje_no" value="<?php echo $row['viaje_no']; ?>" readonly>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label">Fecha</label>
-                            <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $row['fecha']; ?>">
+                            <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $row['fecha']; ?>" readonly>
+                        </div>
+
+                        
+                        <div class="form-group">
+                            <label class="control-label">Cuenta</label>
+                            <input type="text" class="form-control" id="cc" name="cc" value="<?php echo $row['cc']; ?>" readonly>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Reloj</label>
-                            <input type="text" class="form-control" id="reloj" name="reloj" value="<?php echo $row['reloj']; ?>">
+                            <input type="text" class="form-control" id="reloj" name="reloj" value="<?php echo "$" . $row['reloj']; ?>">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Peaje</label>
-                            <input type="text" class="form-control" id="peaje" name="peaje" value="<?php echo $row['peaje']; ?>">
+                            <input type="text" class="form-control" id="peaje" name="peaje" value="<?php echo "$" . $row['peaje']; ?>">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Equipaje</label>
@@ -71,20 +80,13 @@
                         <div class="form-group">
                             <label class="control-label">Total</label>
                             <input type="text" class="form-control" id="plus" name="plus" value="
-                            <?php echo $total =  $row['plus'] + $row['adicional'] + $row['equipaje'] + $row['peaje'] + $row['reloj'];
-
-                            ?>">
+                            <?php $tot =  $row['plus'] + $row['adicional'] + $row['equipaje'] + $row['peaje'] + $row['reloj'];
+                            echo $total = trim($tot); ?>">
                         </div>
                         <div class="text-center">
                             <br>
                             <input type="submit" class="btn btn-success" value="Validar">
-
                         </div>
-
-
-
-
-
                     </div>
                 </form>
             </div>

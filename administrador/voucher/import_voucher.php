@@ -34,7 +34,22 @@ if (isset($_FILES["name"])) {
                 $x_traslado = $sheet->getCell("N" . $row)->getValue();
                 $x_siniestro = $sheet->getCell("O" . $row)->getValue();
                 $x_solicitado = $sheet->getCell("P" . $row)->getValue();
+
+
                 $x_completado = $sheet->getCell("Q" . $row)->getValue();
+
+                $completado = $x_completado;
+
+
+                //$Fecha =  "2018-03-27 08:15:00";
+                $fecha = date("Y-d-m", strtotime($completado)) . "<br>";
+                // salida 27th March, 2018
+                
+                //echo $fecha;
+
+                //exit();
+
+
                 $x_destino = $sheet->getCell("R" . $row)->getValue();
                 $x_reloj = $sheet->getCell("S" . $row)->getValue();
                 $x_peaje = $sheet->getCell("T" . $row)->getValue();
@@ -47,7 +62,6 @@ if (isset($_FILES["name"])) {
                 $x_obs_oper = $sheet->getCell("AA" . $row)->getValue();
                 $x_obs_chof = $sheet->getCell("AB" . $row)->getValue();
 
-              
 
                 $sql = "insert into voucher_nuevos (
                                             viaje_no, 
@@ -97,7 +111,7 @@ if (isset($_FILES["name"])) {
                         \"$x_traslado\",
                         \"$x_siniestro\",
                         \"$x_solicitado\",
-                        \"$x_completado\",
+                        \"$fecha\",
                         \"$x_destino\",
                         \"$x_reloj\",
                         \"$x_peaje\",
