@@ -19,24 +19,16 @@
 </head>
 
 <body>
-
-
 	<h1 class="text-center" style="margin: 5px ; ">CARGA DE VOUCHER</h1>
 
 	<?php
-
 	date_default_timezone_set('America/Mexico_City');
 	$fechaActual = date('Y-m-d');
 	$fechaActual;
 	$semana = date('W');
-
 	?>
 	<h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?></h5>
-
-
-
 	<div class="row">
-
 		<form method="post" id="addproduct" action="import_voucher.php" enctype="multipart/form-data" role="form">
 
 			&nbsp; &nbsp;<input type="file" name="name" id="name" class="btn btn-success btn-sm" placeholder="Archivo (.xlsx)">
@@ -52,16 +44,13 @@
 				<input type="reset" value="Reset buscador">
 			</h5>
 		</form>
-
 		&nbsp; &nbsp;&nbsp; &nbsp;
 		<a href="borrar_voucher.php" class="btn btn-success btn-sm">LIMPIAR DDBB</a>
 		&nbsp; &nbsp;&nbsp; &nbsp;
 		<a href="../../index.php" class="btn btn-success btn-sm">SALIR</a>
 	</div>
 
-
 	<?php
-
 	include_once '../../includes/db.php';
 
 	$con = openCon('../../config/db_admin.ini');
@@ -96,8 +85,6 @@
 
 		<?php
 
-
-
 		while ($d = $datos->fetch_assoc()) {
 
 		?>
@@ -117,15 +104,10 @@
 
 				<td><a class="btn btn-danger btn-sm" href="#" onclick="deleteProduct(<?php echo $d['id'] ?>)">Borrar</a></td>
 			</tr>
-
 		<?php
 		}
 		?>
 	</table>
-
-
-
-
 </body>
 
 </html>

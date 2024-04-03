@@ -31,7 +31,6 @@
     echo $plus = $_POST['plus'];
     echo "<br>";
 
-
     include_once '../../includes/db.php';
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
@@ -40,6 +39,7 @@
     if ($con->connect_error) {
         die("Conexión fallida: " . $con->connect_error);
     }
+
 
     $guarda = "INSERT INTO 
     voucher_validado (movil, fecha, viaje_no, cc, reloj, peaje, equipaje, adicional, plus) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -56,7 +56,6 @@
     }
     echo $id;
     echo "<br>";
-    echo $movil;
 
 
     $sql_borra = "DELETE FROM voucher_temporales WHERE viaje_no = '$viaje_no'";
@@ -65,14 +64,11 @@
     $sql_2 = "DELETE FROM voucher_nuevos WHERE viaje_no = $viaje_no";
     $res = $con->query($sql_2);
 
+    echo "Movil:  " . $movil;
+    echo "<br>";
 
-    //header("Location:buscador_voucher?='$movil'.php");
+    header("Location: buscador_voucher.php?movil=$movil");
     ?>
-
-    <p>Falta hacer el direcionamiento en esta pagina</p>
-    <p>agregarle el numero de movil</p>
-    <p>ya borra los viajes en la tabla voucher_nuevos y
-        voucher_temorales</p>
 
 
 </body>

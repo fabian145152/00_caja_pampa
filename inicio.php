@@ -9,7 +9,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
-
+   
 </head>
 
 <body>
@@ -17,36 +17,14 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">MENU ADMINISTRADOR</h3>
-
-
-
             </div>
 
             <div class="btn-group-vertical">
                 <br>
-                <!-- <a href="Backup_DDBB/backup_caja.php" class="btn btn-primary">Backup DDBB</a>  -->
-
                 <a class="btn btn-primary btn-sm" href="Backup_DDBB/backup_caja.php">Backup DDBB</a>
-                <script>
-                    window.alert("Backup del dia Realizado");
-                </script>
+
                 <br>
 
-                <a href="administrador/crear_no_de_movil/list_no_movil.php" class="btn btn-primary">CREAR NUMEROS DE MOVIL</a>
-                <br>
-
-                <a href="administrador/titulares/list_titulares.php" class="btn btn-primary">CREAR TITULARES</a>
-                <br>
-
-                <a href="administrador/choferes/list_chofer.php" class="btn btn-primary">CREAR CHOFERES</a>
-                <br>
-
-                <a href="administrador/unidades/list_unidades.php" class="btn btn-primary">CREAR VEHICULOS</a>
-                <br>
-
-
-                <a href="administrador/arma_unidad/list_unidad.php" class="btn btn-primary">LISTAR UNIDADAES</a>
-                <br>
 
                 <a href="administrador/caja/inicio.php" class="btn btn-primary">CAJA</a>
 
@@ -55,7 +33,7 @@
                 <a href="includes/modifica_variables.php" class="btn btn-primary">Importes y abonos
                     <p>falta terminar</p>
                 </a>
-<br>
+                <br>
                 <a href="administrador/abonos/list_abonos.php" class="btn btn-primary">ABONOS
                     <p>Muestra los abonos, todavia no esta terminado</p>
                 </a>

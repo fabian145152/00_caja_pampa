@@ -24,7 +24,7 @@
         }
 
         function validarProduct(cod_voucher) {
-            window.location = "det_desde_busc.php?q=" + cod_voucher;
+            window.location = "validador_voucher.php?id=" + cod_voucher;
         }
 
         function deleteProduct(cod_voucher) {
@@ -40,13 +40,19 @@
             text-align: center;
         }
     </style>
-    <h2 class="titule">VOUCHER DE LA UNIDAD <?php echo $mov = $_POST['movil']; ?> </h2>
-    <a href="inicio_voucher.php">Volver</a>
     <?php
 
-    $mov = $_POST['movil'];
 
-    $movil = "A" . $mov;
+    if (isset($_GET['movil'])) {
+        # Esta linea Viene de validar y trae el valor de movil
+        $movil = $_GET['movil'];
+    } else {
+        #esta linea viene de listar y tre ael valor del movil
+        $mo = $_POST['movil'];
+        $movil = "A" . $mo;
+    }
+
+
 
     include_once '../../includes/db.php';
 
@@ -56,6 +62,13 @@
     $sql = "SELECT * FROM voucher_nuevos WHERE movil = '$movil' ";
     $regis = $con->query($sql);
     $registros = $regis->num_rows;
+    ?>
+    <h2 class="titule">VOUCHER DE LA UNIDAD <?php echo $movil; ?> </h2>
+    <a href="inicio_voucher.php">Volver</a>
+    <?php
+
+
+
 
     ?>
 
@@ -128,26 +141,14 @@
                     $stmt = $con->prepare($guarda);
                     $stmt->bind_param("issddddddd", $id, $movil, $fecha, $viaje_no, $cc, $reloj, $peaje, $equipaje, $adicional, $plus);
                     $stmt->execute();
-                ?>
-                <?php
                 }
                 ?>
             </tr>
         <?php
-        /*
-            $borra_nuevos = "DELETE FROM voucher_nuevos WHERE  movil = '$movil' ";
-            $result = $con->query($borra_nuevos);
-            if ($i = 0) {
-                header("buscador_voucher.php");
-            }
-            */
         }
         ?>
     </table>
-    <?php
 
-
-    ?>
 
 
 

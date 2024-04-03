@@ -52,7 +52,7 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="insert_titular.php" class="btn btn-primary btn-sm">NUEVO TITULAR</a> -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../index.php" class="btn btn-primary btn-sm">SALIR</a>
+            <a href="../../index.html" class="btn btn-primary btn-sm">SALIR</a>
         </div>
 
     </div>
