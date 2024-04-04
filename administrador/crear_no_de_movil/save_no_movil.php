@@ -22,7 +22,7 @@ if ($stmt->execute()) {
 ?>
 
     <script>
-        alert("Movil Generado")
+        alert("NUEVO MOVIL CREADO CON EXITO")
         window.location = "list_no_movil.php";
     </script>
 <?php

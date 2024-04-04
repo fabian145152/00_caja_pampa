@@ -31,9 +31,9 @@
 <body>
     <?php
 
-    include_once '../../includes/db.php';
-    include_once '../../includes/variables.php';
-    $conn = openCon('../../config/db_admin.ini');
+    include_once '../../../includes/db.php';
+    include_once '../../../includes/variables.php';
+    $conn = openCon('../../../config/db_admin.ini');
     $conn->set_charset("utf8mb4");
 
     $movil = $_POST['movil'];
@@ -98,7 +98,7 @@
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
-        "ssiiiidddddddddd",
+        "sssiiidddddddddd",
         $fecha_voucher,
         $fecha_de_hoy,
         $movil,

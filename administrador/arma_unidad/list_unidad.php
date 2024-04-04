@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNIDADES COMPLETAS</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/columnas.css">
     <script src="../../js/jquery-3.4.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootbox.min.js"></script>
@@ -52,7 +53,7 @@
 
 <body>
     <h2 class="text-center" style="margin: 5px ; ">LISTADO DE UNIDADES COMPLETAS
-        <a href="../../index.html"> &nbsp;&nbsp;SALIR</a>
+        <a href="../../index.php"> &nbsp;&nbsp;SALIR</a>
         &nbsp;&nbsp;<a href="../../ayuda/ayuda.html" target=" _blank">AYUDA</a>
     </h2>
 

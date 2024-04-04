@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ACTUALIZAR TITULAR</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <script src="../../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/bootbox.min.js"></script>
+
+</head>
+
 <?php
-
-//session_start();
-
-//if ($_SESSION['logueado']) {
 
 include_once '../../includes/db.php';
 /* en ese archivo estan las funciones */
@@ -10,15 +21,6 @@ $con = openCon('../../config/db_admin.ini');
 $con->set_charset("utf8mb4");
 $id_upd = $_GET['q'];
 echo $id_upd;
-
-/*
-
-*/
-
-
-
-
-
 
 $sql = "SELECT id, 
                nombre_titu, 
@@ -35,19 +37,7 @@ $result = $con->query($sql);
 $row = $result->fetch_assoc();
 //}
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ACTUALIZAR TITULAR</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/form.css">
-
-</head>
 
 <body>
 

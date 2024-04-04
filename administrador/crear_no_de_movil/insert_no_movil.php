@@ -7,12 +7,12 @@
     <title>CREAR TITULARES</title>
     <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-
     <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/columnas.css">
 </head>
 
 <body>
-
+   
     <div class="container">
         <div class="row">
             <div class="col-md-12">

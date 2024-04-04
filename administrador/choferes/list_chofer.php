@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHOFERES</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/columnas.css">
     <script src="../../js/jquery-3.4.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootbox.min.js"></script>
@@ -32,11 +33,7 @@
 </head>
 
 <body>
-    <style>
-        body {
-            margin: 0px 50px;
-        }
-    </style>
+
     <h1 class="text-center" style="margin: 5px ; ">LISTAR CHOFERES</h1>
 
 
@@ -45,7 +42,7 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="insert_chofer.php" class="btn btn-primary btn-sm">NUEVO CHOFER</a> -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../index.html" class="btn btn-primary btn-sm">SALIR</a>
+            <a href="../../index.php" class="btn btn-primary btn-sm">SALIR</a>
         </div>
 
     </div>
@@ -69,7 +66,6 @@
                 <th>Celular Noche</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
-
             </tr>
         </thead>
 

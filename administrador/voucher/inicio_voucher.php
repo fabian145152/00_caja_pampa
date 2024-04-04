@@ -12,13 +12,18 @@
 
 	<script>
 		function deleteProduct(cod_voucher) {
-			window.location = "delete_voucher.php?q=" + cod_voucher;
+			window.location = "borrar_voucher.php?q=" + cod_voucher;
 		}
 	</script>
 
 </head>
 
 <body>
+	<style>
+		body {
+			margin: 0px 50px;
+		}
+	</style>
 	<h1 class="text-center" style="margin: 5px ; ">CARGA DE VOUCHER</h1>
 
 	<?php

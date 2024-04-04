@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAJA</title>
+    <title>RESUMEN MOVIL</title>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
+
     <style>
         #columnas {
             column-count: 5;
@@ -47,7 +49,12 @@
 </head>
 
 <body>
-
+    <style>
+        body {
+            margin: 50px 150px;
+            zoom: 80%;
+        }
+    </style>
     <!-- <p>Usar la tabla caja_cont</p> -->
 
     <?php
@@ -71,18 +78,13 @@
     $fechaActual = date('Y-m-d');
     $semana = date('W');
 
-
-
-
     ?>
-    <br><br>
+
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
 
         <?php echo "Movil: " . $nu_movil;
 
         ?>
-
-
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <a href="inicio.php" class="btn btn-success">Volver</a>

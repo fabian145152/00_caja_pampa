@@ -9,6 +9,11 @@
 <h3>Esta pagina hace solo backup de la tabla acaja, falta agregar las otras tablas y automatizarlo para que lo haga solo todos los dias.</h3>
     <a href="backup_caja.php">CAJA</a>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <a href="../index.php">Salir</a>
 </body>
 </html>

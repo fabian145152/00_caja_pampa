@@ -9,7 +9,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
-   
+
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                 <br>
 
 
-                <a href="administrador/caja/inicio.php" class="btn btn-primary">CAJA</a>
+
 
                 <br>
 
@@ -38,18 +38,11 @@
                     <p>Muestra los abonos, todavia no esta terminado</p>
                 </a>
                 <br>
-
                 <a href="administrador/new_user/inicio.php" class="btn btn-primary">CREAR USUARIOS
                     <p>Modulo para crear usuarios del sistema</p>
                 </a>
                 <br>
-
-
-                <a href="administrador/voucher/inicio_voucher.php" class="btn btn-primary">VOUCHER
-                    <p>todos los campos del reporte de la app MK</p>
-                </a>
                 <br>
-
                 <a href="ayuda/ayuda.html" target=" _blank" class="btn btn-primary">AYUDA</a>
                 <br>
                 <a href="../00_pampa/index.php" class="btn btn-danger">SALIR</a>

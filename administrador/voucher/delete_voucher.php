@@ -1,7 +1,7 @@
 
     <?php
 
-/*
+    /*
 Borra los voucher que ya estan cargados en la tabla voucher validados
 */
 
@@ -12,9 +12,24 @@ Borra los voucher que ya estan cargados en la tabla voucher validados
 
     echo $id = $_GET['q'];
 
+
+    $sql_mov = "SELECT * FROM `voucher_nuevos` WHERE id=" . $id;
+    $stmt = $con->query($sql_mov);
+    $row = $stmt->fetch_assoc();
+
+    echo $row['id'];
+    echo "<br>";
+    echo $movil = $row['movil'];
+    echo "<br>";
+    echo $row['viaje_no'];
+    echo "<br>";
+
+    
+
     $sql = "DELETE FROM `voucher_nuevos` WHERE id =" . $id;
     $result = $con->query($sql);
 
-    header("Location:inicio_voucher.php");
+    header("Location: buscador_voucher.php?movil=$movil");
+    //header("Location:inicio_voucher.php");
 
     ?>

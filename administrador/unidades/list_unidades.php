@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNIDADES</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/columnas.css">
     <script src="../../js/jquery-3.4.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootbox.min.js"></script>
@@ -41,15 +42,10 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="insert_unidad.php" class="btn btn-primary btn-sm">NUEVO UNIDAD</a>  -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../index.html" class="btn btn-primary btn-sm">SALIR</a>
+            <a href="../../index.php" class="btn btn-primary btn-sm">SALIR</a>
         </div>
 
     </div>
-
-
-
-
-
 
     <table class="table table-bordered table-sm table-hover">
         <thead class="thead-dark">
