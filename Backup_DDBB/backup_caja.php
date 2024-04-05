@@ -110,7 +110,7 @@
 
 
     //header("<Location:../index.php");
-    header("Location:../index.php");
+    header("Location:../menu.php");
     ?>
 
 </body>

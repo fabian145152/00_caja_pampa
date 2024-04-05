@@ -53,7 +53,7 @@
 
 <body>
     <h2 class="text-center" style="margin: 5px ; ">LISTADO DE UNIDADES COMPLETAS
-        <a href="../../index.php"> &nbsp;&nbsp;SALIR</a>
+        <a href="../../menu.php"> &nbsp;&nbsp;SALIR</a>
         &nbsp;&nbsp;<a href="../../ayuda/ayuda.html" target=" _blank">AYUDA</a>
     </h2>
 

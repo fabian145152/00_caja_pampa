@@ -52,7 +52,7 @@
 		&nbsp; &nbsp;&nbsp; &nbsp;
 		<a href="borrar_voucher.php" class="btn btn-success btn-sm">LIMPIAR DDBB</a>
 		&nbsp; &nbsp;&nbsp; &nbsp;
-		<a href="../../index.php" class="btn btn-success btn-sm">SALIR</a>
+		<a href="../../menu.php" class="btn btn-success btn-sm">SALIR</a>
 	</div>
 
 	<?php

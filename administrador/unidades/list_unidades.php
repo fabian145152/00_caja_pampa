@@ -42,7 +42,7 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <!-- <a href="insert_unidad.php" class="btn btn-primary btn-sm">NUEVO UNIDAD</a>  -->
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../index.php" class="btn btn-primary btn-sm">SALIR</a>
+            <a href="../../menu.php" class="btn btn-primary btn-sm">SALIR</a>
         </div>
 
     </div>

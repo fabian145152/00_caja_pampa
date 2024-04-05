@@ -41,7 +41,7 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             <a href="insert_abono.php" class="btn btn-primary btn-sm">NUEVO ABONO</a>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <a href="../../index.php" class="btn btn-primary btn-sm">SALIR</a>
+            <a href="../../menu.php" class="btn btn-primary btn-sm">SALIR</a>
         </div>
 
     </div>

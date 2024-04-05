@@ -14,6 +14,6 @@
     <br>
     <br>
     <br>
-    <a href="../index.php">Salir</a>
+    <a href="../menu.php">Salir</a>
 </body>
 </html>

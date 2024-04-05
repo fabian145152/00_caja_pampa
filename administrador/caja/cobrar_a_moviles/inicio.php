@@ -64,7 +64,10 @@
                 <h1>Presione enter</h1>
             </form>
         </div>
-        <a href="../../../index.php">Salir</a>
+        <ul>
+            <a href="../../../menu.php" class="btn btn-primary">SALIR</a>
+            <a href="../../caja/index.php" class="btn btn-success"s>VOLVER</a>
+        </ul>
 </body>
 
 </html>
