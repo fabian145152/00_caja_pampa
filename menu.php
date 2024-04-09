@@ -4,7 +4,7 @@ if ($_SESSION['logueado']) {
 
     echo "BIENVENIDO ,"  . $_SESSION['uname'] . '<br>';
 
-    echo "Hora de conección :" . $_SESSION['time'] . '<br>';
+    echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
 
 ?>
 

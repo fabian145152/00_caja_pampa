@@ -4,7 +4,7 @@ if ($_SESSION['logueado']) {
 
     echo "BIENVENIDO ,"  . $_SESSION['uname'] . '<br>';
 
-    echo "Hora de conección :" . $_SESSION['time'] . '<br>';
+    echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
 
     include_once '../includes/db.php';
     include_once '../includes/variables.php';
@@ -57,11 +57,17 @@ if ($_SESSION['logueado']) {
                             <th><?php echo "*******" ?></th>
                             <th><?php echo $ver['email'] ?></th>
                             <th><?php echo $ver['initial_date'] ?></th>
+
                         </tr>
-                        <p></p>
                     <?php
                     }
                     ?>
+
+                    <p></p>
+                    <a href="nuevo_usuario.php">NUEVO USUARIO</a>
+                    <br>
+                    <a href="../menu.php">VOLVER</a>
+                    <br>
                     <a href="../salir.php">SALIR</a>
                 </thead>
             </div>
