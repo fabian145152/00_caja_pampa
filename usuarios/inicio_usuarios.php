@@ -13,18 +13,29 @@ if ($_SESSION['logueado']) {
 
 ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-
+        <title>USUARIOS</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/columnas.css">
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/bootbox.min.js"></script>
+        <script>
+            function deleteUser(cod_titular) {
+
+                bootbox.confirm("Desea Eliminar?" + cod_titular, function(result) {
+
+                    if (result) {
+                        window.location = "delete_usuario.php?q=" + cod_titular;
+                    }
+
+                });
+            }
+        </script>
     </head>
 
     <body>
@@ -39,11 +50,12 @@ if ($_SESSION['logueado']) {
                     <th>Nombre de usuario</th>
                     <th>Password</th>
                     <th>email</th>
-                    <th>initial_date</th>
+                    <th>Fecha de creacion</th>
+                    <th>Creado por</th>
+                    <th>Nivel</th>
+                    <th></th>
                 </tr>
             </thead>
-
-
 
             <div>
                 <thead>
@@ -57,6 +69,9 @@ if ($_SESSION['logueado']) {
                             <th><?php echo "*******" ?></th>
                             <th><?php echo $ver['email'] ?></th>
                             <th><?php echo $ver['initial_date'] ?></th>
+                            <th><?php echo $ver['uname'] ?></th>
+                            <th><?php echo $ver['permiso'] ?></th>
+                            <td> <a class="btn btn-danger btn-sm" href="#" onclick="deleteUser(<?php echo $ver['id_users']; ?>)">Eliminar</td>
 
                         </tr>
                     <?php

@@ -10,7 +10,7 @@ $pass = md5($_POST['password']);
 /*m
 d5 queda encriptado la contraseña*/
 $con->set_charset("utf-8");/*$con es un metodo*/
-$sql = "select * from users where (username='$usr' or email='$usr') and (password='$pass')";
+$sql = "SELECT * FROM users WHERE (username='$usr' or email='$usr') and (password='$pass')";
 $result = $con->query($sql);
 $row = $result->fetch_assoc();
 if ($row == 0) {
