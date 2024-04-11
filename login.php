@@ -15,6 +15,8 @@ $result = $con->query($sql);
 $row = $result->fetch_assoc();
 if ($row == 0) {
     echo "<h1> Ingreso invalido </h1>";
+    echo "<br>";
+    echo "<a href='index.html'>VOLVER</a>";
 } else {
     session_start();
     $_SESSION['uname'] = $usr;

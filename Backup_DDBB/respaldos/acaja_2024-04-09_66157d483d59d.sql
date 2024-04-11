@@ -174,6 +174,29 @@ INSERT INTO completa VALUES
 
 
 
+CREATE TABLE `users` (
+  `id_users` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `PASSWORD` char(32) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `permiso` varchar(15) NOT NULL,
+  `uname` varchar(20) NOT NULL,
+  `initial_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_users`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO users VALUES
+("1","fabian","e10adc3949ba59abbe56e057f20f883e","maria@gmail.com","super","fabian","0000-00-00 00:00:00"),
+("2","maria","e10adc3949ba59abbe56e057f20f883e","fabian@gmail.com","super","","0000-00-00 00:00:00"),
+("7","Anibal","e10adc3949ba59abbe56e057f20f883e","anibal@gmail.com","cobro","","2024-04-09 13:52:31"),
+("9","carlos","e10adc3949ba59abbe56e057f20f883e","radiotaxiportenio@gmail.com","nuevo","fabian<br>","2024-04-09 13:59:46"),
+("11","roberto","e10adc3949ba59abbe56e057f20f883e","roberto@gmail.com","nuevo","fabian<br>","2024-04-09 14:22:17"),
+("12","carlos","e10adc3949ba59abbe56e057f20f883e","carlos@gmail.com","solo","carlos<br>","2024-04-09 14:24:18");
+
+
+
+
 CREATE TABLE `voucher_nuevos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_vou` int(4) NOT NULL,
