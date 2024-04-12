@@ -6,6 +6,33 @@ if ($_SESSION['logueado']) {
 
     echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
 
+    echo $nombre = $_SESSION['uname'];
+    echo "<br>";
+    echo $fecha = date('Y-m-d');
+    echo "<br>";
+    echo $abre = $_SESSION['time'];
+    echo "<br>";
+
+
+    include_once 'includes/db.php';
+    include_once 'includes/variables.php';
+    $con = openCon('config/db_admin.ini');
+    $con->set_charset("utf8mb4");
+
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+    }
+
+    $usuario_logeado = "INSERT INTO users_logeado (nombre, fecha, abre) VALUES ('$nombre', '$fecha', '$abre')";
+
+    if ($con->query($usuario_logeado) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $usuario_logeado . "<br>" . $con->error;
+    }
+
+
+
 ?>
 
     <body>
@@ -29,7 +56,7 @@ if ($_SESSION['logueado']) {
                         <ul class="list-group">
                             <li><a href="usuarios/inicio_usuarios.php" class="btn btn-primary">Crear Usuarios</a></li>
                             <br>
-                            <li><a href="#" class="btn btn-primary">Usuarios</a></li>
+                            <li><a href="administrador/logeados/logeos.php" class="btn btn-primary">SESIONES</a></li>
                             <br>
                             <li><a href="#" class="btn btn-primary">Usuarios</a></li>
                             <br>
