@@ -49,7 +49,7 @@ if ($_SESSION['logueado']) {
         <br><br>
 
         <?php
-        //include "../voucher/pertiga.php";
+    
         include "../../voucher/pertiga.php";
 
         ?>

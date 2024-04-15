@@ -85,6 +85,7 @@ if ($_SESSION['logueado']) {
                             <br>
                             <li> <a href="administrador/caja/index.php" class="btn btn-primary" target="__blank">CAJA</a></li>
                             <br>
+                           
                             <li><a href="Backup_DDBB/index.php" class=" btn btn-primary">BackUP</a></li>
                             <br>
                             <li><a href="administrador/abonos/list_abonos.php" class="btn btn-danger">ABONOS</a></li>

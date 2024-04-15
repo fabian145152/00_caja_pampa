@@ -89,6 +89,7 @@ if ($_SESSION['logueado']) {
                     <th>año</th>
                     <th>Abono</th>
                     <th>x Viaje</th>
+                    <th>Deuda_ant</th>
                     <th>Detalles</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
@@ -128,11 +129,9 @@ if ($_SESSION['logueado']) {
                     <th><?php echo $row['modelo'] ?></th>
                     <th><?php echo $row['dominio'] ?></th>
                     <th><?php echo $row['año'] ?></th>
-                    <th><?php echo $row['abono'];
-
-                        ?></th>
-
+                    <th><?php echo $row['abono'] ?></th>
                     <th><?php echo $row['x_viaje'] ?></th>
+                    <th><?php echo $row['deuda_anterior'] ?></th>
 
                     <td> <a class="btn btn-primary btn-sm" href="#" onclick="detalleProduct(<?php echo $row['id']; ?>)">Detalles</td>
                     <td> <a class="btn btn-primary btn-sm" href="#" onclick="updateProduct(<?php echo $row['id']; ?>)">Actualizar</td>

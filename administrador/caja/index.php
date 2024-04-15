@@ -23,7 +23,7 @@ if ($_SESSION['logueado']) {
     <body>
         <?php
         include "../voucher/pertiga.php";
-     
+
         ?>
         <div class="container mt-5">
             <div class="row">
@@ -31,13 +31,13 @@ if ($_SESSION['logueado']) {
                     <ul class="list-group">
                         <li><a href="cobrar_a_moviles/inicio.php" class="btn btn-primary">COBRR A MOVILES</a></li>
                         <br>
-                        <li><a href="#">INGRESAR FT</a></li>
+                        <li><a href="genera_deuda/genera_deuda.php" class="btn btn-primary">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
                         <li><a href="#">EXTRAER FT</a></li>
                         <br>
                         <li><a href="resumen_de_caja/index.php" class="btn btn-primary">RESUMEN DE CAJA</a></li>
                         <br>
-                        <li><a href="../../menu.php" class="btn btn-primary">SALIR</a></li>
+                        <li><a href="../../administrador/caja/index.php" class="btn btn-primary">SALIR</a></li>
                     </ul>
                 </div>
             </div>

@@ -53,27 +53,38 @@
     $deposito = $_POST['deposito'];
     $Dep_al_movil = $_POST['dep_al_movil'];
 
-    $deuda_movil = 0;
+    $deuda_anterior = $_POST['paga_deuda_ant'];
 
 
-    $fecha_voucher;
-
-    $fecha_de_hoy = date("Y-m-d");
-
-    $movil;
-    $semana;
-    $semana_ac = date('W');
-    $semana_actual = $semana_ac;
-    $cant_semanas = $semana_actual - $semana;
-    $paga_de_viajes;
-    $pago_en_voucher;
-    $diez = $pago_en_voucher * .1;
-    $noventa = $pago_en_voucher * .9;
-    $ft;
-    $MP;
-    $debe_semanas = $cant_semanas * $abono_semanal;
-
-
+    echo "Fecha del deposito: " . $fecha_voucher;
+    echo "<br>";
+    echo "Fecha de hoy: " . $fecha_de_hoy = date("Y-m-d");
+    echo "<br>";
+    echo "Movil: " . $movil;
+    echo "<br>";
+    echo "Semana: " . $semana;
+    echo "<br>";
+    echo "Semana Actual: " . $semana_ac = date('W');
+    echo "<br>";
+    echo "Semana Actual: " . $semana_actual = $semana_ac;
+    echo "<br>";
+    echo "cantidad de semanas: " . $cant_semanas = $semana_actual - $semana;
+    echo "<br>";
+    echo "Paga de viajes: " . $paga_de_viajes;
+    echo "<br>";
+    echo "Pago en voucher: " . $pago_en_voucher;
+    echo "<br>";
+    echo "10% " . $diez = $pago_en_voucher * .1;
+    echo "<br>";
+    echo "90% " . $noventa = $pago_en_voucher * .9;
+    echo "<br>";
+    echo "Efectivo: " . $ft;
+    echo "<br>";
+    echo "MERCADO PAGO: " . $MP;
+    echo "<br>";
+    echo "Paga deuda anterior: " . $deuda_anterior;
+    echo "<br>";
+    echo "Debe de semanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
     // Borrando esta variable y dejando la linea de abajo anda el insert
     //$sql = 1;
 
@@ -96,6 +107,7 @@
                             dep_al_movil                          
                               ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    exit();
     $stmt = $conn->prepare($sql);
     $stmt->bind_param(
         "sssiiidddddddddd",
