@@ -44,6 +44,7 @@
     $para_mov = $_POST['quedan_para_el_movil'];
     $total_registros = $para_base = $_POST['para_base'];
     $semana = $_POST['semana'];
+    $semanas_adeudadas = $_POST['semanas_adeudadas'];
     $deuda_mov = 0;
     $ft = $_POST['ft'];
     $saldo_del_movil = 10;
@@ -53,7 +54,7 @@
     $deposito = $_POST['deposito'];
     $Dep_al_movil = $_POST['dep_al_movil'];
 
-    $deuda_anterior = $_POST['paga_deuda_ant'];
+
 
 
     echo "Fecha del deposito: " . $fecha_voucher;
@@ -62,11 +63,9 @@
     echo "<br>";
     echo "Movil: " . $movil;
     echo "<br>";
-    echo "Semana: " . $semana;
+    echo "Semana ultimo deposito: " . $semana;
     echo "<br>";
-    echo "Semana Actual: " . $semana_ac = date('W');
-    echo "<br>";
-    echo "Semana Actual: " . $semana_actual = $semana_ac;
+    echo "Semana Actual: " . $semana_actual = date('W');
     echo "<br>";
     echo "cantidad de semanas: " . $cant_semanas = $semana_actual - $semana;
     echo "<br>";
@@ -78,16 +77,19 @@
     echo "<br>";
     echo "90% " . $noventa = $pago_en_voucher * .9;
     echo "<br>";
-    echo "Efectivo: " . $ft;
+    echo "Paga en Efectivo: " . $ft;
     echo "<br>";
     echo "MERCADO PAGO: " . $MP;
     echo "<br>";
-    echo "Paga deuda anterior: " . $deuda_anterior;
+    echo "Deuda anterior: " . $deuda_anterior;
     echo "<br>";
-    echo "Debe de semanas: " . $debe_semanas = $cant_semanas * $abono_semanal;
+    echo "Debe de semanas: " . $semanas_adeudadas;
+    echo "<br>";
+
+    /*
+    
     // Borrando esta variable y dejando la linea de abajo anda el insert
     //$sql = 1;
-
 
     $sql = "INSERT INTO caja (fecha_ult_dep,
                             fecha_actual,
@@ -130,7 +132,7 @@
     );
 
     if ($stmt->execute()) {
-        echo "Se ejecuto comando exitosamente.";
+        echo "Se ejecuto INSERT exitosamente.";
         echo "<br>";
     } else {
         echo "Error de ejecucion de comando.";
@@ -146,7 +148,7 @@
         echo "Error al insertar datos: " . mysqli_error($conn);
         echo "<br>";
     }
-
+*/
 
 
     ?>

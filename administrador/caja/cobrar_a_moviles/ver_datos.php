@@ -17,24 +17,10 @@ if ($_SESSION['logueado']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RESUMEN MOVIL</title>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="../../../css/ver_datos.css">
     <script src="../../../js/jquery-3.4.1.min.js"></script>
     <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/bootbox.min.js"></script>
-
-    <style>
-        #columnas {
-            column-count: 5;
-            column-gap: 20px;
-            column-rule: 4px dotted gray;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
-            grid-gap: 10px;
-        }
-    </style>
     <script>
         function deleteProduct(cod_unidad) {
 
@@ -52,14 +38,12 @@ if ($_SESSION['logueado']) {
             window.location = "editar_obs.php?q=" + cod_unidad;
         }
     </script>
-
-
 </head>
 
 <body>
     <style>
         body {
-            margin: 50px 150px;
+            margin: 1% 10%;
             zoom: 80%;
         }
     </style>
@@ -195,136 +179,105 @@ if ($_SESSION['logueado']) {
                     } else {
                     ?>
                         <li><strong><?php echo $fila['obs']; ?></strong></li>
-                        <li><a href="#" onclick="updateProduct(<?php echo $fila['id']; ?>)">Actualizar</a></li>
+                        <li><a href="#" onclick="updateProduct(<?php echo $fila['id']; ?>)" class="btn btn-warning">Actualizar</a></li>
                     <?php
                     }
                     ?>
                 </ul>
             </div>
 
-            </thead>
+            <!-- </div>-->
+
+            <?php
+
+
+            $caja = "SELECT * FROM voucher_validado WHERE movil = '$movil' ";
+            $list_caja = $con->query($caja);
+
+            $sql = "SELECT COUNT(*) total FROM voucher_validado";
+            $result = mysqli_query($con, $sql);
+            $fila = mysqli_fetch_assoc($result);
+
+            $consulta = "SELECT * FROM voucher_validado WHERE movil = '$movil'";
+
+            $query = mysqli_query($con, $consulta);
+            $row = mysqli_fetch_assoc($query);
 
 
 
-            </p>
+            # cuentas la cantidad de registros
+            $total_registros = mysqli_num_rows($query);
 
-        </div>
+            while ($row = $list_caja->fetch_assoc()) {
+                $semana = $row['fecha'];
+                $semana = date('W');
 
-        <thead>
+                $row['id'];
+                $row['movil'];
+                $fecha = $row['fecha'];
 
-            <tr>
-                <th>Id</th>
-                <th>Movil</th>
-                <th>Semana</th>
-                <th>Fecha Voucher</th>
+                /*  ver esta parte, cambiar el formato de la fecha */
 
-                <th>Viaje No</th>
-                <th>CC</th>
-                <th>Reloj</th>
-                <th>Adicional</th>
-                <th>Equipaje</th>
-                <th>Peaje</th>
-                <th>Plus</th>
+                date_default_timezone_set('America/Mexico_City');
 
-            </tr>
-        </thead>
-        <?php
+                //echo $fecha = '14-02-2024';    //Fecha de la cual obtendremos la semana
+                $fechaSegundos = strtotime($fecha);    // parseamos la fecha a una marca de tiempo Unix 
 
+                $semana = date('W', $fechaSegundos);    // Obtenemos el número de semana con el parametro W y la fecha en Unix
+                $semana;    // Imprimimos el número de semana
 
-        $caja = "SELECT * FROM voucher_validado WHERE movil = '$movil' ";
-        $list_caja = $con->query($caja);
+                //echo date("Y-m-d", strtotime($Fecha));
 
-        $sql = "SELECT COUNT(*) total FROM voucher_validado";
-        $result = mysqli_query($con, $sql);
-        $fila = mysqli_fetch_assoc($result);
+                $fecha_como_va = str_replace("/", "-", $fecha);
+                date("Y-m-d", strtotime($fecha_como_va));
 
-        $consulta = "SELECT * FROM voucher_validado WHERE movil = '$movil'";
+                $row['viaje_no'];
+                $cuenta = $row['cc'];
+                $row['reloj'];
+                $row['adicional'];
+                $row['equipaje'];
+                $row['peaje'];
+                $row['plus'];
 
-        $query = mysqli_query($con, $consulta);
-        $row = mysqli_fetch_assoc($query);
+                if ($row['cc'] > 1) {
 
-        //Acá cuentas la cantidad de registros
-        $total_registros = mysqli_num_rows($query);
-
-
-
-
-        //echo $fila;
-
-
-        while ($row = $list_caja->fetch_assoc()) {
-            $semana = $row['fecha'];
-            $semana = date('W');
-
-
-
-
-        ?>
-            <tbody>
-                <tr>
-
-                    <td><?php echo $row['id'] ?></td>
-                    <td><?php echo $row['movil'] ?></td>
-                    <!-- <td><?php $fecha = $row['fecha'] ?></td> -->
-                    <td>
-                        <?php
-                        /*  ver esta parte, cambiar el formato de la fecha */
-
-                        date_default_timezone_set('America/Mexico_City');
-
-
-                        //echo $fecha = '14-02-2024';    //Fecha de la cual obtendremos la semana
-                        $fechaSegundos = strtotime($fecha);    // parseamos la fecha a una marca de tiempo Unix 
-
-                        $semana = date('W', $fechaSegundos);    // Obtenemos el número de semana con el parametro W y la fecha en Unix
-                        echo  $semana;    // Imprimimos el número de semana
-
-                        //echo date("Y-m-d", strtotime($Fecha));
-                        ?>
-                    </td>
-                    <td><?php $fecha_como_va = str_replace("/", "-", $fecha);
-                        echo date("Y-m-d", strtotime($fecha_como_va));
-                        ?></td>
-
-
-
-                    <td><?php echo $row['viaje_no'] ?></td>
-                    <td><?php echo $cuenta = $row['cc'] ?></td>
-                    <td><?php echo $row['reloj'] ?></td>
-                    <td><?php echo $row['adicional'] ?></td>
-                    <td><?php echo $row['equipaje'] ?></td>
-                    <td><?php echo $row['peaje'] ?></td>
-                    <td><?php echo $row['plus'] ?></td>
-                </tr>
-            </tbody>
-        <?php
-            if ($row['cc'] > 1) {
-
-                $movil = $row['movil'];
-
-                $total_reloj += $row['reloj'];
-                $total_adi += $row['adicional'];
-                $total_equi += $row['equipaje'];
-                $total_peaje += $row['peaje'];
-                $total_plus += $row['plus'];
+                    $movil = $row['movil'];
+                    $total_reloj += $row['reloj'];
+                    $total_adi += $row['adicional'];
+                    $total_equi += $row['equipaje'];
+                    $total_peaje += $row['peaje'];
+                    $total_plus += $row['plus'];
+                }
             }
-        }
 
-        ?>
-
+            ?>
+        </div>
     </table>
+
+    <?php
+
+    # Lee la cantidad de semanas adeudadas
+
+    $lee_semanas = "SELECT * FROM semanas WHERE movil = '$nu_movil'";
+    $result_semanas = mysqli_query($con, $lee_semanas);
+    $ver_semanas = mysqli_fetch_assoc($result_semanas);
+
+    $sem_adeudadas = $ver_semanas['total'];
+
+    ?>
+
     <table class="table table-bordered table-sm table-hover" width="200" height="100">
         <div class="grid">
             <div>
                 <ul>
-                    <li><?php echo "Semana: " . $semana ?></li>
+                    <li><?php echo "Semana ultimo deposito: " . $semana ?></li>
                     <li><?php echo "Fecha ultimo deposito: " . $fecha ?></li>
                     <li><?php echo "Semana actual: " . $semana_actual = date('W'); ?></li>
                     <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
                     <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
                     <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
                     <li><?php echo "Cantidad de semanas adeudadas: " . $cant_semanas_adeudadas = $semana_actual - $semana  ?></li>
-                    <br><br><br><br><br>
+                    <br><br>
 
                     <?php $total_de_vaucher =
                         $total_reloj +
@@ -336,38 +289,27 @@ if ($_SESSION['logueado']) {
                     <li><?php echo "Total de voucher: " . "$" . $total_de_vaucher  ?></li>
                     <li><?php echo "Debe de viajes: " . $paga_de_viajes = $total_registros * $abono_viaje_1; ?> </li>
                     <li><?php echo "Deuda anterior: " . $deuda_anterior ?></li>
-                    <li><?php echo "Debe de semanas adeudadas: " . $paga_semanas_adeudados = $abono_semanal * $cant_semanas_adeudadas ?></li>
+                    <li><?php echo "Debe de semanas adeudadas: " . $sem_adeudadas ?></li>
 
-                    <?php $para_mov_descuentos = $total_de_vaucher - $paga_de_viajes - $paga_semanas_adeudados;
-                    $quedan_al_movil = $para_mov_descuentos * .9;
-
-
-
-                    if ($quedan_al_movil < 1) {
-                    ?> <style>
-                            #credito {
-                                background-color: #FBff03;
-                                font-size: 23px;
-                            }
-                        </style>
-                        <p id="credito"><strong>Tiene que pagar: <?php echo $quedan_al_movil . '</p> </strong>';
-                                                                } elseif ($quedan_al_movil > 1) {
-                                                                    ?>
-                                <style>
-                                    #deposito {
-                                        background-color: #FB0003;
-                                        font-size: 23px;
-                                    }
-                                </style>
-                                <p id="deposito"><strong>DEPOSITARLE: <?php echo $quedan_al_movil . '</strong></p> ';
-                                                                    }
-                                                                    echo "<strong>ROJO</strong> depositarle al movil";
-                                                                    echo "<p><strong>AMARILLO</strong> tiene que pagar</>";
-                                                                        ?>
-                                    </li>
+                    <li>
+                        <h5>Sale de voucher - paga x viajes - semanas adeudadas y se le quita en 10%</h5>
+                        <?php
+                        $para_mov_descuentos = $total_de_vaucher - $paga_de_viajes - $sem_adeudadas;
+                        $quedan_al_movil = $para_mov_descuentos * .9;
 
 
-    
+                        if ($quedan_al_movil < 1) {
+                        ?>
+                            <p id="credito"><strong>DEBE PAGAR: <?php echo $quedan_al_movil . '</p> </strong>';
+                                                            } elseif ($quedan_al_movil > 1) {
+                                                                ?>
+                                    <p id="deposito"><strong>DEPOSITARLE: <?php echo $quedan_al_movil . '</strong></p> ';
+                                                                        }
+                                                                        //echo "<strong>ROJO</strong> depositarle al movil";
+                                                                        //echo "<p><strong>AMARILLO</strong> tiene que pagar</p>";
+                                                                            ?>
+                    </li>
+
                 </ul>
 
             </div>
@@ -384,38 +326,23 @@ if ($_SESSION['logueado']) {
                         <input type="hidden" id="total_registros" name="total_registros" value="<?php echo $total_registros ?>">
                         <input type="hidden" id="para_base" name="para_base" value="<?php echo  $para_base ?>">
                         <input type="hidden" id="semana" name="semana" value="<?php echo $semana; ?>">
+                        <input type="hidden" id="semanas_adeudadas" name="semanas_adeudadas" value="<?php echo $sem_adeudadas; ?>">
                         <input type="hidden" id="extraccion" name="extraccion">
                         <input type="hidden" id="deposito" name="deposito">
                         <input type="hidden" id="dep_al_movil" name="dep_al_movil">
-                        <input type="hidden" id="deuda_anterior" name="deuda_anterior" value="<?php //echo $deuda_anterior 
-                                                                                                ?>">
+                        <input type="hidden" id="deuda_anterior" name="deuda_anterior" value="<?php echo $deuda_anterior ?>">
 
 
-
-                        <p>Pago en Efectivo:</p>
+                        <p><strong>Pago en Efectivo:</strong></p>
                         <input type="text" id="ft" name="ft">
-
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
-
                         <br><br>
-
-                        <p>Paga X MecadoPago</p>
+                        <p>
+                            <strong>Paga X MecadoPago</strong>
+                        </p>
                         <input type="text" id="MP" name="MP">
-
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
-
                         <br><br>
-
-                        <p>Paga deuda anterior</p>
+                        <p><strong>Paga deuda anterior</strong></p>
                         <input type="text" id="paga_deuda_ant" name="paga_deuda_ant">
-
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
                         <br><br>
                         <button type="submit" class="btn btn-danger">GUARDAR</button>
                     </form>
@@ -424,6 +351,10 @@ if ($_SESSION['logueado']) {
 
             </div>
             <div>
+                <ul>
+                    <li> <strong>ROJO</strong> depositarle al movil</li>
+                    <li> <strong>AMARILLO</strong> tiene que pagar </li>
+                </ul>
                 <ul>
                     <li>Si entra x Mercado pago</li>
                     <li>Generar un pago en FT y extraerlo</li>

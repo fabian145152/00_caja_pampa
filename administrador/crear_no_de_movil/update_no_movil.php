@@ -19,8 +19,6 @@ echo $movil;
 
 $id = $_POST['id'];
 
-$sql = "UPDATE completa SET movil = '$movil' 
-                              
-                                WHERE id =" . $id;
+$sql = "UPDATE completa SET movil = '$movil' WHERE id =" . $id;
 $con->query($sql);
 header('Location:list_no_movil.php');

@@ -41,18 +41,13 @@ $row = $result->fetch_assoc();
             <div class="col-md-12">
 
                 <form class="form-group" accept=-"charset utf8" action="update_no_movil.php" method="post">
-
                     <div class="from-group">
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     </div>
-
                     <div class="form-group">
                         <label class="control-label">movil</label>
                         <input type="text" class="form-control" id="movil" name="movil" value="<?php echo  $row['movil']; ?>">
                     </div>
-
-
-
                     <div class="text-center">
                         <br>
                         <input type="submit" class="btn btn-primary" value="GUARDAR MOVIL">
@@ -60,12 +55,9 @@ $row = $result->fetch_assoc();
                         <br><br>
                         <a href="list_no_movil.php" class="btn btn-primary">SALIR</a>
                     </div>
-
-
             </div>
-
         </div>
     </div>
-    </div>
+
 
 </html>
