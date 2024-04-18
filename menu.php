@@ -16,8 +16,12 @@ if ($_SESSION['logueado']) {
 
     include_once 'includes/db.php';
     include_once 'includes/variables.php';
+    include_once 'includes/funciones.php';
+
     $con = openCon('config/db_admin.ini');
     $con->set_charset("utf8mb4");
+
+
 
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
@@ -35,7 +39,29 @@ if ($_SESSION['logueado']) {
 
 ?>
 
+
+
     <body>
+        <!-- <a href="administrador/caja/semana/semana.txt"></a> -->
+        <?php
+        $rutaArchivo = "administrador/caja/semana/semana.txt";
+
+        // Llamar a la función para leer el archivo
+        $contenidoArchivo = leerArchivoTXT($rutaArchivo);
+        leerArchivoTXT($contenidoArchivo);
+        echo $contenidoArchivo;
+        echo "<br>";
+
+        echo $semana_ahora = date('W');
+        echo "<br>";
+        if ($contenidoArchivo < $semana_ahora) {
+            echo "Sutina suma semana";
+            echo "<br>";
+            header('Location:administrador/caja/semana/semana.php');
+         
+        }
+
+        ?>
 
         <!DOCTYPE html>
         <html lang="es">
@@ -85,7 +111,7 @@ if ($_SESSION['logueado']) {
                             <br>
                             <li> <a href="administrador/caja/index.php" class="btn btn-primary" target="__blank">CAJA</a></li>
                             <br>
-                           
+
                             <li><a href="Backup_DDBB/index.php" class=" btn btn-primary">BackUP</a></li>
                             <br>
                             <li><a href="administrador/abonos/list_abonos.php" class="btn btn-danger">ABONOS</a></li>

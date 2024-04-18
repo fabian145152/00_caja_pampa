@@ -85,6 +85,10 @@
     echo "<br>";
     echo "Debe de semanas: " . $semanas_adeudadas;
     echo "<br>";
+    ?>
+    <p>Trayendo todas las variables a esta pagina para procesarlas</p>
+    <p>Leer el txt que tiene el numero de semana anteriror y compararlo con el numero de semana actual, si es diferente elecutar la rutina de semana para cobrarle la semana a todos los moviles </p>
+    <?php
 
     /*
     

@@ -137,11 +137,10 @@
                                        WHERE id=" . $id;
 
     $con->query($inc_semana);
-    //header('Location:semana.php');
-
+    
+    header('Location:../../../menu.php');
 
     ?>
-
 
 </body>
 
