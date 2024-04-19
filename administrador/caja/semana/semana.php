@@ -77,7 +77,7 @@
                     </div>
             </table>
 
-    <?php
+        <?php
 
 
             // Guardar la semana actual en el archivo para futuras comparaciones
@@ -109,35 +109,27 @@
     $sql_3 = "SELECT * FROM semanas WHERE 1";
     $listarla = $con->query($sql_3);
     while ($verla = $listarla->fetch_assoc()) {
-        echo "ID" . $id;
+        ?>
+        <table>
+            <tr>
+                <th><?php echo "Movil: " . $movil = $verla['movil'] ?></th>
+                <th><?php echo "Paga x semana: " . $x_semana = $verla['x_semana']; ?></th>
+                <th><?php echo "Total: " . $total = $verla['total']; ?></th>
+
+            </tr>
+        </table>
+    <?php
+        echo $movil;
+        echo " - ";
+        echo $suma = $x_semana + $total;
         echo "<br>";
-        echo "TOTAL" . $total = $verla['total'];
-        echo "<br>";
-        echo "<br>";
+
+        $inc_semana = "UPDATE semanas SET total = '$suma' WHERE movil = '$movil'";
+
+
+        $con->query($inc_semana);
     }
 
-
-
-    echo "<br>";
-    echo $id;
-    echo "<br>";
-    echo $total;
-    echo "<br>";
-    echo $x_semana;
-    echo "<br>";
-    echo $fecha;
-    echo "<br>";
-
-
-    echo $suma = $total + $x_semana;
-
-    $inc_semana = "UPDATE semanas SET movil = '$movil',
-                                       total = '$suma', 
-                                       x_semana = '$x_semana'
-                                       WHERE id=" . $id;
-
-    $con->query($inc_semana);
-    
     header('Location:../../../menu.php');
 
     ?>

@@ -8,6 +8,7 @@ hago una modificacion
  
  git pull 	     ;Traigo todo desde github a mi vsc
  git reset --hard; vuelve al commit ultimo guardado
+ 
  git log --since="6 days"    muestra los commit de los ultimos 6 dias.
  git reflog                 muestra lista de los commit anteriores
                             a la izquierda del listado aparecen numeros en hexa

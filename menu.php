@@ -58,8 +58,8 @@ if ($_SESSION['logueado']) {
             echo "Sutina suma semana";
             echo "<br>";
             header('Location:administrador/caja/semana/semana.php');
-         
         }
+
 
         ?>
 
