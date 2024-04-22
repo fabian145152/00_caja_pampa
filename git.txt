@@ -80,7 +80,7 @@ para no subir al servidor un archivo determinado
 	git merge otra_rama 	# traigo todo de la otra rama
 
 			## Cambiar de un commit a otro
-	git log -oneline							** me lista todos los commit con nombre
+	git log --oneline							** me lista todos los commit con nombre
 												con q salgo
 	git checkout <numero de commit>				**me cambia a ese				
 

@@ -11,13 +11,20 @@ $con->set_charset("utf8mb4");
 
 
 
-$sql = "INSERT INTO completa (movil) VALUES (?)";
-$stmt = $con->prepare($sql);
-$stmt->bind_param("i", $movil);
+$sql_movil = "INSERT INTO completa (movil) VALUES (?)";
+$stmt_movil = $con->prepare($sql_movil);
+$stmt_movil->bind_param("i", $movil);
 
+$sql_semana = "INSERT INTO semanas (movil) VALUES (?)";
+$stmt_semana = $con->prepare($sql_semana);
+$stmt_semana->bind_param("i", $movil);
 
+echo $movil;
 
-if ($stmt->execute()) {
+//exit();
+
+$stmt_movil->execute();
+if ($stmt_semana->execute()) {
 
 ?>
 

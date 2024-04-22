@@ -5,6 +5,7 @@ if ($_SESSION['logueado']) {
     echo "BIENVENIDO ,"  . $_SESSION['uname'] . '<br>';
 
     echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
+
 ?>
 
     <!DOCTYPE html>
@@ -39,11 +40,14 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="venta/venta_prod.php" class="btn btn-primary">VENTA DE PRODUCTOS</a></li>
                         <br>
+
+                        <li><a href="../../includes/modifica_variables.php/">IMPORTES Y ABONOS</a></li>
+                        <br>
                         <li><a href="#">INGRESAR FT</a></li>
                         <br>
                         <li><a href="#">EXTRAER FT</a></li>
                         <br>
-                        <li><a href="../../administrador/caja/index.php" class="btn btn-primary">SALIR</a></li>
+                        <li><a href="../../menu.php" class="btn btn-primary">SALIR</a></li>
                     </ul>
                 </div>
             </div>

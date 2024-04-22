@@ -82,9 +82,10 @@ if ($_SESSION['logueado']) {
                         <ul class="list-group">
                             <li><a href="usuarios/inicio_usuarios.php" class="btn btn-primary">Crear Usuarios</a></li>
                             <br>
-                            <li><a href="administrador/logeados/logeos.php" class="btn btn-primary">SESIONES</a></li>
+                            <li><a href="administrador/logeados/logeos.php" class="btn btn-info">SESIONES</a></li>
+
                             <br>
-                            <li><a href="#" class="btn btn-primary">Usuarios</a></li>
+                            <li><a href="#">Usuarios</a></li>
                             <br>
 
                         </ul>
