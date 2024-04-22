@@ -46,7 +46,7 @@ git es sistema de control de versiones
 	git commit -m "nombre del commit"	
 				rm nombre del archivo  	# borra el archivo
 				git status				# muestra lo que hice
-				git status -se			# muestra todo pero con menos argumentos
+				git status -s 			# muestra todo pero con menos argumentos
 				git commit -m "borre archivo"	# lo commitea
 				git restore archivo_2.txt     #lo recupera
 
@@ -63,7 +63,7 @@ para no subir al servidor un archivo determinado
 	git diff    # me muestra las modificaciones que le hice a los archivos antes de tageralos
 							para salir de esa pantalla q
 	git diff --staged  		# me muestra los cambios de los archivos tageados
-	git log 	# me muestra todos los cambios con los datos de quien los hizo	
+	git log 	            # me muestra todos los cambios con los datos de quien los hizo	
 	git log --oneline		# me mustra todos con el numero y el nombre
 
 		RAMAS branch
@@ -79,7 +79,12 @@ para no subir al servidor un archivo determinado
 	git checkout rama		# cambio de una rama a la otra
 	git merge otra_rama 	# traigo todo de la otra rama
 
+			## Cambiar de un commit a otro
+	git log -oneline							** me lista todos los commit con nombre
+												con q salgo
+	git checkout <numero de commit>				**me cambia a ese				
 
+	
 despues de crear el repo en github me da una lista de comandos
 copio la linea que dice 
 git remote add origin https://github.com/fabian145152/eee.git
