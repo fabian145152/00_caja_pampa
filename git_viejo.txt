@@ -1,0 +1,17 @@
+hago una modificacion
+ git status -s    ;me la lista
+ git add .  
+ git commit -m ""    ; agrego mensaje
+ git push	     ;subo todo a mi repo en git
+ 
+ 
+ 
+ git pull 	     ;Traigo todo desde github a mi vsc
+ git reset --hard; vuelve al commit ultimo guardado
+ 
+ git log --since="6 days"    muestra los commit de los ultimos 6 dias.
+ git reflog                 muestra lista de los commit anteriores
+                            a la izquierda del listado aparecen numeros en hexa
+                            hacer git pull con cualquiera de esos numero y lo manda arriba en el listado,
+                            luego con git reset --hard vuelve al commit seleccionado
+
