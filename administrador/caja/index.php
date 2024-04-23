@@ -34,13 +34,12 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="genera_deuda/genera_deuda.php" class="btn btn-primary">GENERAR DEUDA ANTERIOR</a></li>
                         <br>
-                        <li><a href="semana/semana.php" class="btn btn-primary">SEMANA</a></li>
+                        <li><a href="semana/inicio_semana.php" class="btn btn-primary">SEMANA</a></li>
                         <br>
                         <li><a href="resumen_de_caja/index.php" class="btn btn-primary">RESUMEN DE CAJA</a></li>
                         <br>
                         <li><a href="venta/venta_prod.php" class="btn btn-primary">VENTA DE PRODUCTOS</a></li>
                         <br>
-
                         <li><a href="../../includes/modifica_variables.php/">IMPORTES Y ABONOS</a></li>
                         <br>
                         <li><a href="#">INGRESAR FT</a></li>
