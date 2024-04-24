@@ -26,10 +26,7 @@ if ($_SESSION['logueado']) {
         </style>
         <script>
             function deleteProduct(cod_titular) {
-                /*  Si no le pongo nada entre los parentesis() me borra todo o sea que 
-                la funcion se ejecuta siempore igual. 
-                Tengo que cambiarle los parametros de entrada para que la ejecute como yo quiero. 
-                Si no tiene ningun paramtero generaliza, si lo tiene se ejecuta de forma particular*/
+              
                 bootbox.confirm("Desea Eliminar?" + cod_titular, function(result) {
                     /*  si la funcion no tiene nombre es una funcion anonima function() o function = nombre()  */
                     if (result) {
