@@ -16,12 +16,14 @@ echo "<br>";
 echo $fecha = $_POST['fecha'];
 
 
-$sql = "UPDATE semanas SET movil = '$movil', 
-                        x_semana = '$x_semana', 
-                        total = '$total',
-                        fecha = '$fecha' 
-                        WHERE id=" . $id;
 
-$stmt = $con->query($sql);
+
+
+
+# el update ya anda descomentrlo
+//$sql = "UPDATE semanas SET movil = '$movil', x_semana = '$x_semana', total = '$total', fecha = '$fecha' WHERE id=" . $id;
+
+//$stmt = $con->query($sql);
+
 
 header('Location:../index.php');

@@ -42,10 +42,14 @@ if ($_SESSION['logueado']) {
         $listar = $con->query($sql_sem);
 
 
-
         if ($listar->num_rows > 0) {
+
+
             echo "<h3>Respuesta</h3>";
             while ($row = $listar->fetch_assoc()) {
+
+
+
                 $x_semana = $row['x_semana'];
                 $total = $row['total'];
                 $cant_semanas = $total / $x_semana;
@@ -65,9 +69,13 @@ if ($_SESSION['logueado']) {
                     </ul>
 
                 </form>
-        <?php
+            <?php
 
             }
+        } else {
+            echo "El rejistro no existe...";
+            ?> <a href="Nueva_semana_movil.php">DESEA CREARLO ??</a>
+        <?php
         }
 
         if ($con->connect_error) {
