@@ -9,13 +9,14 @@ include_once '../../includes/db.php';
 $con = openCon('../../config/db_admin.ini');
 $con->set_charset("utf8mb4");
 $id_upd = $_GET['q'];
-echo $id_upd;
+//echo $id_upd;
 
 
 
-$sql = "SELECT * FROM completa WHERE id=" . $id_upd;
-$result = $con->query($sql);
-$row = $result->fetch_assoc();
+$sql_movil = "SELECT * FROM completa WHERE id=" . $id_upd;
+$result_movil = $con->query($sql_movil);
+$row = $result_movil->fetch_assoc();
+
 //}
 ?>
 <!DOCTYPE html>
@@ -34,6 +35,19 @@ $row = $result->fetch_assoc();
 
 <body>
 
+    <?php
+
+
+
+    echo $movil = $row['movil'];
+    $sql_semana = "SELECT * FROM semanas WHERE movil=" . $movil;
+
+    $result_semana = $con->query($sql_semana);
+    $row_semana = $result_semana->fetch_assoc();
+
+    
+    ?>
+
     <div class="container">
         <h3 class="text-center">ACTUALIZAR NUMEROS DE MOVIL</h3>
         <div class="row">
@@ -46,8 +60,16 @@ $row = $result->fetch_assoc();
                     </div>
                     <div class="form-group">
                         <label class="control-label">movil</label>
-                        <input type="text" class="form-control" id="movil" name="movil" value="<?php echo  $row['movil']; ?>">
+                        <input type="text" class="form-control" id="movil" name="movil" value="<?php echo $row['movil']; ?>">
                     </div>
+
+                    <div class="form-group">
+                        
+                        <input type="hidden" class="form-control" id="semana_movil" name="semana_movil" value="<?php echo $row_semana['movil']; ?>">
+                    </div>
+
+
+
                     <div class="text-center">
                         <br>
                         <input type="submit" class="btn btn-primary" value="GUARDAR MOVIL">
@@ -58,6 +80,7 @@ $row = $result->fetch_assoc();
             </div>
         </div>
     </div>
+
 
 
 </html>

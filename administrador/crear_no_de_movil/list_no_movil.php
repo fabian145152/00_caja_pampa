@@ -57,7 +57,6 @@ if ($_SESSION['logueado']) {
             <style>
                 a {
                     text-align: center;
-
                 }
             </style>
             <div class="btn-group d-flex w-50" role="group">

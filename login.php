@@ -7,8 +7,7 @@ include_once "includes/database.php";
 
 $usr = $_POST['username'];
 $pass = md5($_POST['password']);
-/*m
-d5 queda encriptado la contraseña*/
+/*md5 queda encriptada la contraseña*/
 $con->set_charset("utf-8");/*$con es un metodo*/
 $sql = "SELECT * FROM users WHERE (username='$usr' or email='$usr') and (password='$pass')";
 $result = $con->query($sql);

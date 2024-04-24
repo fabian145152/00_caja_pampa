@@ -4,4 +4,11 @@
 #### creado el menu de usuarios nuevos y permisos cuarda el nombre del usuario que las creo.
 
 
-# pertiga
+# pertiga 12-4-24
+ 
+# crea moviles junto con la semana 22-4-24
+
+# edita el importe de la semana x movil 23-4-24
+
+
+

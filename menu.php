@@ -30,7 +30,7 @@ if ($_SESSION['logueado']) {
     $usuario_logeado = "INSERT INTO users_logeado (nombre, fecha, abre) VALUES ('$nombre', '$fecha', '$abre')";
 
     if ($con->query($usuario_logeado) === TRUE) {
-        echo "New record created successfully";
+        echo "Usuario Guardado exitosamente.";
     } else {
         echo "Error: " . $usuario_logeado . "<br>" . $con->error;
     }
@@ -49,13 +49,13 @@ if ($_SESSION['logueado']) {
         // Llamar a la función para leer el archivo
         $contenidoArchivo = leerArchivoTXT($rutaArchivo);
         leerArchivoTXT($contenidoArchivo);
-        echo $contenidoArchivo;
+        $contenidoArchivo;
         echo "<br>";
 
-        echo $semana_ahora = date('W');
+        echo "Semana: " . $semana_ahora = date('W');
         echo "<br>";
         if ($contenidoArchivo < $semana_ahora) {
-            echo "Sutina suma semana";
+            echo "Rutina suma semana";
             echo "<br>";
             header('Location:administrador/caja/semana/semana.php');
         }
