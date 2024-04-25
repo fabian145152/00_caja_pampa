@@ -11,9 +11,11 @@
 </head>
 
 <body>
-    <p>aca</p>
+    <p>Crea semana que ne esta al movil</p>
     <?php
-    $movil = $_POST['movil'];
+    $total = .1;
+    $x_semama = .1;
+    $movil = $_GET['q'];
     echo $movil;
 
     include_once '../../../includes/db.php';
@@ -24,21 +26,19 @@
     if ($con->connect_error) {
         die("Error de conexión a la primera base de datos: " . $con->connect_error);
     }
+    echo $fecha = date('Y-m-d');
 
-    $sql_sem = "SELECT * FROM semanas WHERE movil ='$movil'";
-    $listar = $con->query($sql_sem);
+    $sql = "INSERT INTO semanas (movil, fecha, total,x_semana) VALUES (?,?,?,?)";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("isdd", $movil, $fecha, $total, $x_semama);
 
-
-    if ($listar->num_rows > 0) {
-        echo "Ese movil ya existe...";
-
-    ?>
-        <br>
-        <a href="nueva_semana_movil.php">VOLVER</a>
-    <?php
+    if ($stmt->execute()) {
+        echo "Datos insertados correctamente.";
+    } else {
+        echo "ERROR: No se pudo ejecutar la consulta ";
     }
 
-
+    header('Location: inicio_semana.php?q');
     ?>
 </body>
 
