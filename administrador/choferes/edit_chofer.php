@@ -10,6 +10,9 @@ $con = openCon('../../config/db_admin.ini');
 $con->set_charset("utf8mb4");
 $id_upd = $_GET['q'];
 echo $id_upd;
+
+
+
 $sql = "SELECT *  FROM completa WHERE id=" . $id_upd;
 $result = $con->query($sql);
 $row = $result->fetch_assoc();

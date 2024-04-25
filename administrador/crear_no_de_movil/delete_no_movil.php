@@ -1,6 +1,6 @@
 <?php
 
-//session_start();
+session_start();
 //if ($_SESSION['logueado']) {
 
 include_once '../../includes/db.php';

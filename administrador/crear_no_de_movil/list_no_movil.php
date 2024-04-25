@@ -72,7 +72,6 @@ if ($_SESSION['logueado']) {
         <table class="table table-bordered table-sm table-hover">
             <thead class="thead-dark">
                 <tr>
-
                     <th>Movil</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>

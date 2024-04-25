@@ -27,17 +27,9 @@
 </head>
 
 <body>
-
-
-
     <?php
-
     $id = $_GET['q'];
-
-
-
     include_once '../../includes/db.php';
-
     $con = openCon('../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
@@ -70,7 +62,6 @@
                     año,             
                     fecha_inicio,
                     fecha_facturacion,
-                    abono,
                     x_viaje
                     FROM `completa` WHERE id= $id;";
 
@@ -100,9 +91,21 @@
                     <li>
                         <h3>Descripción</h3>
                     </li>
-                    <li>Movil:<?php echo " " . $row['movil']  ?></li>
+                    <li>Movil:<?php
+                                $movil = $row['movil'];
+                                echo " " . $movil  ?></li>
                     <li>Licencia: <?php echo " " . $row['licencia_titu'] ?></li>
-                    <li>Semana: <?php echo  "$" . $row['abono'] . "-" ?></li>
+
+                    <!-- ACA Hacer la lectura del importe x semana -->
+
+                    <?php
+                    $paga_semana = "SELECT * FROM semanas WHERE movil =" . $movil;
+                    $importe = $con->query($paga_semana);
+                    $muestra = $importe->fetch_assoc();
+                    $abono_semana = $muestra['x_semana'];
+                    ?>
+
+                    <li>Semana: <?php echo  "$" . $abono_semana . "-" ?></li>
                     <li>X Viaje: <?php echo " " . $row['x_viaje'] ?></li>
                 </ul>
             </div>

@@ -87,13 +87,11 @@ if ($_SESSION['logueado']) {
                     <th>Modelo</th>
                     <th>Dominio</th>
                     <th>año</th>
-                    <th>Abono</th>
                     <th>x Viaje</th>
                     <th>Deuda_ant</th>
                     <th>Detalles</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
-
                 </tr>
             </thead>
 
@@ -104,8 +102,11 @@ if ($_SESSION['logueado']) {
             $con = openCon('../../config/db_admin.ini');
             $con->set_charset("utf8mb4");
 
-            $sql_comp = "SELECT * FROM `completa` WHERE 1 ORDER BY movil;";
+            $sql_comp = "SELECT * FROM `completa` WHERE 1 ORDER BY movil";
             $res_comp = $con->query($sql_comp);
+
+            
+
 
 
             while ($row = $res_comp->fetch_assoc()) {
@@ -113,7 +114,7 @@ if ($_SESSION['logueado']) {
                 <tr>
 
                     <!-- <th><?php $row['id'] ?></th>  -->
-                    <th><?php echo $row['movil'] ?></th>
+                    <th><?php echo $movil = $row['movil']; ?></th>
                     <th><?php echo $row['nombre_titu'] ?></th>
                     <th><?php echo $row['apellido_titu'] ?></th>
                     <th><?php echo $row['cel_titu'] ?></th>
@@ -129,7 +130,7 @@ if ($_SESSION['logueado']) {
                     <th><?php echo $row['modelo'] ?></th>
                     <th><?php echo $row['dominio'] ?></th>
                     <th><?php echo $row['año'] ?></th>
-                    <th><?php echo $row['abono'] ?></th>
+            
                     <th><?php echo $row['x_viaje'] ?></th>
                     <th><?php echo $row['deuda_anterior'] ?></th>
 

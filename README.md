@@ -10,5 +10,7 @@
 
 # edita el importe de la semana x movil 23-4-24
 
-# lista la creacion de la semana si no esta 
+# lista la creacion de la semana si es inexistente 25-4-24
+
+
 

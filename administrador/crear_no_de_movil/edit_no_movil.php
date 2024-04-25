@@ -17,7 +17,7 @@ $sql_movil = "SELECT * FROM completa WHERE id=" . $id_upd;
 $result_movil = $con->query($sql_movil);
 $row = $result_movil->fetch_assoc();
 
-//}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +54,7 @@ $row = $result_movil->fetch_assoc();
 
             <div class="col-md-12">
 
-                <form class="form-group" accept=-"charset utf8" action="update_no_movil.php" method="post">
+                <form class="form-group" accept=-"charset utf8" action="update_imp_viaje.php" method="post">
                     <div class="from-group">
                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     </div>
