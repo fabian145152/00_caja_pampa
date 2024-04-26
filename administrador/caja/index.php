@@ -38,6 +38,8 @@ if ($_SESSION['logueado']) {
                         <br>
                         <li><a href="importe_viaje/viaje.php" class="btn btn-primary">IMPORTE x VIAJE</a></li>
                         <br>
+                        <li><a href="importes_a_cobrar/importes.php" class="btn btn-primary">ASIGNAR IMPORTES A COBRAR</a></li>
+                        <br>
                         <li><a href="resumen_de_caja/index.php" class="btn btn-primary">RESUMEN DE CAJA</a></li>
                         <br>
                         <li><a href="venta/venta_prod.php" class="btn btn-primary">VENTA DE PRODUCTOS</a></li>

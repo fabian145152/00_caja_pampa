@@ -18,7 +18,7 @@
 <body>
     <br><br>
     <?php
-    $nombre = $_GET['q'];
+    echo $nombre = $_GET['q'];
 
 
     include_once '../../../includes/db.php';
@@ -26,7 +26,7 @@
     $con = openCon('../../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-    $sql_viajes = "SELECT * FROM importe_viajes WHERE 1";
+    $sql_viajes = "SELECT * FROM importe_viajes WHERE id=" . $nombre;
 
 
     $result = $con->query($sql_viajes);
@@ -43,11 +43,11 @@
 
                 <form class="form-group" accept=-"charset utf8" action="update_imp_viaje.php" method="POST">
                     <div class="from-group">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" name="id" name="id" value="<?php echo $row['id']; ?>">
                     </div>
                     <div class="form-group">
                         <label class="control-label">NOMBRE</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" readonly value="<?php echo $row['nombre']; ?>">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $row['nombre']; ?>">
                     </div>
                     <div class="form-group">
                         <label class="control-label">IMPORTE</label>

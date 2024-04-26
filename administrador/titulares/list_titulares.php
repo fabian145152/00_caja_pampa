@@ -71,7 +71,7 @@ if ($_SESSION['logueado']) {
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Importe</th>
+                   
                     <th>Fecha Fact</th>
                     <TH>movil</TH>
                     <th>Nombre</th>
@@ -82,6 +82,7 @@ if ($_SESSION['logueado']) {
                     <th>Celular</th>
                     <th>Actualizar</th>
                     <th>Eliminar</th>
+          
                 </tr>
             </thead>
 
@@ -102,7 +103,7 @@ if ($_SESSION['logueado']) {
                 $con->set_charset("utf8mb4");
 
                 $sql = "SELECT id,
-                           abono,
+                         
                            date_format (fecha_facturacion, '%d-%m-%Y') as fecha_formateada ,
                            movil,
                            nombre_titu,
@@ -123,7 +124,7 @@ if ($_SESSION['logueado']) {
                     <tr>
 
                         <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['abono'] ?></td>
+                        
                         <td><?php echo $row['fecha_formateada'] ?></td>
                         <td><?php echo $row['movil'] ?></td>
                         <td><?php echo $row['nombre_titu'] ?></td>

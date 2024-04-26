@@ -32,11 +32,11 @@
     $stmt = $con->prepare($sql);
     $stmt->bind_param("isdd", $movil, $fecha, $total, $x_semama);
 
-    if ($stmt->execute()) {
-        echo "Datos insertados correctamente.";
-    } else {
-        echo "ERROR: No se pudo ejecutar la consulta ";
-    }
+
+
+    $stmt->execute();
+
+
 
     header('Location: inicio_semana.php?q');
     ?>

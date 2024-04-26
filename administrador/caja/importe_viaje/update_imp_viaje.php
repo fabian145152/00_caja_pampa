@@ -8,15 +8,14 @@
     $con = openCon('../../../config/db_admin.ini');
     $con->set_charset("utf8mb4");
 
-    echo $id = $_POST['id'];
+    $id = $_POST['id'];
 
-    echo $nombre = $_POST['nombre'];
+    $nombre = $_POST['nombre'];
 
-    echo $importe = $_POST['importe'];
+    $importe = $_POST['importe'];
 
-    $sql = "UPDATE importe_viajes SET importe='$importe' WHERE id =" . $id;
+    $sql = "UPDATE importe_viajes SET nombre = '$nombre', importe='$importe' WHERE id=" . $id;
     $con->query($sql);
-
 
     header('Location: viaje.php');
     ?>

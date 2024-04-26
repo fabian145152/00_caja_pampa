@@ -75,7 +75,8 @@ if ($_SESSION['logueado']) {
 
 
     ?>
-
+    <p>Ya esta echa la consulta de el importe semanal </p>
+    <p>Estaba trabajando con la consulta del importe por viaje, esta incompleta</p>
     <h5 style="text-align: center;"><?php echo $fechaActual . " " . "Semana: " . $semana ?>
 
         <?php echo "Movil: " . $nu_movil;
@@ -90,13 +91,24 @@ if ($_SESSION['logueado']) {
     </h5>
 
     <?php
+    # consulta todos los datos del registro de el movil en cuestioon
+
     $ver_datos = "SELECT * FROM completa WHERE movil = '$nu_movil'";
-
     $muestra_todo = $con->query($ver_datos);
-
     $fila = $muestra_todo->fetch_assoc();
 
-    $abono_semanal = $fila['abono'];     //importe semanal
+    # Consulta el importe de la semana del movil en cuestion
+
+    $abono_semana = "SELECT * FROM semanas WHERE movil = '$nu_movil'";
+    $ver_semana = $con->query($abono_semana);
+    $ver_sem = $ver_semana->fetch_assoc();
+
+    # Consulta el importe x viaje
+
+    //$abono_viaje = "SELECT * FROM importe_viajes WHERE";
+
+
+
     $x_viaje = $fila['x_viaje'];  //importe x viaje
 
     ?>
@@ -256,13 +268,6 @@ if ($_SESSION['logueado']) {
 
     <?php
 
-    # Lee la cantidad de semanas adeudadas
-
-    $lee_semanas = "SELECT * FROM semanas WHERE movil = '$nu_movil'";
-    $result_semanas = mysqli_query($con, $lee_semanas);
-    $ver_semanas = mysqli_fetch_assoc($result_semanas);
-
-    $sem_adeudadas = $ver_semanas['total'];
 
     ?>
 
@@ -270,13 +275,14 @@ if ($_SESSION['logueado']) {
         <div class="grid">
             <div>
                 <ul>
+
                     <li><?php echo "Semana ultimo deposito: " . $semana ?></li>
                     <li><?php echo "Fecha ultimo deposito: " . $fecha ?></li>
                     <li><?php echo "Semana actual: " . $semana_actual = date('W'); ?></li>
                     <li><?php echo "Viajes Registrados: " . $total_registros; ?></li>
                     <li><?php echo "Paga por viaje: " . $abono_viaje_1; ?></li>
-                    <li><?php echo "Abono semanal: " . "$" . $abono_semanal . "-" ?></li>
-                    <li><?php echo "Cantidad de semanas adeudadas: " . $cant_semanas_adeudadas = $semana_actual - $semana  ?></li>
+                    <li><?php echo "Abono semanal: " . "$" . $ver_sem['x_semana'] . "-" ?></li>
+                    <li><?php echo "Debe de semanas atrasadas: " . $ver_sem['total']; ?></li>
                     <br><br>
 
                     <?php $total_de_vaucher =
@@ -289,7 +295,7 @@ if ($_SESSION['logueado']) {
                     <li><?php echo "Total de voucher: " . "$" . $total_de_vaucher  ?></li>
                     <li><?php echo "Debe de viajes: " . $paga_de_viajes = $total_registros * $abono_viaje_1; ?> </li>
                     <li><?php echo "Deuda anterior: " . $deuda_anterior ?></li>
-                    <li><?php echo "Debe de semanas adeudadas: " . $sem_adeudadas ?></li>
+
 
                     <li>
                         <h5>Sale de voucher - paga x viajes - semanas adeudadas y se le quita en 10%</h5>

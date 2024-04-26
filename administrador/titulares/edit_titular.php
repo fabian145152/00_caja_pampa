@@ -94,42 +94,6 @@ $row = $result->fetch_assoc();
                         <input type="date" class="form-control" id="fecha_fact" name="fecha_fact" value="<?php echo $row['fecha_facturacion']; ?>">
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label">SELECCIONAR ABONO SEMANAL</label>
-                        <select name="abono" id="abono" class="form-control" require>
-                            <?php
-                            include_once '../../includes/db.php';
-                            $con = openCon('../../config/db_admin.ini');
-                            $con->set_charset("utf8mb4");
-                            $sql = "SELECT * FROM abonos WHERE 1";
-                            $result = $con->query($sql);
-                            while ($row = $result->fetch_assoc()) {
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['abono'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">SELECCIONAR ABONO X VIAJE</label>
-                        <select name="abono_viaje" id="abono_viaje" class="form-control" require>
-                            <?php
-                            include_once '../../includes/db.php';
-                            $con = openCon('../../config/db_admin.ini');
-                            $con->set_charset("utf8mb4");
-                            $sql = "SELECT * FROM abonos WHERE 1 ORDER BY abono";
-                            $result = $con->query($sql);
-                            while ($row = $result->fetch_assoc()) {
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['abono'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
                     <div class="text-center">
                         <br>
                         <input type="submit" class="btn btn-success" value="GUARDAR DATOS">
