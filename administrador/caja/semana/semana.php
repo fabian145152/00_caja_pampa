@@ -39,7 +39,6 @@
 
             $sql = "SELECT * FROM semanas WHERE 1";
             $listar = $con->query($sql);
-
     ?>
             <table class="table table-bordered table-sm table-hover">
                 <div>
@@ -50,7 +49,6 @@
                         <th>paga x semana</th>
                         <th>total</th>
                         <th>fecha</th>
-
                     </tr>
                     </thead>
                 </div>
@@ -58,7 +56,6 @@
                     <div>
                         <thead>
                             <?php
-
                             while ($ver = $listar->fetch_assoc()) {
                             ?>
                                 <tr>
@@ -67,14 +64,14 @@
                                     <th><?php echo $x_semana = $ver['x_semana'] ?></th>
                                     <th><?php echo $total = $ver['total'] ?></th>
                                     <th><?php echo $fecha = $ver['fecha'] ?></th>
-                                    >
-
                                 </tr>
                             <?php
                             }
+
                             ?>
                         </thead>
                     </div>
+                </thead>
             </table>
 
         <?php
@@ -112,13 +109,13 @@
         ?>
         <table>
             <tr>
-                <th><?php echo "Movil: " . $movil = $verla['movil'] ?></th>
-                <th><?php echo "Paga x semana: " . $x_semana = $verla['x_semana']; ?></th>
-                <th><?php echo "Total: " . $total = $verla['total']; ?></th>
-
+                <th><?php echo  $movil = $verla['movil'] ?></th>
+                <th><?php echo  $x_semana = $verla['x_semana']; ?></th>
+                <th><?php echo  $total = $verla['total']; ?></th>
             </tr>
         </table>
     <?php
+
         echo $movil;
         echo " - ";
         echo $suma = $x_semana + $total;
@@ -126,13 +123,15 @@
 
         $inc_semana = "UPDATE semanas SET total = '$suma' WHERE movil = '$movil'";
 
-
         $con->query($inc_semana);
     }
 
-    header('Location:../../../menu.php');
+    //header('Location:../../../menu.php');
 
     ?>
+    <script>
+        location.href = "../../../menu.php";
+    </script>
 
 </body>
 

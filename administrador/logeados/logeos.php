@@ -2,16 +2,16 @@
 session_start();
 if ($_SESSION['logueado']) {
 
-    echo "BIENVENIDO ,"  . $_SESSION['uname'] . '<br>';
+    echo "<h4>" . "BIENVENIDO "  . $_SESSION['uname'];
+    echo "   ";
+    echo "Hora de conexión :" . $_SESSION['time'] . "</h4>";
+    $fecha = date('Y-m-d');
+    $abre = $_SESSION['time'];
 
-    echo "Hora de conexión :" . $_SESSION['time'] . '<br>';
 
-    echo $nombre = $_SESSION['uname'];
-    echo "<br>";
-    echo $fecha = date('Y-m-d');
-    echo "<br>";
-    echo $abre = $_SESSION['time'];
-    echo "<br>";
+
+
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -21,6 +21,10 @@ if ($_SESSION['logueado']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/ultima.css">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
     </head>
 
     <body>
@@ -31,7 +35,9 @@ if ($_SESSION['logueado']) {
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <!-- <a href="insert_unidad.php" class="btn btn-primary btn-sm">NUEVO UNIDAD</a>  -->
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <a href="../../menu.php" class="btn btn-primary btn-sm">SALIR</a>
+                <a href="borrar_reg.php" class="btn btn-primary btn-sm ">Dejar ultimos 20</a>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a href="../../menu.php" class="btn btn-primary btn-sm ">SALIR</a>
             </div>
 
         </div>
